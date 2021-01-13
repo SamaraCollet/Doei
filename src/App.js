@@ -1,12 +1,14 @@
+import Header from "./components/header";
 import VoluntaryRegister from './pages/voluntary-register'
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      <Header />
       <VoluntaryRegister />
     </div>
-  );
+  )
 }
 
 export default App;
