@@ -1,8 +1,9 @@
-import Header from "./components/header";
+import Header from "./components/Header";
+import AuthHeader from "./components/AuthHeader";
 import "./App.css";
 
 function App() {
-  return <Header />;
+  return <></>;
 }
 
 export default App;
