@@ -1,38 +1,35 @@
-import {
-  Container,
-  Info,
-  Contact,
-  Title,
-  MapStyle,
-  TitleCss,
-  GifTab,
-} from "./styled";
+import { Container, Info, Contact, Title, TitleCss, GifTab } from "./styled";
 import ongPic from "../../images/ongPic.png";
 import gif from "../../images/loading.gif";
 import Header from "../../components/header";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import geoLocation from "../../components/geoLocation";
 import Geocode from "react-geocode";
+import { useSelector } from "react-redux";
 
 const AdPage = () => {
   const [ad, setAd] = useState(null);
   const [ong, setOng] = useState(null);
   const [geo, setGeo] = useState({ lat: 0, lng: 0 });
 
+  // const counter = useSelector((state) => state.campaigns);
+  // console.log(counter);
+
   useEffect(() => {
     axios
-      .get("https://capstone4-kenzie.herokuapp.com/campaigns/1")
+      .get("https://capstone4-kenzie.herokuapp.com/campaigns/0")
       .then((res) => setAd(res.data));
   }, []);
 
   useEffect(() => {
-    axios
-      .get("https://capstone4-kenzie.herokuapp.com/ngos/2")
-      .then((res) => setOng(...res.data));
-  }, []);
-  console.log(ong);
+    if (ad !== null) {
+      axios
+        .get(`https://capstone4-kenzie.herokuapp.com/ngos/${ad.userId}`)
+        .then((res) => setOng(...res.data));
+    }
+  }, [ad]);
+
   //Get map info
   const containerStyle = {
     width: "400px",
@@ -40,11 +37,6 @@ const AdPage = () => {
   };
 
   const center = {
-    lat: geo.lat,
-    lng: geo.lng,
-  };
-
-  const position = {
     lat: geo.lat,
     lng: geo.lng,
   };
@@ -73,8 +65,11 @@ const AdPage = () => {
   };
 
   useEffect(() => {
-    getLocation("rua professor vahia de abreu 172");
-  }, []);
+    ong !== null &&
+      getLocation(
+        `${ong.address.city}, ${ong.address.streetName} ${ong.address.streetNumber}`
+      );
+  }, [ong]);
 
   return (
     <Container>
@@ -88,7 +83,7 @@ const AdPage = () => {
             </TitleCss>
           </Title>
           <Info>
-            <img src={ongPic} />
+            <img src={ongPic} alt="ONG" />
             <div>
               <h1> {ong.ngoInfo.name} </h1>
 
@@ -117,7 +112,7 @@ const AdPage = () => {
                   center={center}
                   zoom={15}
                 >
-                  <Marker onLoad={onLoad} position={position} />
+                  <Marker onLoad={onLoad} position={center} />
                 </GoogleMap>
               </LoadScript>
             </div>
