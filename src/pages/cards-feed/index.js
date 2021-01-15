@@ -5,27 +5,6 @@ const CardsFeed = () => {
     <Container>
       <CampaignCard />
       <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
-      <CampaignCard />
     </Container>
   );
 };
