@@ -10,8 +10,8 @@ import AdPage from "./pages/ad-page";
 function App() {
   return (
     <div>
-      {/* <AdPage /> */}
-      <LandingPage />
+      <AdPage />
+      {/* <LandingPage /> */}
     </div>
   );
 }
