@@ -10,6 +10,7 @@ import AdPage from "./pages/ad-page";
 function App() {
   return (
     <div>
+      <GlobalStyle></GlobalStyle>
       <AdPage />
       {/* <LandingPage /> */}
     </div>
