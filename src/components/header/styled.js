@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
   color: white;
   font-size: 14px;
-
+  
   p:first-child {
     padding-left: 2rem;
   }
