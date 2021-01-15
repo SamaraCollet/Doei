@@ -9,28 +9,17 @@ import {
 } from "./styled";
 import ongPic from "../../images/ongPic.png";
 import gif from "../../images/loading.gif";
-
+import Header from "../../components/header";
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
-
-import Header from "../../components/header";
-
-//maps api
-const containerStyle = {
-  width: "400px",
-  height: "400px",
-};
-
-const center = {
-  lat: 36.169941,
-  lng: -115.139832,
-};
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import geoLocation from "../../components/geoLocation";
+import Geocode from "react-geocode";
 
 const AdPage = () => {
-  const [ad, setAd] = useState();
-  const [user, setUser] = useState();
+  const [ad, setAd] = useState(null);
+  const [ong, setOng] = useState(null);
+  const [geo, setGeo] = useState({ lat: 0, lng: 0 });
 
   useEffect(() => {
     axios
@@ -38,29 +27,59 @@ const AdPage = () => {
       .then((res) => setAd(res.data));
   }, []);
 
-  console.log(user);
-
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: "AIzaSyDCyOJQ3X5-Et_YZq--Eh7wYumIrvzlw_o",
-  });
-
-  const [map, setMap] = useState(null);
-
-  const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map);
+  useEffect(() => {
+    axios
+      .get("https://capstone4-kenzie.herokuapp.com/ngos/2")
+      .then((res) => setOng(...res.data));
   }, []);
+  console.log(ong);
+  //Get map info
+  const containerStyle = {
+    width: "400px",
+    height: "400px",
+  };
 
-  const onUnmount = useCallback(function callback(map) {
-    setMap(null);
+  const center = {
+    lat: geo.lat,
+    lng: geo.lng,
+  };
+
+  const position = {
+    lat: geo.lat,
+    lng: geo.lng,
+  };
+
+  const onLoad = (marker) => {
+    console.log("marker: ", marker);
+  };
+
+  //Get lat and long
+  Geocode.setApiKey("AIzaSyBj8LCYAcsyOtQ7TNihTnP7kPMOVhtnqV0");
+
+  Geocode.setLanguage("pt");
+
+  Geocode.enableDebug();
+
+  const getLocation = (address) => {
+    Geocode.fromAddress(address).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        setGeo({ lat: lat, lng: lng });
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  };
+
+  useEffect(() => {
+    getLocation("rua professor vahia de abreu 172");
   }, []);
 
   return (
     <Container>
       <Header />
-      {ad !== undefined ? (
+      {ad && ong !== null ? (
         <>
           <Title>
             <TitleCss>
@@ -71,7 +90,7 @@ const AdPage = () => {
           <Info>
             <img src={ongPic} />
             <div>
-              <h1> ONG NAME </h1>
+              <h1> {ong.ngoInfo.name} </h1>
 
               <h2> {ad.about} </h2>
             </div>
@@ -83,25 +102,24 @@ const AdPage = () => {
                 <div />
               </TitleCss>
               <ul>
-                <li>Respondável: </li>
-                <li>Email: </li>
-                <li>Telefone: </li>
-                <li>Website: </li>
+                <li>{ong.ngoInfo.name}</li>
+                <li>{ong.email} </li>
+                <li>9 9152-7936</li>
+                <li>
+                  <a href={ong.ngoInfo.website}>{ong.ngoInfo.website}</a>
+                </li>
               </ul>
             </div>
             <div>
-              {isLoaded && (
+              <LoadScript googleMapsApiKey="AIzaSyBj8LCYAcsyOtQ7TNihTnP7kPMOVhtnqV0">
                 <GoogleMap
                   mapContainerStyle={containerStyle}
                   center={center}
-                  zoom={10}
-                  onLoad={onLoad}
-                  onUnmount={onUnmount}
+                  zoom={15}
                 >
-                  {/* Child components, such as markers, info windows, etc. */}
-                  <></>
+                  <Marker onLoad={onLoad} position={position} />
                 </GoogleMap>
-              )}
+              </LoadScript>
             </div>
           </Contact>
         </>

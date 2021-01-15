@@ -72,7 +72,7 @@ export const Info = styled.div`
 `;
 
 export const Contact = styled.div`
-  background-color: rgba(145, 190, 111, 0.35);
+  background-color: rgba(0, 187, 249, 0.35);
   width: 100vw;
 
   h1 {
@@ -101,9 +101,4 @@ export const Contact = styled.div`
       line-height: 1.8rem;
     }
   }
-`;
-
-export const MapStyle = styled.div`
-  width: 400px;
-  height: 400px;
 `;
