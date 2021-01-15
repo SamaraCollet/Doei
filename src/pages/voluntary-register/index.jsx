@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import {Container, FormContainer, TextInput, StyledButton} from "./styles"
 
 const VoluntaryRegister = () => {
     const schema = yup.object().shape({
@@ -43,59 +42,59 @@ const VoluntaryRegister = () => {
     };
     
     return (
+      <Container>
         <div>
-            <div>
-                Cadastro voluntário
-            </div>
-          <form onSubmit={handleSubmit(handleForm)}>
-            <TextField
-              variant="outlined"
-              size="small"
-              name="name"
-              label="Nome completo"
-              inputRef={register}
-              error={!!errors.name}
-              helperText={errors.name?.message}
-            />
-            <TextField
-              variant="outlined"
-              size="small"
-              name="email"
-              label="Email"
-              inputRef={register}
-              error={!!errors.email}
-              helperText={errors.email?.message}
-            />
-            <TextField
-              variant="outlined"
-              size="small"
-              name="email_confirmation"
-              label="Confirme seu email"
-              inputRef={register}
-              error={!!errors.email_confirmation}
-              helperText={errors.email_confirmation?.message}
-            />
-            <TextField
-              variant="outlined"
-              size="small"
-              name="password"
-              label="Senha"
-              inputRef={register}
-              error={!!errors.password}
-              helperText={errors.password?.message}
-            />
-            <TextField
-              variant="outlined"
-              size="small"
-              name="password_confirmation"
-              label="Confirme sua senha"
-              inputRef={register}
-              error={!!errors.password_confirmation}
-              helperText={errors.password_confirmation?.message}
-            />
-            <Button type="submit" variant="outlined" size="medium">Enviar</Button>
-          </form>
+          Cadastro voluntário
         </div>
+        <FormContainer onSubmit={handleSubmit(handleForm)}>
+          <TextInput
+            variant="filled"
+            size="small"
+            name="name"
+            label="Nome completo"
+            inputRef={register}
+            error={!!errors.name}
+            helperText={errors.name?.message}
+          />
+          <TextInput
+            variant="filled"
+            size="small"
+            name="email"
+            label="Email"
+            inputRef={register}
+            error={!!errors.email}
+            helperText={errors.email?.message}
+          />
+          <TextInput
+            variant="filled"
+            size="small"
+            name="email_confirmation"
+            label="Confirme seu email"
+            inputRef={register}
+            error={!!errors.email_confirmation}
+            helperText={errors.email_confirmation?.message}
+          />
+          <TextInput
+            variant="filled"
+            size="small"
+            name="password"
+            label="Senha"
+            inputRef={register}
+            error={!!errors.password}
+            helperText={errors.password?.message}
+          />
+          <TextInput
+            variant="filled"
+            size="small"
+            name="password_confirmation"
+            label="Confirme sua senha"
+            inputRef={register}
+            error={!!errors.password_confirmation}
+            helperText={errors.password_confirmation?.message}
+          />
+          <StyledButton type="submit" size="medium">Enviar</StyledButton>
+        </FormContainer>
+      </Container>
     );
 
 }

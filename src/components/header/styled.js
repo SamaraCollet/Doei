@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   background-color: #00bbf9;
-  height: 40px;
+  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: white;
   font-size: 14px;
-
+  
   p:first-child {
     padding-left: 2rem;
   }
