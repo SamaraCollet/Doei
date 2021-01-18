@@ -6,10 +6,8 @@ import GlobalStyle from "./styles/global";
 const App = () => {
   return (
     <>
-      {/* <GlobalStyle></GlobalStyle> */}
-      {/* <Routes/> */}
-      <NotAuthorized/>
-      {/* <PageNotFound/> */}
+      <GlobalStyle/>
+      <Routes/>
     </>
   );
 };
