@@ -42,7 +42,7 @@ export const BannerContent = styled.div`
   justify-content: center;
   width: 470px;
   height: auto;
-  padding: 120px 0 20px 120px;
+  padding: 90px 0 20px 120px;
 
   h1 {
     font-size: 4rem;
