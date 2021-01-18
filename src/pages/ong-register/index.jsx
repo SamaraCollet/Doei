@@ -8,7 +8,7 @@ import { FormContainerOng } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { DetailTitle } from "../../components/steps-landing-page/styles";
+import DetailTitle from "../../components/detail-title-blue";
 
 const OngRegister = () => {
   const schema = yup.object().shape({

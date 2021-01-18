@@ -6,41 +6,42 @@ export const Container = styled.div`
   width: 100%;
   height: 90vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+
   h1 {
     font-size: 1.8rem;
   }
 `;
 
-export const FormContainer = styled.div`
-  width: 600px;
+export const BannerLogin = styled.img`
+  width: 690px;
+  opacity: 0.9;
+  position: relative;
+  right: 14%;
+`;
+
+export const ContainerLogin = styled.div`
+  width: 400px;
+  height: 400px;
+  background-color: rgba(0, 189, 249, 0.35);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #a3e0f5;
   border-radius: 15px;
-  padding: 52px 25px;
+  position: absolute;
+  left: 57%;
 
   form {
     display: flex;
-    flex-direction: row;
-    margin-top: 10px;
+    flex-direction: column;
+    justify-content: center;
   }
 `;
 
-export const FormColumn = styled.div`
-  display: flex;
-  width: 250px;
-  height: auto;
-  flex-direction: column;
-  margin: 0 13px;
-`;
-
 export const StyledTextField = styled(TextField)`
-  width: 100% !important;
+  width: 270px !important;
   background-color: #eeeeee !important;
   font-size: 10px !important;
   border-radius: 4px !important;
