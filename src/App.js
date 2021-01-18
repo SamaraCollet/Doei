@@ -1,25 +1,33 @@
 import GlobalStyle from "./styles/global";
-import Header from "./components/header";
 import LandingPage from "./pages/landing-page/index";
-import AuthHeader from "./components/authHeader";
-import VoluntaryRegister from "./pages/voluntary-register";
-import OngRegister from "./pages/ong-register";
 import "./App.css";
 import AdPage from "./pages/ad-page";
 
-function App() {
-  return (
-    <div>
-      <GlobalStyle></GlobalStyle>
-      <Header />
-      {/* <LandingPage /> */}
+import { Switch, Route } from "react-router-dom"
+import OngRegister from "./pages/ong-register";
+import VoluntaryRegister from "./pages/voluntary-register";
+import Login from "./pages/login";
 
-      {/* <VoluntaryRegister /> */}
-      <OngRegister />
+const App = () => {
+  return (
+    <>
+      <GlobalStyle></GlobalStyle>
+
+<Switch>
+<Route exact path="/">
       <LandingPage />
-      {/* <VoluntaryRegister /> */}
-      {/* <OngRegister /> */}
-    </div>
+</Route>
+  <Route path="/login">
+    <Login/>
+  </Route>
+<Route path="/cadastro-ong">
+<OngRegister/>
+</Route>
+<Route path="/cadastro-voluntario">
+<VoluntaryRegister/>
+</Route>
+</Switch>
+    </>
   );
 }
 
