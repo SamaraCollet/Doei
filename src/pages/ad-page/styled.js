@@ -1,4 +1,12 @@
 import styled from "styled-components";
+import Modal from "@material-ui/core/Modal";
+
+export const NewModal = styled(Modal)``;
+
+export const ModalStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const Container = styled.div`
   box-sizing: border-box;
