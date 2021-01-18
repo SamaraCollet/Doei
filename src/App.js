@@ -1,23 +1,13 @@
-import "./App.css";
+import Routes from "./routes";
 import GlobalStyle from "./styles/global";
-import Header from "./components/header";
-import LandingPage from "./pages/landing-page/index";
-// import AuthHeader from "./components/authHeader";
-// import VoluntaryRegister from "./pages/voluntary-register";
-// import OngRegister from "./pages/ong-register";
-// import Login from "./pages/login";
 
-function App() {
+const App = () => {
   return (
-    <div>
+    <>
       <GlobalStyle></GlobalStyle>
-      <Header />
-      {/* <Login /> */}
-      <LandingPage />
-      {/* <VoluntaryRegister /> */}
-      {/* <OngRegister /> */}
-    </div>
+      <Routes />
+    </>
   );
-}
+};
 
 export default App;

@@ -10,11 +10,19 @@ import {
 } from "./styles";
 import DetailTitle from "../../components/detail-title-blue";
 
+<<<<<<< HEAD:src/pages/login/index.jsx
 const Login = () => {
   const schema = yup.object().shape({
     email: yup.string().required("Campo obrigatório"),
     password: yup.string().required("Campo obrigatório"),
   });
+=======
+const OngLogin = () => {
+    const schema = yup.object().shape({
+        email: yup.string().required("Campo obrigatório"),
+        password: yup.string().required("Campo obrigatório")
+    })
+>>>>>>> 867b15897841fa3da9089e64495a7fa0282bd4fc:src/pages/ong-login/index.jsx
 
   const { register, handleSubmit, errors, setError } = useForm({
     resolver: yupResolver(schema),
@@ -59,4 +67,8 @@ const Login = () => {
   );
 };
 
+<<<<<<< HEAD:src/pages/login/index.jsx
 export default Login;
+=======
+export default OngLogin
+>>>>>>> 867b15897841fa3da9089e64495a7fa0282bd4fc:src/pages/ong-login/index.jsx
