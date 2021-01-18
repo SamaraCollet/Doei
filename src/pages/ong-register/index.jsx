@@ -1,65 +1,67 @@
+import {
+  Container,
+  FormColumn,
+  StyledTextField,
+  StyledButton,
+} from "../../pages/voluntary-register/styles";
+import { FormContainerOng } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import { DetailTitle } from "../../components/steps-landing-page/styles";
 
 const OngRegister = () => {
-    const schema = yup.object().shape({
-        name: yup
-          .string()
-          .required("Campo obrigatório")
-          .matches(
-            /[A-Za-z]* [A-Za-z]/g,
-            "Não pode receber números nem caracteres especiais, deve ter pelo menos o primeiro e o último nome. "
-          ),
-        cnpj: yup
-          .string()
-          .required("Campo obrigatório.")
-          .min(13, "CNPJ inválido")
-          .matches(
-              /[0-9]/,
-              "Apenas números são permitidos."
-          ),
-          adress: yup
-            .string()
-            .required("Campo obrigatório."),
-        email: yup.string().required("Campo obrigatório.").email("Email inválido."),
-        email_confirmation: yup
-          .string()
-          .required("Campo obrigatório.")
-          .oneOf([yup.ref("email")], "Emails diferentes"),
-        password: yup
-          .string()
-          .required("Campo obrigatório.")
-          .matches(
-            /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-            "Senha deve conter ao menos uma letra maiúscula, uma minúscula, um número e um caractere especial"
-          )
-          .min(8, "Mínimo de 8 digitos."),
-        password_confirmation: yup
-          .string()
-          .required("Campo obrigatório.")
-          .oneOf([yup.ref("password")], "Senhas diferentes"),
-    });
-    
-    const { register, handleSubmit, errors, setError } = useForm({
-      resolver: yupResolver(schema),
-    });
-    
-    const handleForm = value => {
-      //AQUI VEM O REQUEST PRA API E REDIRECIONAR PARA A PÁGINA DE LOGIN 
-      console.log('sucesso')
-      console.log(value)
-    };
-    
-    return (
-        <div>
-            <div>
-                Cadastro ONG
-            </div>
-          <form onSubmit={handleSubmit(handleForm)}>
-            <TextField
+  const schema = yup.object().shape({
+    name: yup
+      .string()
+      .required("Campo obrigatório")
+      .matches(
+        /[A-Za-z]* [A-Za-z]/g,
+        "Não pode receber números nem caracteres especiais, deve ter pelo menos o primeiro e o último nome. "
+      ),
+    cnpj: yup
+      .string()
+      .required("Campo obrigatório.")
+      .min(13, "CNPJ inválido")
+      .matches(/[0-9]/, "Apenas números são permitidos."),
+    adress: yup.string().required("Campo obrigatório."),
+    email: yup.string().required("Campo obrigatório.").email("Email inválido."),
+    email_confirmation: yup
+      .string()
+      .required("Campo obrigatório.")
+      .oneOf([yup.ref("email")], "Emails diferentes"),
+    password: yup
+      .string()
+      .required("Campo obrigatório.")
+      .matches(
+        /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+        "Senha deve conter ao menos uma letra maiúscula, uma minúscula, um número e um caractere especial"
+      )
+      .min(8, "Mínimo de 8 digitos."),
+    password_confirmation: yup
+      .string()
+      .required("Campo obrigatório.")
+      .oneOf([yup.ref("password")], "Senhas diferentes"),
+  });
+
+  const { register, handleSubmit, errors, setError } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const handleForm = (value) => {
+    //AQUI VEM O REQUEST PRA API E REDIRECIONAR PARA A PÁGINA DE LOGIN
+    console.log("sucesso");
+    console.log(value);
+  };
+
+  return (
+    <Container>
+      <FormContainerOng>
+        <h1>Cadastro ONG</h1>
+        <DetailTitle />
+        <form onSubmit={handleSubmit(handleForm)}>
+          <FormColumn>
+            <StyledTextField
               variant="outlined"
               size="small"
               name="name"
@@ -68,7 +70,7 @@ const OngRegister = () => {
               error={!!errors.name}
               helperText={errors.name?.message}
             />
-            <TextField
+            <StyledTextField
               variant="outlined"
               size="small"
               name="cnpj"
@@ -77,7 +79,7 @@ const OngRegister = () => {
               error={!!errors.cnpj}
               helperText={errors.cnpj?.message}
             />
-            <TextField
+            <StyledTextField
               variant="outlined"
               size="small"
               name="adress"
@@ -86,7 +88,7 @@ const OngRegister = () => {
               error={!!errors.adress}
               helperText={errors.adress?.message}
             />
-            <TextField
+            <StyledTextField
               variant="outlined"
               size="small"
               name="site"
@@ -95,7 +97,9 @@ const OngRegister = () => {
               error={!!errors.site}
               helperText={errors.site?.message}
             />
-            <TextField
+          </FormColumn>
+          <FormColumn>
+            <StyledTextField
               variant="outlined"
               size="small"
               name="email"
@@ -104,7 +108,7 @@ const OngRegister = () => {
               error={!!errors.email}
               helperText={errors.email?.message}
             />
-            <TextField
+            <StyledTextField
               variant="outlined"
               size="small"
               name="email_confirmation"
@@ -113,7 +117,7 @@ const OngRegister = () => {
               error={!!errors.email_confirmation}
               helperText={errors.email_confirmation?.message}
             />
-            <TextField
+            <StyledTextField
               variant="outlined"
               size="small"
               name="password"
@@ -122,7 +126,7 @@ const OngRegister = () => {
               error={!!errors.password}
               helperText={errors.password?.message}
             />
-            <TextField
+            <StyledTextField
               variant="outlined"
               size="small"
               name="password_confirmation"
@@ -131,11 +135,14 @@ const OngRegister = () => {
               error={!!errors.password_confirmation}
               helperText={errors.password_confirmation?.message}
             />
-            <Button type="submit" variant="outlined" size="medium">Enviar</Button>
-          </form>
-        </div>
-    );
+            <StyledButton type="submit" variant="outlined" size="medium">
+              Enviar
+            </StyledButton>
+          </FormColumn>
+        </form>
+      </FormContainerOng>
+    </Container>
+  );
+};
 
-}
-
-export default OngRegister
+export default OngRegister;

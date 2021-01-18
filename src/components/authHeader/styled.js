@@ -39,8 +39,9 @@ export const Mobile = styled.div`
 
 export const MobileList = styled.div`
   color: white;
-  background-color: rgba(144, 190, 109, 0.5);
-
+  background-color: rgba(0, 187, 250, 0.95);
+  font-size: 1.3rem;
+  font-weight: bold;
   position: absolute;
   top: 50px;
   right: 20px;
