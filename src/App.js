@@ -11,8 +11,14 @@ function App() {
   return (
     <div>
       <GlobalStyle></GlobalStyle>
-      <AdPage />
+      <Header />
       {/* <LandingPage /> */}
+
+      {/* <VoluntaryRegister /> */}
+      <OngRegister />
+      <LandingPage />
+      {/* <VoluntaryRegister /> */}
+      {/* <OngRegister /> */}
     </div>
   );
 }
