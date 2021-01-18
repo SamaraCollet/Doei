@@ -6,7 +6,8 @@ import {
   TextContainer,
   InstitutionName,
 } from "./style";
-const CampaignCard = () => {
+
+const CampaignCard = ({ title, initialDate, endDate, donationType, about }) => {
   return (
     <Box m={3}>
       <Grid container direction="column" alignItems="center" justify="center">
@@ -15,18 +16,13 @@ const CampaignCard = () => {
             <img src={ImageInstitution} alt="institution" />
             <TextContainer>
               <Typography className="titulo" variant="h5">
-                {" "}
-                Titulo da Campanha{" "}
+                {title} - <b>{donationType}</b>
               </Typography>
               <Typography className="data" color="textSecondary" gutterBottom>
-                Validade: 08/01/21 à 15/02/21
+                Validade: {initialDate} à {endDate}
               </Typography>
               <Typography className="meta" variant="inherit">
-                Meta: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam!""Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim veniam!"
+                {about}
               </Typography>
               <InstitutionName
                 className="institutionName"

@@ -1,11 +1,10 @@
 // Action Types
 
 export const Types = {
-  ALL_CAMPAIGNS: 'campaings/ALL_CAMPAIGNS',
+  ALL_CAMPAIGNS: "campaings/ALL_CAMPAIGNS",
 };
 
 // Reducer
-
 
 const campaignsReducer = (state = [], action) => {
   switch (action.type) {
@@ -14,15 +13,15 @@ const campaignsReducer = (state = [], action) => {
     default:
       return state;
   }
-}
+};
 
-export default campaignsReducer
+export default campaignsReducer;
 
 // Action Creators
 
 export const setAllCampaigns = (campaigns) => {
   return {
     type: Types.ALL_CAMPAIGNS,
-    payload: campaigns
-  }
-}
+    payload: campaigns,
+  };
+};
