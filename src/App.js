@@ -1,5 +1,8 @@
-import CardsFeed from "./pages/cards-feed";
+import PageNotFound from './pages/page-not-found';
+import NotAuthorized from './pages/not-authorized'
+import Routes from './routes'
 import GlobalStyle from "./styles/global";
+<<<<<<< HEAD
 import LandingPage from "./pages/landing-page/index";
 import "./App.css";
 import AdPage from "./pages/ad-page";
@@ -28,6 +31,14 @@ const App = () => {
           <VoluntaryRegister />
         </Route>
       </Switch>
+=======
+
+const App = () => {
+  return (
+    <>
+      <GlobalStyle/>
+      <Routes/>
+>>>>>>> 39c3a711f1c81509ac0a35baf8eb50c9d0e022b7
     </>
   );
 };
