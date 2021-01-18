@@ -12,9 +12,8 @@ function App() {
     <div>
       <GlobalStyle></GlobalStyle>
       <LandingPage />
-      <VoluntaryRegister />
-      <CardsFeed />
-      <OngRegister />
+      {/* <VoluntaryRegister /> */}
+      {/* <OngRegister /> */}
     </div>
   );
 }

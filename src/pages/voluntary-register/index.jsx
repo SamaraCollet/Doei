@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import * as yup from "yup";
-import {Container, FormContainer, TextInput, StyledButton} from "./styles"
 
 const VoluntaryRegister = () => {
     const schema = yup.object().shape({
@@ -42,12 +43,12 @@ const VoluntaryRegister = () => {
     };
     
     return (
-      <Container>
+      <div>
         <div>
           Cadastro voluntário
         </div>
-        <FormContainer onSubmit={handleSubmit(handleForm)}>
-          <TextInput
+        <form onSubmit={handleSubmit(handleForm)}>
+          <TextField
             variant="filled"
             size="small"
             name="name"
@@ -56,7 +57,7 @@ const VoluntaryRegister = () => {
             error={!!errors.name}
             helperText={errors.name?.message}
           />
-          <TextInput
+          <TextField
             variant="filled"
             size="small"
             name="email"
@@ -65,7 +66,7 @@ const VoluntaryRegister = () => {
             error={!!errors.email}
             helperText={errors.email?.message}
           />
-          <TextInput
+          <TextField
             variant="filled"
             size="small"
             name="email_confirmation"
@@ -74,7 +75,7 @@ const VoluntaryRegister = () => {
             error={!!errors.email_confirmation}
             helperText={errors.email_confirmation?.message}
           />
-          <TextInput
+          <TextField
             variant="filled"
             size="small"
             name="password"
@@ -83,7 +84,7 @@ const VoluntaryRegister = () => {
             error={!!errors.password}
             helperText={errors.password?.message}
           />
-          <TextInput
+          <TextField
             variant="filled"
             size="small"
             name="password_confirmation"
@@ -92,9 +93,9 @@ const VoluntaryRegister = () => {
             error={!!errors.password_confirmation}
             helperText={errors.password_confirmation?.message}
           />
-          <StyledButton type="submit" size="medium">Enviar</StyledButton>
-        </FormContainer>
-      </Container>
+          <Button type="submit" size="medium">Enviar</Button>
+        </form>
+      </div>
     );
 
 }
