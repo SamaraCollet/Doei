@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+`;
 
 export const GifTab = styled.div`
   position: absolute;
@@ -73,7 +77,6 @@ export const Info = styled.div`
 
 export const Contact = styled.div`
   background-color: rgba(0, 187, 249, 0.35);
-  width: 100vw;
 
   h1 {
     text-align: center;

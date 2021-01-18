@@ -2,6 +2,7 @@ import { Container, Info, Contact, Title, TitleCss, GifTab } from "./styled";
 import ongPic from "../../images/ongPic.png";
 import gif from "../../images/loading.gif";
 import Header from "../../components/header";
+import Footer from "../../components/footer";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
@@ -18,7 +19,7 @@ const AdPage = () => {
 
   useEffect(() => {
     axios
-      .get("https://capstone4-kenzie.herokuapp.com/campaigns/0")
+      .get("https://capstone4-kenzie.herokuapp.com/campaigns/1")
       .then((res) => setAd(res.data));
   }, []);
 
@@ -29,11 +30,13 @@ const AdPage = () => {
         .then((res) => setOng(...res.data));
     }
   }, [ad]);
+  console.log(ong);
 
   //Get map info
+
   const containerStyle = {
-    width: "400px",
-    height: "400px",
+    width: `400px`,
+    height: `400px`,
   };
 
   const center = {
@@ -97,9 +100,9 @@ const AdPage = () => {
                 <div />
               </TitleCss>
               <ul>
-                <li>{ong.ngoInfo.name}</li>
-                <li>{ong.email} </li>
-                <li>9 9152-7936</li>
+                <li>{ong.ngoInfo.name && ong.ngoInfo.name}</li>
+                <li>{ong.email && ong.email} </li>
+                <li>{ong.ngoInfo.phoneNumber && ong.ngoInfo.phoneNumber}</li>
                 <li>
                   <a href={ong.ngoInfo.website}>{ong.ngoInfo.website}</a>
                 </li>
