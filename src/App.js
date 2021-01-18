@@ -1,3 +1,4 @@
+import CardsFeed from "./pages/cards-feed";
 import GlobalStyle from "./styles/global";
 import LandingPage from "./pages/landing-page/index";
 import "./App.css";
