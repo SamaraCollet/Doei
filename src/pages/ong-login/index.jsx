@@ -4,7 +4,7 @@ import * as yup from "yup";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
-const Login = () => {
+const OngLogin = () => {
     const schema = yup.object().shape({
         email: yup.string().required("Campo obrigatório"),
         password: yup.string().required("Campo obrigatório")
@@ -45,4 +45,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default OngLogin

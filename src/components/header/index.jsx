@@ -20,7 +20,6 @@ const Header = () => {
     <Container>
       <p>Logo</p>
       <Desktop>
-        <p onClick={() => history.push("/login")}>Login</p>
         <p onClick={() => history.push("/cadastro-ong")}>Sou ONG</p>
         <p onClick={() => history.push("/cadastro-voluntario")}>Sou voluntário</p>
       </Desktop>

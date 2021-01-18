@@ -4,10 +4,10 @@ import GlobalStyle from "./styles/global";
 const App = () => {
   return (
     <>
-    <GlobalStyle></GlobalStyle>
-    <Routes/>
+      <GlobalStyle></GlobalStyle>
+      <Routes/>
     </>
   );
-}
+};
 
 export default App;

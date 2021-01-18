@@ -1,5 +1,5 @@
 import LandingPage from '../pages/landing-page'
-import Login from '../pages/login'
+import VoluntaryLogin from '../pages/voluntary-login'
 import OngRegister from '../pages/ong-register'
 import VoluntaryRegister from '../pages/voluntary-register'
 
@@ -11,8 +11,8 @@ const Routes = () => {
             <Route exact path="/">
                 <LandingPage />
             </Route>
-            <Route path="/login">
-                <Login/>
+            <Route path="/login-voluntario">
+                <VoluntaryLogin/>
             </Route>
             <Route path="/cadastro-ong">
                 <OngRegister/>
