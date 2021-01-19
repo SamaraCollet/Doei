@@ -12,6 +12,7 @@ import gif from "../../images/loading.gif";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import IdNotFound from "../../components/idNotFound";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -26,6 +27,7 @@ const AdPage = () => {
   const [ad, setAd] = useState(null);
   const [ong, setOng] = useState(null);
   const [geo, setGeo] = useState({ lat: 0, lng: 0 });
+  const [wrongId, setWrongId] = useState(false);
 
   let { id } = useParams();
 
@@ -35,7 +37,8 @@ const AdPage = () => {
   useEffect(() => {
     axios
       .get(`https://capstone4-kenzie.herokuapp.com/campaigns/${id}`)
-      .then((res) => setAd(res.data));
+      .then((res) => setAd(res.data))
+      .catch((err) => setWrongId(true));
   }, []);
 
   useEffect(() => {
@@ -105,7 +108,7 @@ const AdPage = () => {
             <div>
               <h1> {ong.ngoInfo.name} </h1>
               <h2> {ad.about} </h2>
-              <Agendamento />
+              <Agendamento agendamento />
             </div>
           </Info>
           <Contact>
@@ -136,6 +139,8 @@ const AdPage = () => {
             </div>
           </Contact>
         </>
+      ) : wrongId ? (
+        <IdNotFound />
       ) : (
         <GifTab>
           <img src={gif} alt="loading" />
