@@ -13,18 +13,16 @@ const VoluntaryProfile = () => {
   const [userId, setUserId] = useState();
 
   useEffect(() => {
-    let token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNAYy5jb20iLCJpYXQiOjE2MTEwNjk2NzYsImV4cCI6MTYxMTA3MzI3Niwic3ViIjoiMTMifQ.UftfaVmN_1BBK6UYLtHq9fUDsrPrI_bIeRnwwhWE0d0";
+    let token = localStorage.getItem("authToken");
     var decoded = jwt_decode(token);
     setUserId(decoded.sub);
     axios
       .get(`https://capstone4-kenzie.herokuapp.com/users/${decoded.sub}`)
       .then((res) => setUser(res.data));
   }, []);
-  console.log(user);
+
   return (
     <Container>
-      <Header />
       {user && (
         <>
           <ProfileTitle>

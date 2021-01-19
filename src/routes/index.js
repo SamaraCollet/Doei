@@ -6,7 +6,7 @@ import OngRegister from "../pages/ong-register";
 import VoluntaryProfile from "../pages/voluntary-profile";
 import AdPage from "../pages/ad-page";
 import PageNotFound from "../pages/page-not-found";
-import Header from "../components/header";
+import Header from "../components/authHeader";
 import Footer from "../components/footer";
 
 import { Switch, Route } from "react-router-dom";

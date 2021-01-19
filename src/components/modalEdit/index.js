@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -48,8 +49,8 @@ const Edit = ({ name, description, userId }) => {
 
   const handleEdit = (data) => {
     console.log(data);
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNAYy5jb20iLCJpYXQiOjE2MTEwNjk2NzYsImV4cCI6MTYxMTA3MzI3Niwic3ViIjoiMTMifQ.UftfaVmN_1BBK6UYLtHq9fUDsrPrI_bIeRnwwhWE0d0";
+    let token = localStorage.getItem("authToken");
+
     const config = {
       headers: { authorization: `Bearer ${token} ` },
     };
@@ -60,7 +61,11 @@ const Edit = ({ name, description, userId }) => {
         config
       )
       .catch((err) => console.log(err));
+
+    handleClose();
   };
+
+  // const user = useSelector((state) => state.colection);
 
   return (
     <div>
