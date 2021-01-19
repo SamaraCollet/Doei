@@ -1,24 +1,11 @@
-import {
-  Container,
-  Info,
-  Contact,
-  Title,
-  TitleCss,
-  GifTab,
-  NewModal,
-} from "./styled";
+import { Container, Info, Contact, Title, TitleCss, GifTab } from "./styled";
 import ongPic from "../../images/ongPic.png";
 import gif from "../../images/loading.gif";
-
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import IdNotFound from "../../components/idNotFound";
-
+import IdNotFound from "../page-not-found";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import Geocode from "react-geocode";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import Agendamento from "../../components/modal";
@@ -30,9 +17,6 @@ const AdPage = () => {
   const [wrongId, setWrongId] = useState(false);
 
   let { id } = useParams();
-
-  // const counter = useSelector((state) => state.campaigns);
-  // console.log(counter);
 
   useEffect(() => {
     axios
@@ -103,7 +87,7 @@ const AdPage = () => {
             <div>
               <h1> {ong.name} </h1>
               <h2> {ad.about} </h2>
-              <Agendamento agendamento />
+              <Agendamento id={id} />
             </div>
           </Info>
           <Contact>

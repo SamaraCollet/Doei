@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -25,10 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Edit = ({ name, description, userId }) => {
+const Edit = ({ userId, user, setUser }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [newName, setNewName] = useState(name);
+  const [newName, setNewName] = useState(user.name);
 
   const handleOpen = () => {
     setOpen(true);
@@ -62,10 +61,10 @@ const Edit = ({ name, description, userId }) => {
       )
       .catch((err) => console.log(err));
 
+    setUser(data);
+
     handleClose();
   };
-
-  // const user = useSelector((state) => state.colection);
 
   return (
     <div>
@@ -102,8 +101,6 @@ const Edit = ({ name, description, userId }) => {
                 label={newName}
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
-                // error={!!errors.name}
-                // helperText={errors.name && console.log(errors)}
               />
               <br />
               <TextField
@@ -111,10 +108,7 @@ const Edit = ({ name, description, userId }) => {
                 inputRef={register}
                 variant="outlined"
                 size="small"
-                label={description && description}
-                // value={description && description}
-                // error={!!errors.description}
-                // helperText={errors.description && "Precisa ser um número"}
+                label="Descrição"
               />
 
               <Button type="submit" variant="outlined" size="medium">
