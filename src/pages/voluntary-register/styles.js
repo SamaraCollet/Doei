@@ -12,6 +12,16 @@ export const Container = styled.div`
   h1 {
     font-size: 1.8rem;
   }
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.6rem;
+    }
+  }
+  @media (max-width: 280px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
 `;
 
 export const FormContainer = styled.div`
@@ -28,6 +38,25 @@ export const FormContainer = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: 10px;
+  }
+  @media (min-width: 768px) and (max-width: 979px) {
+    margin: 100px 0 20px 0;
+    position: relative;
+  }
+  @media only screen and (max-width: 767px) {
+    margin: 80px 0 20px 0;
+    width: 90vw;
+    position: relative;
+  }
+  @media (max-width: 480px) {
+    width: 300px;
+    height: 100vh;
+    form {
+      flex-direction: column;
+    }
+  }
+  @media (max-width: 280px) {
+    width: 260px;
   }
 `;
 
