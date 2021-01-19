@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import {useHistory} from 'react-router-dom'
+import axios from 'axios'
+
 import {
   Container,
   BannerLogin,
@@ -22,9 +25,18 @@ const VoluntaryLogin = () => {
     resolver: yupResolver(schema),
   });
 
+  const history = useHistory()
   const handleForm = (value) => {
-    //AQUI VEM O REQUEST PRA API E REDIRECIONAR PARA A PÁGINA DOS ANUNCIOS
-    console.log(value);
+    axios
+      .post("https://capstone4-kenzie.herokuapp.com/login", { ...value })
+      .then(res => {
+        window.localStorage.setItem("authToken", res.data.accessToken);
+        //history.push("/?");
+      })
+
+      .catch(err => {
+        setError("email", { message: "Usuário ou senha inválido" });
+      });
   };
 
   return (
