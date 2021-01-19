@@ -34,7 +34,7 @@ const Routes = () => {
                     <PageNotFound/>
                 </Route>
             </Switch>
-            <Footer/>
+            {/* <Footer/> */}
         </>
     )
 }
