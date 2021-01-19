@@ -11,6 +11,8 @@ import {
 import { ContainerLoginGreen } from "./styles";
 import DetailTitle from "../../components/detail-title-green";
 import { Link } from "react-router-dom";
+import axios from 'axios'
+import {useHistory} from 'react-router-dom'
 
 const OngLogin = () => {
   const schema = yup.object().shape({
@@ -22,9 +24,18 @@ const OngLogin = () => {
     resolver: yupResolver(schema),
   });
 
+  const history = useHistory()
   const handleForm = (value) => {
-    //AQUI VEM O REQUEST PRA API E REDIRECIONAR PARA A PÁGINA DOS ANUNCIOS
-    console.log(value);
+    axios
+    .post("https://capstone4-kenzie.herokuapp.com/login", { ...value })
+    .then(res => {
+      window.localStorage.setItem("authToken", res.data.accessToken);
+      //history.push("/?");
+    })
+
+    .catch(err => {
+      setError("email", { message: "Usuário ou senha inválido" });
+    });
   };
 
   return (
