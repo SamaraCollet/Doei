@@ -6,6 +6,8 @@ import OngRegister from "../pages/ong-register";
 import VoluntaryProfile from "../pages/voluntary-profile";
 import AdPage from "../pages/ad-page";
 import PageNotFound from "../pages/page-not-found";
+import Header from "../components/header";
+import Footer from "../components/footer";
 
 import { Switch, Route } from "react-router-dom";
 
@@ -27,14 +29,14 @@ const Routes = () => {
       <Route path="/cadastro-voluntario">
         <VoluntaryRegister />
       </Route>
-      <Route path="*">
-        <PageNotFound />
-      </Route>
       <Route exact path="/dashboard-voluntario">
         <VoluntaryProfile />
       </Route>
       <Route exact path="/anuncio/:id">
         <AdPage />
+      </Route>
+      <Route path="*">
+        <PageNotFound />
       </Route>
     </Switch>
   );
