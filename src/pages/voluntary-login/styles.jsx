@@ -32,6 +32,7 @@ export const ContainerLogin = styled.div`
   border-radius: 15px;
   position: absolute;
   left: 57%;
+  box-shadow: 1px 1px 5px #c7c7c7, -1px -1px 5px #c7c7c7;
 
   form {
     display: flex;
@@ -57,4 +58,15 @@ export const StyledButton = styled(Button)`
   font-family: "Nunito", sans-serif !important;
   height: 40px;
   border-radius: 5px !important;
+`;
+
+export const RegisterLink = styled.p`
+  margin-top: 25px;
+  font-size: 14px;
+  color: #3d3d3d;
+
+  a {
+    text-decoration: none;
+    color: #17728d;
+  }
 `;

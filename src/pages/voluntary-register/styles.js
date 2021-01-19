@@ -20,7 +20,7 @@ export const FormContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #a3e0f5;
+  background-color: rgba(0, 189, 249, 0.35);
   border-radius: 15px;
   padding: 52px 25px;
 

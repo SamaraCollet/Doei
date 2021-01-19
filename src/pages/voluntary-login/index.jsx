@@ -7,8 +7,10 @@ import {
   ContainerLogin,
   StyledTextField,
   StyledButton,
+  RegisterLink,
 } from "./styles";
 import DetailTitle from "../../components/detail-title-blue";
+import { Link } from "react-router-dom";
 
 const VoluntaryLogin = () => {
   const schema = yup.object().shape({
@@ -29,7 +31,7 @@ const VoluntaryLogin = () => {
     <Container>
       <BannerLogin src="donation.jpg" alt="donation" />
       <ContainerLogin>
-        <h1>Login Page</h1>
+        <h1>Olá, faça o login!</h1>
         <DetailTitle />
         <form onSubmit={handleSubmit(handleForm)}>
           <StyledTextField
@@ -54,6 +56,10 @@ const VoluntaryLogin = () => {
             Entrar
           </StyledButton>
         </form>
+        <RegisterLink>
+          Ainda não é cadastrado?{" "}
+          <Link to="/cadastro-voluntario">Cadastre-se</Link>
+        </RegisterLink>
       </ContainerLogin>
     </Container>
   );

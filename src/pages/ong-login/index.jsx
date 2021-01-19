@@ -6,9 +6,11 @@ import {
   BannerLogin,
   StyledTextField,
   StyledButton,
+  RegisterLink,
 } from "../../pages/voluntary-login/styles";
 import { ContainerLoginGreen } from "./styles";
 import DetailTitle from "../../components/detail-title-green";
+import { Link } from "react-router-dom";
 
 const OngLogin = () => {
   const schema = yup.object().shape({
@@ -27,9 +29,9 @@ const OngLogin = () => {
 
   return (
     <Container>
-      <BannerLogin src="donation.jpg" alt="donation" />
+      <BannerLogin src="ong.png" alt="donation" />
       <ContainerLoginGreen>
-        <h1>Login Page</h1>
+        <h1>Olá, faça o login!</h1>
         <DetailTitle />
         <form onSubmit={handleSubmit(handleForm)}>
           <StyledTextField
@@ -54,6 +56,9 @@ const OngLogin = () => {
             Entrar
           </StyledButton>
         </form>
+        <RegisterLink>
+          Ainda não é cadastrado? <Link to="/cadastro-ong">Cadastre-se</Link>
+        </RegisterLink>
       </ContainerLoginGreen>
     </Container>
   );
