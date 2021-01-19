@@ -1,10 +1,27 @@
 import styled from "styled-components";
 import { CardContent, Typography } from "@material-ui/core";
 export const Container = styled.div`
-  max-width: 70% !important;
+  /* max-width: 70% !important; */
   max-height: 40% !important;
+  button {
+    width: 45px;
+    height: 45px;
+    border-radius: 25%;
+    background: #ffbe0b;
+    border: none;
+    box-shadow: 1px 1px 4px #5e5e5e;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button:hover {
+    background-color: rgba(0, 187, 249, 0.35);
+  }
 `;
 export const StyledCardContent = styled(CardContent)`
+  width: 60vw !important;
   background-color: rgba(0, 187, 249, 0.35);
   height: inherit !important;
   border-radius: 15px;
@@ -12,8 +29,10 @@ export const StyledCardContent = styled(CardContent)`
   align-content: center !important;
   margin: 0 auto !important;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.13);
-  @media (max-width: 740px) {
+  @media (max-width: 720px) {
     flex-direction: column;
+    width: 70vw !important;
+
     img {
       flex-wrap: nowrap;
       max-width: fit-content !important;
@@ -30,8 +49,14 @@ export const StyledCardContent = styled(CardContent)`
   }
 `;
 export const TextContainer = styled.div`
+  width: inherit !important;
   padding-left: 1rem;
+  padding-right: 1rem;
+  @media (max-width: 720px) {
+    width: auto !important;
+  }
 `;
 export const InstitutionName = styled(Typography)`
   padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
 `;
