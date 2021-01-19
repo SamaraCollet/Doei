@@ -29,10 +29,6 @@ const VoluntaryRegister = () => {
     password: yup
       .string()
       .required("Campo obrigatório.")
-      .matches(
-        /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-        "Senha deve conter ao menos uma letra maiúscula, uma minúscula, um número e um caractere especial"
-      )
       .min(8, "Mínimo de 8 digitos."),
     password_confirmation: yup
       .string()
@@ -49,7 +45,7 @@ const VoluntaryRegister = () => {
     value.ngo = "false"
     axios
       .post(`https://capstone4-kenzie.herokuapp.com/register`, { ...value })
-      .then((res) => history.push("/login-voluntario"))
+      .then(res => history.push("/login-voluntario"))
       .catch(() => {
         setError("email", { message: "Este email já está sendo utilizado" });
       });

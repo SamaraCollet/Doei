@@ -20,16 +20,16 @@ const Header = () => {
     <Container>
       <p>Logo</p>
       <Desktop>
-        <p onClick={() => history.push("/cadastro-ong")}>Sou ONG</p>
-        <p onClick={() => history.push("/cadastro-voluntario")}>Sou voluntário</p>
+        <p onClick={() => history.push("/login-ong")}>Sou ONG</p>
+        <p onClick={() => history.push("/login-voluntario")}>Sou voluntário</p>
       </Desktop>
       <Mobile onClick={handleIcon}>
         {icon ? <FaChevronDown /> : <FaChevronUp />}
         {!icon && (
           <MobileList>
             <ul>
-              <li onClick={() => history.push("/cadastro-ong")}>Sou ONG</li>
-              <li onClick={() => history.push("/cadastro-voluntario")}>Sou voluntário</li>
+              <li onClick={() => history.push("/login-ong")}>Sou ONG</li>
+              <li onClick={() => history.push("/login-voluntario")}>Sou voluntário</li>
             </ul>
           </MobileList>
         )}
