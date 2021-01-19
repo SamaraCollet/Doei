@@ -48,8 +48,7 @@ const AdPage = () => {
         .then((res) => setOng(...res.data));
     }
   }, [ad]);
-  console.log(ong);
-
+  console.log(ong, ad);
   //Get map info
 
   const containerStyle = {
@@ -86,15 +85,11 @@ const AdPage = () => {
   };
 
   useEffect(() => {
-    ong !== null &&
-      getLocation(
-        `${ong.address.city}, ${ong.address.streetName} ${ong.address.streetNumber}`
-      );
+    ong !== null && getLocation(`${ad.location}`);
   }, [ong]);
 
   return (
     <Container>
-      <Header />
       {ad && ong !== null ? (
         <>
           <Title>
@@ -106,7 +101,7 @@ const AdPage = () => {
           <Info>
             <img src={ongPic} alt="ONG" />
             <div>
-              <h1> {ong.ngoInfo.name} </h1>
+              <h1> {ong.name} </h1>
               <h2> {ad.about} </h2>
               <Agendamento agendamento />
             </div>
@@ -118,11 +113,11 @@ const AdPage = () => {
                 <div />
               </TitleCss>
               <ul>
-                <li>{ong.ngoInfo.name && ong.ngoInfo.name}</li>
+                <li>{ong.name && ong.name}</li>
                 <li>{ong.email && ong.email} </li>
-                <li>{ong.ngoInfo.phoneNumber && ong.ngoInfo.phoneNumber}</li>
+                <li>{ong.phoneNumber && ong.phoneNumber}</li>
                 <li>
-                  <a href={ong.ngoInfo.website}>{ong.ngoInfo.website}</a>
+                  <a href={ong.site}>{ong.site}</a>
                 </li>
               </ul>
             </div>
