@@ -1,9 +1,8 @@
 import CampaignCard from "../../components/campaign-cards";
-import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllCampaigns } from "../../store/thunks";
-
+import { StyledTitle, Container, DetailTitle } from "./style";
 const CardsFeed = () => {
   const campaigns = useSelector((state) => state.campaigns);
   // const users = useSelector((state) => state.user);
@@ -13,7 +12,7 @@ const CardsFeed = () => {
 
   useEffect(() => {
     dispatch(getAllCampaigns());
-  }, [dispatch]);
+  }, []);
 
   // useEffect(() => {
   //   dispatch(getAllUsers());
@@ -22,7 +21,7 @@ const CardsFeed = () => {
   // console.log(users);
   return (
     <Container>
-      <h2> Anúncios Recentes </h2>
+      <StyledTitle>Anúncios recentes para a sua localidade</StyledTitle>
       <DetailTitle />
       {campaigns.map(
         ({ title, about, endDate, location, ongName, id }, index) => {
@@ -44,19 +43,3 @@ const CardsFeed = () => {
 };
 
 export default CardsFeed;
-
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  align-content: center !important;
-  align-items: center;
-`;
-
-export const DetailTitle = styled.div`
-  background-color: #00bbf9;
-  width: 80px;
-  height: 3px;
-  margin: 15px;
-  align-self: center;
-`;
