@@ -12,13 +12,36 @@ export const Container = styled.div`
   h1 {
     font-size: 1.8rem;
   }
+  @media (min-width: 768px) and (max-width: 979px) {
+    h1 {
+      font-size: 1.6rem;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
 `;
 
 export const BannerLogin = styled.img`
   width: 690px;
   opacity: 0.9;
   position: relative;
-  right: 14%;
+  right: 15%;
+  @media (max-width: 1200px) {
+    width: 50vw;
+    right: 19vw;
+  }
+  @media (min-width: 896px) and (max-width: 979px) {
+    width: 70vw;
+  }
+  @media (min-width: 768px) and (max-width: 895px) {
+    width: 60vw;
+  }
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const ContainerLogin = styled.div`
@@ -31,13 +54,39 @@ export const ContainerLogin = styled.div`
   align-items: center;
   border-radius: 15px;
   position: absolute;
-  left: 57%;
+  left: 55%;
   box-shadow: 1px 1px 5px #c7c7c7, -1px -1px 5px #c7c7c7;
 
   form {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  @media (max-width: 1200px) {
+    left: 55vw;
+  }
+  @media (min-width: 896px) and (max-width: 979px) {
+    left: 53vw;
+  }
+  @media (min-width: 841px) and (max-width: 895px) {
+    left: 50vw;
+  }
+  @media (min-width: 768px) and (max-width: 840px) {
+    left: 52vw;
+    box-shadow: none;
+    width: 350px;
+    height: 325px;
+  }
+  @media only screen and (max-width: 767px) {
+    left: 0;
+    width: 350px;
+    height: 315px;
+    position: relative;
+  }
+  @media (max-width: 480px) {
+    width: 90vw;
+    height: 400px;
+    border-radius: 15px;
   }
 `;
 
@@ -47,6 +96,11 @@ export const StyledTextField = styled(TextField)`
   font-size: 10px !important;
   border-radius: 4px !important;
   margin-top: 9px !important;
+
+  @media (max-width: 280px) {
+    width: 90% !important;
+    align-self: center;
+  }
 `;
 
 export const StyledButton = styled(Button)`
@@ -58,6 +112,19 @@ export const StyledButton = styled(Button)`
   font-family: "Nunito", sans-serif !important;
   height: 40px;
   border-radius: 5px !important;
+
+  @media (min-width: 768px) and (max-width: 979px) {
+    margin-top: 20px !important;
+  }
+
+  @media only screen and (max-width: 767px) {
+    margin-top: 20px !important;
+  }
+
+  @media (max-width: 280px) {
+    width: 90% !important;
+    align-self: center;
+  }
 `;
 
 export const RegisterLink = styled.p`
@@ -68,5 +135,8 @@ export const RegisterLink = styled.p`
   a {
     text-decoration: none;
     color: #17728d;
+  }
+  @media only screen and (max-width: 767px) {
+    margin-top: 15px;
   }
 `;

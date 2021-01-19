@@ -10,7 +10,7 @@ const SuccessStoriesLandingPage = () => {
       <DetailTitle />
       <Carousel>
         <CarouselCard
-          img="meias.jpg"
+          img="/assets/meias.jpg"
           title="Ong Amiga dos Sonhos"
           date="Curitiba-PR - 10/08/2020"
         >
@@ -19,7 +19,7 @@ const SuccessStoriesLandingPage = () => {
           carentes do bairro Parolim."
         </CarouselCard>
         <CarouselCard
-          img="lencos.jpg"
+          img="/assets/lencos.jpg"
           title="Atitude na Cabeça"
           date="Curitiba-PR - 12/05/2020"
         >
@@ -28,7 +28,7 @@ const SuccessStoriesLandingPage = () => {
           perda total ou parcial dos cabelos por causa de alguma patologia. "
         </CarouselCard>
         <CarouselCard
-          img="criancas.jpg"
+          img="/assets/criancas.jpg"
           title="Chácara Meninos de 4 Pinheiros"
           date="Curitiba-PR - 02/10/2020"
         >

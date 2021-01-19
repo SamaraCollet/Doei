@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   height: 100vh;
   width: 100%;
-  background-image: url("banner-min.jpg");
+  background-image: url("/assets/banner-min.jpg");
   background-position: 20% 30%;
   background-size: 120%;
   background-repeat: no-repeat;

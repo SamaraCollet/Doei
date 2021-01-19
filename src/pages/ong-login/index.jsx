@@ -11,8 +11,8 @@ import {
 import { ContainerLoginGreen } from "./styles";
 import DetailTitle from "../../components/detail-title-green";
 import { Link } from "react-router-dom";
-import axios from 'axios'
-import {useHistory} from 'react-router-dom'
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const OngLogin = () => {
   const schema = yup.object().shape({
@@ -24,23 +24,23 @@ const OngLogin = () => {
     resolver: yupResolver(schema),
   });
 
-  const history = useHistory()
+  const history = useHistory();
   const handleForm = (value) => {
     axios
-    .post("https://capstone4-kenzie.herokuapp.com/login", { ...value })
-    .then(res => {
-      window.localStorage.setItem("authToken", res.data.accessToken);
-      //history.push("/?");
-    })
+      .post("https://capstone4-kenzie.herokuapp.com/login", { ...value })
+      .then((res) => {
+        window.localStorage.setItem("authToken", res.data.accessToken);
+        //history.push("/?");
+      })
 
-    .catch(err => {
-      setError("email", { message: "Usuário ou senha inválido" });
-    });
+      .catch((err) => {
+        setError("email", { message: "Usuário ou senha inválido" });
+      });
   };
 
   return (
     <Container>
-      <BannerLogin src="ong.png" alt="donation" />
+      <BannerLogin src="/assets/ong.png" alt="donation" />
       <ContainerLoginGreen>
         <h1>Olá, faça o login!</h1>
         <DetailTitle />
