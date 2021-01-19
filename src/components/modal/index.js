@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Agendamento = () => {
+const Agendamento = (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -67,19 +67,20 @@ const Agendamento = () => {
   });
 
   const handleForm = (data) => {
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNAYy5jb20iLCJpYXQiOjE2MTEwNjk2NzYsImV4cCI6MTYxMTA3MzI3Niwic3ViIjoiMTMifQ.UftfaVmN_1BBK6UYLtHq9fUDsrPrI_bIeRnwwhWE0d0";
+    let token = localStorage.getItem("authToken");
     const config = {
       headers: { authorization: `Bearer ${token} ` },
     };
     const decoded = jwt_decode(token);
     const id = decoded.sub;
 
-    const info = { ...data, userId: id };
+    const info = { ...data, userId: id, campaignId: props.id };
     console.log(info);
     axios
       .post(`https://capstone4-kenzie.herokuapp.com/donations`, info, config)
       .catch((err) => console.log(err));
+
+    handleClose();
   };
 
   return (
@@ -150,33 +151,7 @@ const Agendamento = () => {
                   shrink: true,
                 }}
               />
-              {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  margin="normal"
-                  id="date-picker-dialog"
-                  label="Data"
-                  name="data"
-                  inputRef={register}
-                  format="dd/MM/yyyy"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    "aria-label": "change date",
-                  }}
-                />
-                <KeyboardTimePicker
-                  margin="normal"
-                  id="time-picker"
-                  name="time"
-                  inputRef={register}
-                  label="Horário"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    "aria-label": "change time",
-                  }}
-                />
-              </MuiPickersUtilsProvider> */}
+
               <Button type="submit" variant="outlined" size="medium">
                 Agendar
               </Button>

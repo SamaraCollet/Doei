@@ -1,30 +1,38 @@
-import Header from "../../components/header";
 import CampaignCard from "../../components/campaign-cards";
 import Modal from "../../components/modalEdit";
-
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 import { ProfileTitle, Container, Info } from "./styles.js";
 import jwt_decode from "jwt-decode";
 
 const VoluntaryProfile = () => {
   const [user, setUser] = useState();
   const [userId, setUserId] = useState();
+  const [userDonations, setUserDonations] = useState();
 
   useEffect(() => {
-    let token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNAYy5jb20iLCJpYXQiOjE2MTEwNjk2NzYsImV4cCI6MTYxMTA3MzI3Niwic3ViIjoiMTMifQ.UftfaVmN_1BBK6UYLtHq9fUDsrPrI_bIeRnwwhWE0d0";
+    let token = localStorage.getItem("authToken");
     var decoded = jwt_decode(token);
     setUserId(decoded.sub);
     axios
       .get(`https://capstone4-kenzie.herokuapp.com/users/${decoded.sub}`)
       .then((res) => setUser(res.data));
+
+    const config = {
+      headers: { authorization: `Bearer ${token} ` },
+    };
+
+    axios
+      .get(
+        `https://capstone4-kenzie.herokuapp.com/donations?userId=${decoded.sub}`,
+        config
+      )
+      .then((res) => setUserDonations(res.data));
   }, []);
-  console.log(user);
+  console.log(userDonations);
+
   return (
     <Container>
-      <Header />
       {user && (
         <>
           <ProfileTitle>
@@ -41,6 +49,8 @@ const VoluntaryProfile = () => {
                 <h1> {user.name} </h1>
                 <Modal
                   editar
+                  user={user}
+                  setUser={setUser}
                   userId={userId}
                   name={user.name}
                   description={user.description}
