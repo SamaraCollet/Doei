@@ -31,4 +31,16 @@ export const Container = styled.div`
     background: #8b8b8b;
     box-shadow: 0 0 1px 3px #bbbbbb;
   }
+
+  @media (max-width: 1200px) {
+    padding: 90px 7vw 200px 7vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 979px) {
+    padding: 90px 7vw 170px 7vw;
+  }
+
+  @media (max-width: 480px) {
+    padding: 90px 0;
+  }
 `;

@@ -48,4 +48,41 @@ export const Card = styled.div`
   .card-text {
     padding: 20px 0;
   }
+
+  @media (min-width: 768px) and (max-width: 979px) {
+    .card-info {
+      padding-left: 30px;
+      width: 42vw;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .card-content {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .card-info {
+      padding-left: 0;
+      width: 55vw;
+    }
+    .card-title {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .card-date {
+      text-align: center;
+    }
+    .card-text {
+      width: auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .card-info {
+      padding-left: 0;
+      width: 50vw;
+    }
+  }
 `;

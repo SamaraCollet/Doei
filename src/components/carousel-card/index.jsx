@@ -1,11 +1,11 @@
 import { Card } from "./styles";
 
-const CarouselCard = ({ title, date, children }) => {
+const CarouselCard = ({ title, date, children, img }) => {
   return (
     <Card className="card">
       <div className="card-content">
         <div className="card-image">
-          <img src="image-ong.png" alt="img-ong" />
+          <img src={img} alt="img-ong" />
         </div>
 
         <div className="card-info">

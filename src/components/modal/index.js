@@ -5,15 +5,11 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 import * as yup from "yup";
+import jwt_decode from "jwt-decode";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -26,6 +22,17 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+  },
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+    marginTop: "1rem",
+    marginBottom: "1rem",
   },
 }));
 
@@ -50,8 +57,9 @@ const Agendamento = () => {
   };
 
   const schema = yup.object().shape({
-    product: yup.string().required("Campo obrigatório"),
-    amount: yup.number().required("Campo obrigatório"),
+    message: yup.string(),
+    quantity: yup.number().required("Campo obrigatório"),
+    product: yup.string().required(),
   });
 
   const { register, handleSubmit, errors, setError } = useForm({
@@ -59,8 +67,19 @@ const Agendamento = () => {
   });
 
   const handleForm = (data) => {
-    //ENVIAR DADOS PARA A API
-    console.log(data);
+    const token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNAYy5jb20iLCJpYXQiOjE2MTEwNjk2NzYsImV4cCI6MTYxMTA3MzI3Niwic3ViIjoiMTMifQ.UftfaVmN_1BBK6UYLtHq9fUDsrPrI_bIeRnwwhWE0d0";
+    const config = {
+      headers: { authorization: `Bearer ${token} ` },
+    };
+    const decoded = jwt_decode(token);
+    const id = decoded.sub;
+
+    const info = { ...data, userId: id };
+    console.log(info);
+    axios
+      .post(`https://capstone4-kenzie.herokuapp.com/donations`, info, config)
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -91,25 +110,47 @@ const Agendamento = () => {
             <br />
             <form onSubmit={handleSubmit(handleForm)}>
               <TextField
+                name="message"
+                inputRef={register}
+                variant="outlined"
+                size="small"
+                label="Mensagem (opcional)"
+                error={!!errors.message}
+                helperText={errors.message && "Campo obrigatório"}
+              />
+              <br />
+              <TextField
                 name="product"
                 inputRef={register}
                 variant="outlined"
                 size="small"
                 label="Produto"
-                error={!!errors.product}
-                helperText={errors.product && "Campo obrigatório"}
+                error={!!errors.message}
+                helperText={errors.message && "Campo obrigatório"}
               />
               <br />
               <TextField
-                name="amount"
+                name="quantity"
                 inputRef={register}
                 variant="outlined"
                 size="small"
                 label="Quantidade"
-                error={!!errors.amount}
-                helperText={errors.amount && "Precisa ser um número"}
+                error={!!errors.quantity}
+                helperText={errors.quantity && "Precisa ser um número"}
               />
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <TextField
+                name="scheduledDate"
+                inputRef={register}
+                id="datetime-local"
+                label="Data"
+                type="datetime-local"
+                defaultValue="2021-01-19T10:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker
                   margin="normal"
                   id="date-picker-dialog"
@@ -135,7 +176,7 @@ const Agendamento = () => {
                     "aria-label": "change time",
                   }}
                 />
-              </MuiPickersUtilsProvider>
+              </MuiPickersUtilsProvider> */}
               <Button type="submit" variant="outlined" size="medium">
                 Agendar
               </Button>

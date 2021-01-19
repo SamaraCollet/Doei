@@ -108,7 +108,7 @@ const AdPage = () => {
             <div>
               <h1> {ong.ngoInfo.name} </h1>
               <h2> {ad.about} </h2>
-              <Agendamento />
+              <Agendamento agendamento />
             </div>
           </Info>
           <Contact>
