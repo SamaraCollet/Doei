@@ -5,6 +5,8 @@ import {
   StyledTextField,
   StyledButton,
 } from "./styles";
+import axios from "axios"
+import {useHistory} from 'react-router-dom';
 import DetailTitle from "../../components/detail-title-blue";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -42,10 +44,15 @@ const VoluntaryRegister = () => {
     resolver: yupResolver(schema),
   });
 
+  const history = useHistory()
   const handleForm = (value) => {
-    //AQUI VEM O REQUEST PRA API E REDIRECIONAR PARA A PÁGINA DE LOGIN
-    console.log("sucesso");
-    console.log(value);
+    value.ngo = "false"
+    axios
+      .post(`https://capstone4-kenzie.herokuapp.com/register`, { ...value })
+      .then((res) => history.push("/login-voluntario"))
+      .catch(() => {
+        setError("email", { message: "Este email já está sendo utilizado" });
+      });
   };
 
   return (
