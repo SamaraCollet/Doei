@@ -24,10 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Edit = ({ name, description, userId }) => {
+const Edit = ({ userId, user, setUser }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [newName, setNewName] = useState(name);
+  const [newName, setNewName] = useState(user.name);
 
   const handleOpen = () => {
     setOpen(true);
@@ -48,8 +48,8 @@ const Edit = ({ name, description, userId }) => {
 
   const handleEdit = (data) => {
     console.log(data);
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNAYy5jb20iLCJpYXQiOjE2MTEwNjk2NzYsImV4cCI6MTYxMTA3MzI3Niwic3ViIjoiMTMifQ.UftfaVmN_1BBK6UYLtHq9fUDsrPrI_bIeRnwwhWE0d0";
+    let token = localStorage.getItem("authToken");
+
     const config = {
       headers: { authorization: `Bearer ${token} ` },
     };
@@ -60,6 +60,10 @@ const Edit = ({ name, description, userId }) => {
         config
       )
       .catch((err) => console.log(err));
+
+    setUser(data);
+
+    handleClose();
   };
 
   return (
@@ -97,8 +101,6 @@ const Edit = ({ name, description, userId }) => {
                 label={newName}
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
-                // error={!!errors.name}
-                // helperText={errors.name && console.log(errors)}
               />
               <br />
               <TextField
@@ -106,10 +108,7 @@ const Edit = ({ name, description, userId }) => {
                 inputRef={register}
                 variant="outlined"
                 size="small"
-                label={description && description}
-                // value={description && description}
-                // error={!!errors.description}
-                // helperText={errors.description && "Precisa ser um número"}
+                label="Descrição"
               />
 
               <Button type="submit" variant="outlined" size="medium">
