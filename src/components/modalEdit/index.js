@@ -7,9 +7,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 import * as yup from "yup";
-import jwt_decode from "jwt-decode";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -23,22 +22,12 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
-  container: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-    marginTop: "1rem",
-    marginBottom: "1rem",
-  },
 }));
 
-const Agendamento = (props) => {
+const Edit = ({ userId, user, setUser }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [newName, setNewName] = useState(user.name);
 
   const handleOpen = () => {
     setOpen(true);
@@ -48,37 +37,31 @@ const Agendamento = (props) => {
     setOpen(false);
   };
 
-  const [selectedDate, setSelectedDate] = useState(
-    new Date("2021-01-18T21:11:54")
-  );
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
   const schema = yup.object().shape({
-    message: yup.string(),
-    quantity: yup.number().required("Campo obrigatório"),
-    product: yup.string().required(),
+    name: yup.string().required("Campo obrigatório"),
+    description: yup.string(),
   });
 
   const { register, handleSubmit, errors, setError } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const handleForm = (data) => {
+  const handleEdit = (data) => {
+    console.log(data);
     let token = localStorage.getItem("authToken");
+
     const config = {
       headers: { authorization: `Bearer ${token} ` },
     };
-    const decoded = jwt_decode(token);
-    const id = decoded.sub;
-
-    const info = { ...data, userId: id, campaignId: props.id };
-    console.log(info);
     axios
-      .post(`https://capstone4-kenzie.herokuapp.com/donations`, info, config)
+      .patch(
+        `https://capstone4-kenzie.herokuapp.com/users/${userId}`,
+        data,
+        config
+      )
       .catch((err) => console.log(err));
+
+    setUser(data);
 
     handleClose();
   };
@@ -91,7 +74,7 @@ const Agendamento = (props) => {
         size="medium"
         onClick={handleOpen}
       >
-        Participar
+        Editar perfil
       </Button>
       <NewModal
         aria-labelledby="transition-modal-title"
@@ -107,53 +90,29 @@ const Agendamento = (props) => {
       >
         <Fade in={open}>
           <ModalStyle className={classes.paper}>
-            <h2 id="transition-modal-title">Agendamento</h2>
+            <h2 id="transition-modal-title">Perfil</h2>
             <br />
-            <form onSubmit={handleSubmit(handleForm)}>
+            <form onSubmit={handleSubmit(handleEdit)}>
               <TextField
-                name="message"
+                name="name"
                 inputRef={register}
                 variant="outlined"
                 size="small"
-                label="Mensagem (opcional)"
-                error={!!errors.message}
-                helperText={errors.message && "Campo obrigatório"}
+                label={newName}
+                value={newName}
+                onChange={(e) => setNewName(e.target.value)}
               />
               <br />
               <TextField
-                name="product"
+                name="description"
                 inputRef={register}
                 variant="outlined"
                 size="small"
-                label="Produto"
-                error={!!errors.message}
-                helperText={errors.message && "Campo obrigatório"}
-              />
-              <br />
-              <TextField
-                name="quantity"
-                inputRef={register}
-                variant="outlined"
-                size="small"
-                label="Quantidade"
-                error={!!errors.quantity}
-                helperText={errors.quantity && "Precisa ser um número"}
-              />
-              <TextField
-                name="scheduledDate"
-                inputRef={register}
-                id="datetime-local"
-                label="Data"
-                type="datetime-local"
-                defaultValue="2021-01-19T10:30"
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
+                label="Descrição"
               />
 
               <Button type="submit" variant="outlined" size="medium">
-                Agendar
+                Alterar dados
               </Button>
             </form>
           </ModalStyle>
@@ -163,4 +122,4 @@ const Agendamento = (props) => {
   );
 };
 
-export default Agendamento;
+export default Edit;

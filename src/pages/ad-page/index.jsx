@@ -1,23 +1,11 @@
-import {
-  Container,
-  Info,
-  Contact,
-  Title,
-  TitleCss,
-  GifTab,
-  NewModal,
-} from "./styled";
+import { Container, Info, Contact, Title, TitleCss, GifTab } from "./styled";
 import ongPic from "../../images/ongPic.png";
 import gif from "../../images/loading.gif";
-
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-
+import IdNotFound from "../page-not-found";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import Geocode from "react-geocode";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import Agendamento from "../../components/modal";
@@ -26,16 +14,15 @@ const AdPage = () => {
   const [ad, setAd] = useState(null);
   const [ong, setOng] = useState(null);
   const [geo, setGeo] = useState({ lat: 0, lng: 0 });
+  const [wrongId, setWrongId] = useState(false);
 
   let { id } = useParams();
-
-  // const counter = useSelector((state) => state.campaigns);
-  // console.log(counter);
 
   useEffect(() => {
     axios
       .get(`https://capstone4-kenzie.herokuapp.com/campaigns/${id}`)
-      .then((res) => setAd(res.data));
+      .then((res) => setAd(res.data))
+      .catch((err) => setWrongId(true));
   }, []);
 
   useEffect(() => {
@@ -45,8 +32,7 @@ const AdPage = () => {
         .then((res) => setOng(...res.data));
     }
   }, [ad]);
-  console.log(ong);
-
+  console.log(ong, ad);
   //Get map info
 
   const containerStyle = {
@@ -83,15 +69,11 @@ const AdPage = () => {
   };
 
   useEffect(() => {
-    ong !== null &&
-      getLocation(
-        `${ong.address.city}, ${ong.address.streetName} ${ong.address.streetNumber}`
-      );
+    ong !== null && getLocation(`${ad.location}`);
   }, [ong]);
 
   return (
     <Container>
-      <Header />
       {ad && ong !== null ? (
         <>
           <Title>
@@ -103,9 +85,9 @@ const AdPage = () => {
           <Info>
             <img src={ongPic} alt="ONG" />
             <div>
-              <h1> {ong.ngoInfo.name} </h1>
+              <h1> {ong.name} </h1>
               <h2> {ad.about} </h2>
-              <Agendamento />
+              <Agendamento id={id} />
             </div>
           </Info>
           <Contact>
@@ -115,11 +97,11 @@ const AdPage = () => {
                 <div />
               </TitleCss>
               <ul>
-                <li>{ong.ngoInfo.name && ong.ngoInfo.name}</li>
+                <li>{ong.name && ong.name}</li>
                 <li>{ong.email && ong.email} </li>
-                <li>{ong.ngoInfo.phoneNumber && ong.ngoInfo.phoneNumber}</li>
+                <li>{ong.phoneNumber && ong.phoneNumber}</li>
                 <li>
-                  <a href={ong.ngoInfo.website}>{ong.ngoInfo.website}</a>
+                  <a href={ong.site}>{ong.site}</a>
                 </li>
               </ul>
             </div>
@@ -136,6 +118,8 @@ const AdPage = () => {
             </div>
           </Contact>
         </>
+      ) : wrongId ? (
+        <IdNotFound />
       ) : (
         <GifTab>
           <img src={gif} alt="loading" />

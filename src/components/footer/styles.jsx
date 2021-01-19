@@ -18,4 +18,15 @@ export const Container = styled.div`
 
     font-size: 1rem;
   }
+
+  @media (max-width: 480px) {
+    p {
+      font-size: 0.9rem;
+    }
+  }
+  @media (max-width: 280px) {
+    p {
+      font-size: 0.7rem;
+    }
+  }
 `;

@@ -4,11 +4,13 @@ import {
   StyledTextField,
   StyledButton,
 } from "../../pages/voluntary-register/styles";
+import axios from 'axios'
+import {useHistory} from 'react-router-dom'
 import { FormContainerOng } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { DetailTitle } from "../../components/steps-landing-page/styles";
+import { ContainerGreen } from "../../components/detail-title-green/styles";
 
 const OngRegister = () => {
   const schema = yup.object().shape({
@@ -33,10 +35,6 @@ const OngRegister = () => {
     password: yup
       .string()
       .required("Campo obrigatório.")
-      .matches(
-        /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-        "Senha deve conter ao menos uma letra maiúscula, uma minúscula, um número e um caractere especial"
-      )
       .min(8, "Mínimo de 8 digitos."),
     password_confirmation: yup
       .string()
@@ -48,17 +46,22 @@ const OngRegister = () => {
     resolver: yupResolver(schema),
   });
 
+  const history = useHistory()
   const handleForm = (value) => {
-    //AQUI VEM O REQUEST PRA API E REDIRECIONAR PARA A PÁGINA DE LOGIN
-    console.log("sucesso");
-    console.log(value);
+    value.ngo = "true"
+    axios
+    .post(`https://capstone4-kenzie.herokuapp.com/register`, { ...value })
+    .then(res => history.push("/login-ong"))
+    .catch(() => {
+      setError("email", { message: "Este email já está sendo utilizado" });
+    });
   };
 
   return (
     <Container>
       <FormContainerOng>
         <h1>Cadastro ONG</h1>
-        <DetailTitle />
+        <ContainerGreen />
         <form onSubmit={handleSubmit(handleForm)}>
           <FormColumn>
             <StyledTextField
