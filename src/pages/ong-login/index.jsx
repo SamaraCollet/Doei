@@ -4,25 +4,17 @@ import * as yup from "yup";
 import {
   Container,
   BannerLogin,
-  ContainerLogin,
   StyledTextField,
   StyledButton,
-} from "./styles";
-import DetailTitle from "../../components/detail-title-blue";
+} from "../../pages/voluntary-login/styles";
+import { ContainerLoginGreen } from "./styles";
+import DetailTitle from "../../components/detail-title-green";
 
-<<<<<<< HEAD:src/pages/login/index.jsx
-const Login = () => {
+const OngLogin = () => {
   const schema = yup.object().shape({
     email: yup.string().required("Campo obrigatório"),
     password: yup.string().required("Campo obrigatório"),
   });
-=======
-const OngLogin = () => {
-    const schema = yup.object().shape({
-        email: yup.string().required("Campo obrigatório"),
-        password: yup.string().required("Campo obrigatório")
-    })
->>>>>>> 867b15897841fa3da9089e64495a7fa0282bd4fc:src/pages/ong-login/index.jsx
 
   const { register, handleSubmit, errors, setError } = useForm({
     resolver: yupResolver(schema),
@@ -36,7 +28,7 @@ const OngLogin = () => {
   return (
     <Container>
       <BannerLogin src="donation.jpg" alt="donation" />
-      <ContainerLogin>
+      <ContainerLoginGreen>
         <h1>Login Page</h1>
         <DetailTitle />
         <form onSubmit={handleSubmit(handleForm)}>
@@ -62,13 +54,9 @@ const OngLogin = () => {
             Entrar
           </StyledButton>
         </form>
-      </ContainerLogin>
+      </ContainerLoginGreen>
     </Container>
   );
 };
 
-<<<<<<< HEAD:src/pages/login/index.jsx
-export default Login;
-=======
-export default OngLogin
->>>>>>> 867b15897841fa3da9089e64495a7fa0282bd4fc:src/pages/ong-login/index.jsx
+export default OngLogin;
