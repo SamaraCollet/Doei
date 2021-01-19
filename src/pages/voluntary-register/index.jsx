@@ -5,7 +5,7 @@ import {
   StyledTextField,
   StyledButton,
 } from "./styles";
-import { DetailTitle } from "../../components/steps-landing-page/styles";
+import DetailTitle from "../../components/detail-title-blue";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
