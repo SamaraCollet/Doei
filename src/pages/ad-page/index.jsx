@@ -32,8 +32,6 @@ const AdPage = () => {
         .then((res) => setOng(...res.data));
     }
   }, [ad]);
-  console.log(ong, ad);
-  //Get map info
 
   const containerStyle = {
     width: `400px`,
@@ -67,7 +65,7 @@ const AdPage = () => {
       }
     );
   };
-
+  console.log(ad);
   useEffect(() => {
     ong !== null && getLocation(`${ad.location}`);
   }, [ong]);
@@ -87,7 +85,12 @@ const AdPage = () => {
             <div>
               <h1> {ong.name} </h1>
               <h2> {ad.about} </h2>
-              <Agendamento id={id} />
+              <Agendamento
+                end={ad.endDate}
+                name={ad.ongName}
+                title={ad.title}
+                id={id}
+              />
             </div>
           </Info>
           <Contact>

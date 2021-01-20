@@ -3,13 +3,16 @@ import Modal from "../../components/modalEdit";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ProfileTitle, Container, Info, Campaigns } from "./styles.js";
+import { GifTab } from "../ad-page/styled";
 import jwt_decode from "jwt-decode";
 import TitleDetail from "../../components/detail-title-blue";
+import gif from "../../images/loading.gif";
 
 const VoluntaryProfile = () => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [userId, setUserId] = useState();
-  const [userDonations, setUserDonations] = useState();
+  const [userDonations, setUserDonations] = useState(null);
+  const [campaigns, setCampaigns] = useState();
 
   useEffect(() => {
     let token = localStorage.getItem("authToken");
@@ -29,12 +32,15 @@ const VoluntaryProfile = () => {
         config
       )
       .then((res) => setUserDonations(res.data));
+
+    axios
+      .get(`https://capstone4-kenzie.herokuapp.com/campaigns`)
+      .then((res) => setCampaigns(res.data));
   }, []);
   console.log(userDonations);
-
   return (
     <Container>
-      {user && (
+      {user && userDonations !== null ? (
         <>
           <ProfileTitle>
             <h1>Meu perfil</h1>
@@ -70,11 +76,33 @@ const VoluntaryProfile = () => {
               <TitleDetail />
             </ProfileTitle>
             <div className="campaign-cards">
-              <CampaignCard />
-              <CampaignCard />
+              {userDonations !== [] &&
+                userDonations.map((donation, index) => {
+                  return (
+                    <CampaignCard
+                      key={index}
+                      title={donation.adTitle}
+                      endDate={donation.endDate}
+                      about={`Agendado para ${donation.scheduledDate.slice(
+                        8,
+                        10
+                      )}/${donation.scheduledDate.slice(
+                        5,
+                        7
+                      )} as ${donation.scheduledDate.slice(11, 16)}`}
+                      ongName={`Produto: ${donation.product}`}
+                      location={`Quantidade:${donation.quantity}`}
+                      id={donation.campaignId}
+                    />
+                  );
+                })}
             </div>
           </Campaigns>
         </>
+      ) : (
+        <GifTab>
+          <img src={gif} alt="loading" />
+        </GifTab>
       )}
     </Container>
   );

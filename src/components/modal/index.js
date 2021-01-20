@@ -74,8 +74,15 @@ const Agendamento = (props) => {
     const decoded = jwt_decode(token);
     const id = decoded.sub;
 
-    const info = { ...data, userId: id, campaignId: props.id };
-    console.log(info);
+    const info = {
+      ...data,
+      userId: id,
+      campaignId: props.id,
+      ongName: props.name,
+      adTitle: props.title,
+      endDate: props.end,
+    };
+
     axios
       .post(`https://capstone4-kenzie.herokuapp.com/donations`, info, config)
       .catch((err) => console.log(err));
