@@ -32,8 +32,6 @@ const VoluntaryLogin = () => {
       .then((res) => {
         window.localStorage.setItem("authToken", res.data.accessToken);
         history.push("/campaigns-feed");
-
-        //history.push("/?");
       })
 
       .catch((err) => {

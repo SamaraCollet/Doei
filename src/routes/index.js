@@ -7,56 +7,95 @@ import OngRegister from "../pages/ong-register";
 import CardsFeed from "../pages/cards-feed";
 import AdPage from "../pages/ad-page";
 import PageNotFound from "../pages/page-not-found";
+import Header from "../components/header";
+import AuthHeader from "../components/auth-header";
+import AuthHeader from "../components/auth-header/index";
+import NotAuthorized from "../pages/not-authorized";
+// import OngProfile from "../pages/ong-profile";
 
 import Footer from "../components/footer";
 import { Switch, Route } from "react-router-dom";
 
-import AuthHeader from "../components/auth-header/index";
-import OngProfile from "../pages/ong-profile";
 const Routes = () => {
+  const token = localStorage.getItem("authToken");
   return (
     <>
-      <AuthHeader />
-
-      <Switch>
-        <Route exact path="/campaigns-feed">
-          <CardsFeed />
-        </Route>
-        <Route exact path="/campaign/:id">
-          <AdPage />
-        </Route>
-        <Route exact path="/">
-          <LandingPage />
-          <Footer />
-        </Route>
-        <Route exact path="/login-ong">
-          <OngLogin />
-        </Route>
-        <Route path="/login-voluntario">
-          <VoluntaryLogin />
-        </Route>
-        <Route path="/cadastro-ong">
-          <OngRegister />
-        </Route>
-        <Route path="/cadastro-voluntario">
-          <VoluntaryRegister />
-        </Route>
-        <Route exact path="/dashboard-voluntario">
-          <VoluntaryProfile />
-          <Footer />
-        </Route>
-        <Route exact path="/dashboard-ong">
-          <OngProfile />
-          <Footer />
-        </Route>
-        <Route exact path="/campaign/:id">
-          <AdPage />
-        </Route>
-        <Route path="*">
-          <PageNotFound />
-        </Route>
-      </Switch>
-      {/* <Footer/> */}
+      {token ? (
+        <>
+          <AuthHeader />
+          <Switch>
+            <Route exact path="/campaigns-feed">
+              <CardsFeed />
+            </Route>
+            <Route exact path="/campaign/:id">
+              <AdPage />
+            </Route>
+            <Route exact path="/">
+              <LandingPage />
+              <Footer />
+            </Route>
+            <Route exact path="/login-ong">
+              <OngLogin />
+            </Route>
+            <Route path="/login-voluntario">
+              <VoluntaryLogin />
+            </Route>
+            <Route path="/cadastro-ong">
+              <OngRegister />
+            </Route>
+            <Route path="/cadastro-voluntario">
+              <VoluntaryRegister />
+            </Route>
+            <Route exact path="/dashboard-voluntario">
+              <VoluntaryProfile />
+              <Footer />
+            </Route>
+            <Route exact path="/campaign/:id">
+              <AdPage />
+            </Route>
+            <Route path="*">
+              <PageNotFound />
+            </Route>
+          </Switch>
+        </>
+      ) : (
+        <>
+          <Header />
+          <Switch>
+            <Route exact path="/campaigns-feed">
+              <CardsFeed />
+            </Route>
+            <Route exact path="/campaign/:id">
+              <AdPage />
+            </Route>
+            <Route exact path="/">
+              <LandingPage />
+              <Footer />
+            </Route>
+            <Route exact path="/login-ong">
+              <OngLogin />
+            </Route>
+            <Route path="/login-voluntario">
+              <VoluntaryLogin />
+            </Route>
+            <Route path="/cadastro-ong">
+              <OngRegister />
+            </Route>
+            <Route path="/cadastro-voluntario">
+              <VoluntaryRegister />
+            </Route>
+            <Route exact path="/dashboard-voluntario">
+              <NotAuthorized />
+            </Route>
+            <Route exact path="/campaign/:id">
+              <AdPage />
+            </Route>
+            <Route path="*">
+              <PageNotFound />
+            </Route>
+          </Switch>
+        </>
+      )}
     </>
   );
 };
