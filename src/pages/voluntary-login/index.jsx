@@ -43,7 +43,7 @@ const VoluntaryLogin = () => {
 
   return (
     <Container>
-      <BannerLogin src="/assets/donation.jpg" alt="donation" />
+      <BannerLogin src="/assets/donation2.png" alt="donation" />
       <ContainerLogin>
         <h1>Olá, faça o login!</h1>
         <DetailTitle />

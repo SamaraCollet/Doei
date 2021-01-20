@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-self: flex-end;
   position: absolute;
   width: 100%;
-  bottom: 0;
+  /* bottom: 0; */
   height: 50px;
   background-color: #474747;
 
