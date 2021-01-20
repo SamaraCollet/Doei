@@ -34,7 +34,12 @@ const AuthHeader = () => {
     <Container
       style={{ backgroundColor: isOng === true ? "#90be6d" : "#00bbf9" }}
     >
-      <p>Logo</p>
+      <img
+        className="logo"
+        src="/assets/logo2.png"
+        alt="logo"
+        onClick={() => history.push("/campaigns-feed")}
+      />
       <Desktop>
         <p
           onClick={() =>
