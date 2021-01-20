@@ -18,7 +18,12 @@ const Header = () => {
 
   return (
     <Container>
-      <p>Logo</p>
+      <img
+        className="logo"
+        src="/assets/logo2.png"
+        alt="logo"
+        onClick={() => history.push("/")}
+      />
       <Desktop>
         <p onClick={() => history.push("/login-ong")}>Sou ONG</p>
         <p onClick={() => history.push("/login-voluntario")}>Sou voluntário</p>
