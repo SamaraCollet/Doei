@@ -12,6 +12,13 @@ export const Container = styled.div `
   p:first-child {
     padding-left: 2rem;
   }
+
+  img {
+    width: 85px;
+    margin-left: 30px;
+    margin-top: 2px;
+    cursor: pointer;
+  }
 `;
 
 export const Desktop = styled.div `
