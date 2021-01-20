@@ -2,8 +2,9 @@ import CampaignCard from "../../components/campaign-cards";
 import Modal from "../../components/modalEdit";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ProfileTitle, Container, Info } from "./styles.js";
+import { ProfileTitle, Container, Info, Campaigns } from "./styles.js";
 import jwt_decode from "jwt-decode";
+import TitleDetail from "../../components/detail-title-blue";
 
 const VoluntaryProfile = () => {
   const [user, setUser] = useState();
@@ -36,17 +37,20 @@ const VoluntaryProfile = () => {
       {user && (
         <>
           <ProfileTitle>
-            <h1>Perfil</h1>
-            <div className="bottom-line" />
+            <h1>Meu perfil</h1>
+            <TitleDetail />
           </ProfileTitle>
           <Info>
-            <img
-              src="https://www.drshaneholmes.com/wp-content/uploads/2020/03/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
-              alt="ONG"
-            />
-            <div>
-              <div>
-                <h1> {user.name} </h1>
+            <div className="img-container">
+              <img
+                src="/assets/meias.jpg"
+                // src="https://www.drshaneholmes.com/wp-content/uploads/2020/03/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
+                alt="ONG"
+              />
+            </div>
+            <div className="profile-data">
+              <div className="name-and-edit-profile">
+                <h2> {user.name} </h2>
                 <Modal
                   editar
                   user={user}
@@ -57,19 +61,21 @@ const VoluntaryProfile = () => {
                 />
               </div>
 
-              <h2> {user.description ? user.description : "Sem descrição"} </h2>
+              <p> {user.description ? user.description : "Sem descrição"} </p>
             </div>
           </Info>
-          <ProfileTitle>
-            <h1>Participações</h1>
-            <div className="bottom-line" />
-          </ProfileTitle>
-          <div>
-            <CampaignCard />
-            <CampaignCard />
-          </div>
+          <Campaigns>
+            <ProfileTitle>
+              <h1>Minhas participações</h1>
+              <TitleDetail />
+            </ProfileTitle>
+            <div className="campaign-cards">
+              <CampaignCard />
+              <CampaignCard />
+            </div>
+          </Campaigns>
         </>
-      )}{" "}
+      )}
     </Container>
   );
 };

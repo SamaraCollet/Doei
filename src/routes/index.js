@@ -26,6 +26,7 @@ const Routes = () => {
         </Route>
         <Route exact path="/">
           <LandingPage />
+          <Footer />
         </Route>
         <Route exact path="/login-ong">
           <OngLogin />
@@ -41,6 +42,7 @@ const Routes = () => {
         </Route>
         <Route exact path="/dashboard-voluntario">
           <VoluntaryProfile />
+          <Footer />
         </Route>
         <Route exact path="/campaign/:id">
           <AdPage />
