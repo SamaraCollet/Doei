@@ -31,6 +31,8 @@ const VoluntaryLogin = () => {
       .post("https://capstone4-kenzie.herokuapp.com/login", { ...value })
       .then((res) => {
         window.localStorage.setItem("authToken", res.data.accessToken);
+        history.push("/campaigns-feed");
+
         //history.push("/?");
       })
 

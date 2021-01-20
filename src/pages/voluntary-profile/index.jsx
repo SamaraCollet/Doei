@@ -30,7 +30,6 @@ const VoluntaryProfile = () => {
       .then((res) => setUserDonations(res.data));
   }, []);
   console.log(userDonations);
-
   return (
     <Container>
       {user && (
