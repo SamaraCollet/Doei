@@ -3,9 +3,11 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 import campaignsReducer from "./ducks/campaigns";
+import userReducer from "./ducks/users";
 
 const reducers = combineReducers({
   campaigns: campaignsReducer,
+  users: userReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));

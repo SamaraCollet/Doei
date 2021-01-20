@@ -6,8 +6,10 @@ import {
   TextContainer,
   InstitutionName,
 } from "./style";
-
-const CampaignCard = ({ title, initialDate, endDate, donationType, about }) => {
+import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { useHistory } from "react-router-dom";
+const CampaignCard = ({ title, endDate, location, about, ongName, id }) => {
+  const history = useHistory();
   return (
     <Box m={3}>
       <Grid container direction="column" alignItems="center" justify="center">
@@ -16,23 +18,30 @@ const CampaignCard = ({ title, initialDate, endDate, donationType, about }) => {
             <img src={ImageInstitution} alt="institution" />
             <TextContainer>
               <Typography className="titulo" variant="h5">
-                {title} - <b>{donationType}</b>
+                {title}
               </Typography>
               <Typography className="data" color="textSecondary" gutterBottom>
-                Validade: {initialDate} à {endDate}
+                Valido até: {endDate}
               </Typography>
               <Typography className="meta" variant="inherit">
                 {about}
               </Typography>
+
               <InstitutionName
                 className="institutionName"
                 color="textSecondary"
                 align="right"
               >
-                {" "}
-                Lar Batista - Curitiba-PR
+                {ongName} - {location}
               </InstitutionName>
             </TextContainer>
+            <button
+              onClick={() => {
+                history.push(`/campaign/${id}`);
+              }}
+            >
+              <BiDotsHorizontalRounded />
+            </button>
           </StyledCardContent>
         </Container>
       </Grid>
