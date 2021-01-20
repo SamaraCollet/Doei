@@ -12,6 +12,7 @@ import Footer from "../components/footer";
 import { Switch, Route } from "react-router-dom";
 
 import AuthHeader from "../components/auth-header/index";
+import OngProfile from "../pages/ong-profile";
 const Routes = () => {
   return (
     <>
@@ -42,6 +43,10 @@ const Routes = () => {
         </Route>
         <Route exact path="/dashboard-voluntario">
           <VoluntaryProfile />
+          <Footer />
+        </Route>
+        <Route exact path="/dashboard-ong">
+          <OngProfile />
           <Footer />
         </Route>
         <Route exact path="/campaign/:id">
