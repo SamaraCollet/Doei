@@ -1,7 +1,10 @@
 import { Container, BannerContent, FindLocal } from "./styles";
 import { BiSearch } from "react-icons/bi";
+import { useHistory } from "react-router-dom";
 
 const BannerLandingPage = () => {
+  const history = useHistory();
+
   return (
     <Container>
       <BannerContent>
@@ -21,7 +24,11 @@ const BannerLandingPage = () => {
             </option>
             <option value="valor3">Valor 3</option>
           </select>
-          <button>
+          <button
+            onClick={() => {
+              history.push("/campaigns-feed");
+            }}
+          >
             <BiSearch />
           </button>
         </FindLocal>

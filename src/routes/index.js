@@ -1,21 +1,29 @@
 import LandingPage from "../pages/landing-page";
 import VoluntaryLogin from "../pages/voluntary-login";
 import VoluntaryRegister from "../pages/voluntary-register";
+import VoluntaryProfile from "../pages/voluntary-profile";
 import OngLogin from "../pages/ong-login";
 import OngRegister from "../pages/ong-register";
-import VoluntaryProfile from "../pages/voluntary-profile";
+import CardsFeed from "../pages/cards-feed";
 import AdPage from "../pages/ad-page";
 import PageNotFound from "../pages/page-not-found";
-import Header from "../components/auth-header";
-import Footer from "../components/footer";
 
+import Footer from "../components/footer";
 import { Switch, Route } from "react-router-dom";
 
+import AuthHeader from "../components/auth-header/index";
 const Routes = () => {
   return (
     <>
-      <Header />
+      <AuthHeader />
+
       <Switch>
+        <Route exact path="/campaigns-feed">
+          <CardsFeed />
+        </Route>
+        <Route exact path="/campaign/:id">
+          <AdPage />
+        </Route>
         <Route exact path="/">
           <LandingPage />
           <Footer />
@@ -36,7 +44,7 @@ const Routes = () => {
           <VoluntaryProfile />
           <Footer />
         </Route>
-        <Route exact path="/anuncio/:id">
+        <Route exact path="/campaign/:id">
           <AdPage />
         </Route>
         <Route path="*">
