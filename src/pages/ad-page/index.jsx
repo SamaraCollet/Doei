@@ -32,7 +32,7 @@ const AdPage = () => {
         .then((res) => setOng(...res.data));
     }
   }, [ad]);
-  console.log(ong, ad);
+  // console.log(ong, ad);
   //Get map info
 
   const containerStyle = {
@@ -74,7 +74,7 @@ const AdPage = () => {
 
   return (
     <Container>
-      {ad && ong !== null ? (
+      {ad && (ong !== null) & (ong !== undefined) ? (
         <>
           <Title>
             <TitleCss>

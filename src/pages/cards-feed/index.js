@@ -14,11 +14,6 @@ const CardsFeed = () => {
     dispatch(getAllCampaigns());
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(getAllUsers());
-  // }, []);
-
-  // console.log(users);
   return (
     <Container>
       <StyledTitle>Anúncios recentes</StyledTitle>

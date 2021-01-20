@@ -13,7 +13,11 @@ const CampaignCard = ({ title, endDate, location, about, ongName, id }) => {
   return (
     <Box m={3}>
       <Grid container direction="column" alignItems="center" justify="center">
-        <Container>
+        <Container
+          onClick={() => {
+            history.push(`/campaign/${id}`);
+          }}
+        >
           <StyledCardContent>
             <img src={ImageInstitution} alt="institution" />
             <TextContainer>
