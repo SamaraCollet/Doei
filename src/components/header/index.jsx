@@ -6,7 +6,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import { useState } from "react";
 
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const history = useHistory();
@@ -29,7 +29,9 @@ const Header = () => {
           <MobileList>
             <ul>
               <li onClick={() => history.push("/login-ong")}>Sou ONG</li>
-              <li onClick={() => history.push("/login-voluntario")}>Sou voluntário</li>
+              <li onClick={() => history.push("/login-voluntario")}>
+                Sou voluntário
+              </li>
             </ul>
           </MobileList>
         )}

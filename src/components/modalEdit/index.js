@@ -1,14 +1,21 @@
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { NewModal, ModalStyle } from "./styled";
+import {
+  Container,
+  StyledButtonMin,
+  StyledButtonSave,
+  NewModal,
+  ModalStyle,
+  StyledTextField,
+} from "./styled";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
+import { BiPencil } from "react-icons/bi";
+import DetailTitle from "../../components/detail-title-blue";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -18,7 +25,10 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    border: "2px solid #585858",
+    borderRadius: "20px",
+    width: "250px",
+    height: "250px",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -67,15 +77,17 @@ const Edit = ({ userId, user, setUser }) => {
   };
 
   return (
-    <div>
-      <Button
+    <Container>
+      <StyledButtonMin
+        title="Editar perfil"
         type="button"
         variant="outlined"
         size="medium"
         onClick={handleOpen}
       >
-        Editar perfil
-      </Button>
+        <BiPencil className="icon-edit" />
+        {/* Editar perfil */}
+      </StyledButtonMin>
       <NewModal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -90,10 +102,12 @@ const Edit = ({ userId, user, setUser }) => {
       >
         <Fade in={open}>
           <ModalStyle className={classes.paper}>
-            <h2 id="transition-modal-title">Perfil</h2>
-            <br />
+            <div className="title-modal">
+              <h1 id="transition-modal-title">Editar perfil</h1>
+              <DetailTitle />
+            </div>
             <form onSubmit={handleSubmit(handleEdit)}>
-              <TextField
+              <StyledTextField
                 name="name"
                 inputRef={register}
                 variant="outlined"
@@ -102,8 +116,8 @@ const Edit = ({ userId, user, setUser }) => {
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
               />
-              <br />
-              <TextField
+
+              <StyledTextField
                 name="description"
                 inputRef={register}
                 variant="outlined"
@@ -111,14 +125,14 @@ const Edit = ({ userId, user, setUser }) => {
                 label="Descrição"
               />
 
-              <Button type="submit" variant="outlined" size="medium">
+              <StyledButtonSave type="submit" variant="outlined" size="medium">
                 Alterar dados
-              </Button>
+              </StyledButtonSave>
             </form>
           </ModalStyle>
         </Fade>
       </NewModal>
-    </div>
+    </Container>
   );
 };
 
