@@ -27,6 +27,17 @@ export const ModalStyle = styled.div`
     justify-content: center;
     align-items: center;
   }
+  select {
+    width: 100%;
+    border: 1px solid #bdbdbd;
+    padding-left: 9px;
+    border-radius: 4px;
+    height: 40px;
+    margin: 5px 0;
+    font-size: 16px;
+    color: gray;
+    background-color: white;
+  }
 `;
 
 export const StyledButton = styled(Button)`
