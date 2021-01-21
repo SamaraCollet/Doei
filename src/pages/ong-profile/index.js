@@ -13,6 +13,7 @@ import {
 } from "./styles.js";
 import jwt_decode from "jwt-decode";
 import TitleDetail from "../../components/detail-title-blue";
+import NewCampaign from "../../components/new-campaign";
 
 const OngProfile = () => {
   const [user, setUser] = useState();
@@ -85,7 +86,7 @@ const OngProfile = () => {
               <p> {user.description ? user.description : "Sem descrição"} </p>
             </div>
           </Info>
-          <NewCampaignButton>Nova campanha</NewCampaignButton>
+          <NewCampaign name={user.name} id={userId} address={user.address}  />
           <Campaigns>
             <ProfileTitle>
               <>
