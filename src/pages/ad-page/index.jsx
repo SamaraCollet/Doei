@@ -17,6 +17,7 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import Geocode from "react-geocode";
 import { useParams } from "react-router-dom";
 import TitleDetail from "../../components/detail-title-blue";
+import { motion } from "framer-motion";
 
 import Agendamento from "../../components/modal";
 
@@ -84,68 +85,75 @@ const AdPage = () => {
   console.log(ong);
   const isOng = localStorage.getItem("isOng");
   return (
-    <Container>
-      {ad && (ong !== null) & (ong !== undefined) ? (
-        <>
-          <Title>
-            <h1>{ad.title}</h1>
-            <TitleDetail />
-          </Title>
-          <Info>
-            <img src={ongPic} alt="ONG" />
-            <div className="data">
-              <h2> {ong.name} </h2>
-              <p> {ad.about} </p>
-              {isOng === "false" && (
-                <Agendamento
-                  end={ad.endDate}
-                  name={ad.ongName}
-                  title={ad.title}
-                  id={id}
-                  ongId={ad.userId}
-                />
-              )}
-            </div>
-          </Info>
-          <Contact
-            style={{
-              backgroundColor: isOng === "false" ? "#00BBF935" : "#90BE6D35",
-            }}
-          >
-            <div className="contact-data">
-              <ContactTitle>
-                <h2>Contato</h2>
-                <TitleDetailContact />
-              </ContactTitle>
-              <ul>
-                {ong.email && <li> {ong.email} </li>}
-                {ong.phoneNumber && <li> {ong.phoneNumber} </li>}
-                <li>
-                  <a href={ong.site}>{ong.site}</a>
-                </li>
-              </ul>
-            </div>
-            <div className="contact-map">
-              <LoadScript googleMapsApiKey="AIzaSyBj8LCYAcsyOtQ7TNihTnP7kPMOVhtnqV0">
-                <GoogleMap
-                  mapContainerStyle={ContainerStyle}
-                  center={center}
-                  zoom={15}
-                >
-                  <Marker onLoad={onLoad} position={center} />
-                </GoogleMap>
-              </LoadScript>
-            </div>
-          </Contact>
-        </>
-      ) : wrongId ? (
-        <IdNotFound />
-      ) : (
-        <GifTab>
-          <img src={gif} alt="loading" />
-        </GifTab>
-      )}
-    </Container>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+    >
+      <Container>
+        {ad && (ong !== null) & (ong !== undefined) ? (
+          <>
+            <Title>
+              <h1>{ad.title}</h1>
+              <TitleDetail />
+            </Title>
+            <Info>
+              <img src={ongPic} alt="ONG" />
+              <div className="data">
+                <h2> {ong.name} </h2>
+                <p> {ad.about} </p>
+                {isOng === "false" && (
+                  <Agendamento
+                    end={ad.endDate}
+                    name={ad.ongName}
+                    title={ad.title}
+                    id={id}
+                    ongId={ad.userId}
+                  />
+                )}
+              </div>
+            </Info>
+            <Contact
+              style={{
+                backgroundColor: isOng === "false" ? "#00BBF935" : "#90BE6D35",
+              }}
+            >
+              <div className="contact-data">
+                <ContactTitle>
+                  <h2>Contato</h2>
+                  <TitleDetailContact />
+                </ContactTitle>
+                <ul>
+                  {ong.email && <li> {ong.email} </li>}
+                  {ong.phoneNumber && <li> {ong.phoneNumber} </li>}
+                  <li>
+                    <a href={ong.site}>{ong.site}</a>
+                  </li>
+                </ul>
+              </div>
+              <div className="contact-map">
+                <LoadScript googleMapsApiKey="AIzaSyBj8LCYAcsyOtQ7TNihTnP7kPMOVhtnqV0">
+                  <GoogleMap
+                    mapContainerStyle={ContainerStyle}
+                    center={center}
+                    zoom={15}
+                  >
+                    <Marker onLoad={onLoad} position={center} />
+                  </GoogleMap>
+                </LoadScript>
+              </div>
+            </Contact>
+          </>
+        ) : wrongId ? (
+          <IdNotFound />
+        ) : (
+          <GifTab>
+            <img src={gif} alt="loading" />
+          </GifTab>
+        )}
+      </Container>
+    </motion.div>
   );
 };
 
