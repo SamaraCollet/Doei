@@ -37,6 +37,7 @@ const AdPage = () => {
 
   useEffect(() => {
     if (ad !== null) {
+      console.log(ad.userId);
       axios
         .get(`https://capstone4-kenzie.herokuapp.com/ngos/${ad.userId}`)
         .then((res) => setOng(...res.data));
@@ -76,11 +77,12 @@ const AdPage = () => {
       }
     );
   };
-  console.log(ad);
+
   useEffect(() => {
-    ong !== null && getLocation(`${ad.location}`);
+    ong !== null && getLocation(`${ong.adress}`);
   }, [ong]);
 
+  const isOng = localStorage.getItem("isOng");
   return (
     <Container>
       {ad && (ong !== null) & (ong !== undefined) ? (
@@ -94,16 +96,22 @@ const AdPage = () => {
             <div className="data">
               <h2> {ong.name} </h2>
               <p> {ad.about} </p>
-              <Agendamento
-                end={ad.endDate}
-                name={ad.ongName}
-                title={ad.title}
-                id={id}
-                ongId={ad.userId}
-              />
+              {isOng === "false" && (
+                <Agendamento
+                  end={ad.endDate}
+                  name={ad.ongName}
+                  title={ad.title}
+                  id={id}
+                  ongId={ad.userId}
+                />
+              )}
             </div>
           </Info>
-          <Contact>
+          <Contact
+            style={{
+              backgroundColor: isOng === "false" ? "#00BBF935" : "#90BE6D35",
+            }}
+          >
             <div className="contact-data">
               <ContactTitle>
                 <h2>Contato</h2>

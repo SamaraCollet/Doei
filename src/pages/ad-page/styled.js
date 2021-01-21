@@ -120,7 +120,6 @@ export const Info = styled.div`
 `;
 
 export const Contact = styled.div`
-  background-color: rgba(0, 187, 249, 0.35);
   display: flex;
   flex-direction: row;
   justify-content: center;

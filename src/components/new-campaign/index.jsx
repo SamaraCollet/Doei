@@ -16,7 +16,7 @@ import * as yup from "yup";
 import jwt_decode from "jwt-decode";
 import DetailTitle from "../../components/detail-title-blue";
 
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 const NewCampaign = (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-    const campaigns = useSelector(state => state.campaigns)
+  const campaigns = useSelector((state) => state.campaigns);
 
   const handleOpen = () => {
     setOpen(true);
@@ -69,7 +69,7 @@ const NewCampaign = (props) => {
 
   const schema = yup.object().shape({
     title: yup.string(),
-      about : yup.string(),
+    about: yup.string(),
     goal: yup.number().required("Campo obrigatório"),
     product: yup.string().required(),
   });
@@ -88,11 +88,11 @@ const NewCampaign = (props) => {
 
     const info = {
       ...data,
-        id: (campaigns.lenght + 1),
+      id: campaigns.lenght + 1,
       userId: id,
       ongName: props.name,
-        location : props.location,
-        address : props.address
+      location: props.location,
+      address: props.address,
     };
 
     axios
@@ -204,4 +204,4 @@ const NewCampaign = (props) => {
   );
 };
 
-export default NewCampaign
+export default NewCampaign;
