@@ -30,7 +30,7 @@ const OngLogin = () => {
       .post("https://capstone4-kenzie.herokuapp.com/login", { ...value })
       .then((res) => {
         window.localStorage.setItem("authToken", res.data.accessToken);
-        //history.push("/?");
+        history.push("/campaigns-feed");
       })
 
       .catch((err) => {
