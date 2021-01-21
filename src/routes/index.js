@@ -4,7 +4,7 @@ import VoluntaryRegister from "../pages/voluntary-register";
 import VoluntaryProfile from "../pages/voluntary-profile";
 import OngLogin from "../pages/ong-login";
 import OngRegister from "../pages/ong-register";
-import CardsFeed from "../pages/cards-feed";
+import CampaignsFeed from "../pages/campaigns-feed";
 import AdPage from "../pages/ad-page";
 import PageNotFound from "../pages/page-not-found";
 import Header from "../components/header";
@@ -22,7 +22,7 @@ const Routes = () => {
       {token ? <AuthHeader/> : <Header/>}
           <Switch>
             <Route exact path="/campaigns-feed">
-              <CardsFeed />
+              <CampaignsFeed />
             </Route>
             <Route exact path="/campaign/:id">
               <AdPage />

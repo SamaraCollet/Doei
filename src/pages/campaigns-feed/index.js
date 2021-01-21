@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllCampaigns } from "../../store/thunks";
 import { StyledTitle, Container, DetailTitle } from "./style";
-const CardsFeed = () => {
+const CampaingsFeed = () => {
   const campaigns = useSelector((state) => state.campaigns);
   // const users = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -37,4 +37,4 @@ const CardsFeed = () => {
   );
 };
 
-export default CardsFeed;
+export default CampaingsFeed;
