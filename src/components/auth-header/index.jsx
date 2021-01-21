@@ -32,6 +32,7 @@ const AuthHeader = () => {
 
   const handleLogout = () => {
     localStorage.clear();
+    history.push("/");
   };
   console.log(isOng);
   return (
@@ -70,6 +71,7 @@ const AuthHeader = () => {
               >
                 Conta
               </li>
+              <li onClick={handleLogout}>Deslogar</li>
             </ul>
           </MobileList>
         )}
