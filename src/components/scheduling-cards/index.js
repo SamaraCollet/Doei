@@ -1,58 +1,52 @@
-import ImageInstitution from "../img/instituicao.jpeg";
+// import ImageInstitution from "../img/instituicao.jpeg";
 import { Box, Grid, Typography } from "@material-ui/core";
 import {
   Container,
   StyledCardContent,
   TextContainer,
   InstitutionName,
-} from "./style";
+} from "./styles";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
-
+import PerfilImage from "../../images/perfil.jpg";
 const SchedulingCard = ({
   id,
+  adTitle,
   campaignId,
   message,
   username,
   scheduledDate,
+  ongName,
   quantity,
-  userId,
+  _userId,
 }) => {
   const history = useHistory();
   return (
     <Box m={3}>
       <Grid container direction="column" alignItems="center" justify="center">
-        <Container
-          onClick={() => {
-            history.push(`/campaign/${id}`);
-          }}
-        >
+        <Container>
           <StyledCardContent>
-            <img src={ImageInstitution} alt="institution" />
+            <img src={PerfilImage} alt="institution" />
             <TextContainer>
-              <Typography className="titulo" variant="h5">
-                {username} -- {campaignId}
+              <Typography className="titulo" variant="h5" gutterBottom>
+                Campanha: {adTitle}
+              </Typography>{" "}
+              <Typography className="username" gutterBottom>
+                Doador: {username}
               </Typography>
+              <Typography className="quantity" gutterBottom>
+                Quantidade: {quantity}
+              </Typography>
+              {message && (
+                <Typography className="message" gutterBottom>
+                  Mensagem: {message}
+                </Typography>
+              )}
               <Typography className="data" color="textSecondary" gutterBottom>
-                Data Agendada: {scheduledDate}
+                Agendado para {scheduledDate.slice(8, 10)}/
+                {scheduledDate.slice(5, 7)} as {scheduledDate.slice(11, 16)}
               </Typography>
-              <Typography className="meta" variant="inherit"></Typography>
-
-              <InstitutionName
-                className="institutionName"
-                color="textSecondary"
-                align="right"
-              >
-                {ongName} - {location}
-              </InstitutionName>
             </TextContainer>
-            <button
-              onClick={() => {
-                history.push(`/campaign/${id}`);
-              }}
-            >
-              <BiDotsHorizontalRounded />
-            </button>
           </StyledCardContent>
         </Container>
       </Grid>

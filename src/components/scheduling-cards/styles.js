@@ -29,11 +29,16 @@ export const StyledCardContent = styled(CardContent)`
   align-content: center !important;
   margin: 0 auto !important;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.13);
+  h5 {
+    font-weight: bolder;
+  }
   @media (max-width: 638px) {
     flex-direction: column;
     width: 70vw !important;
 
     img {
+      width: 30vw !important;
+      height: 30vh !important;
       flex-wrap: nowrap;
       max-width: fit-content !important;
     }
@@ -43,9 +48,10 @@ export const StyledCardContent = styled(CardContent)`
     cursor: pointer;
   }
   img {
-    border-radius: 15px;
-    max-height: 22vh;
-    max-width: 17vw;
+    margin: 0 auto;
+    border-radius: 100px;
+    max-height: 15vh;
+    max-width: 15vw;
   }
 `;
 export const TextContainer = styled.div`

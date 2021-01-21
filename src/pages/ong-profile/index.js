@@ -13,12 +13,12 @@ import {
 } from "./styles.js";
 import jwt_decode from "jwt-decode";
 import TitleDetail from "../../components/detail-title-blue";
-
+import SchedulingCard from "../../components/scheduling-cards";
 const OngProfile = () => {
   const [user, setUser] = useState();
   const [userId, setUserId] = useState();
   const [userCampaigns, setUserCampaigns] = useState();
-  const [userAgendamento, setUserAgendamento] = useState();
+  const [userScheduling, setUserScheduling] = useState();
 
   const campaigns = useSelector((state) => state.campaigns);
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const OngProfile = () => {
     axios
       .get(`https://capstone4-kenzie.herokuapp.com/users/${decoded.sub}`)
       .then((res) => setUser(res.data));
-    console.log(userId);
+
     const config = {
       headers: { authorization: `Bearer ${token} ` },
     };
@@ -48,14 +48,12 @@ const OngProfile = () => {
 
     axios
       .get(
-        `https://capstone4-kenzie.herokuapp.com/donations?campaignId=${decoded.sub}`,
+        `https://capstone4-kenzie.herokuapp.com/donations?ongId=${decoded.sub}`,
         config
       )
-      .then((res) => console.log(res));
+      .then((res) => setUserScheduling(res.data));
   }, []);
-
-  console.log(userCampaigns);
-  console.log(userAgendamento);
+  console.log(userScheduling);
   return (
     <Container>
       {user && (
@@ -109,17 +107,56 @@ const OngProfile = () => {
                         endDate={endDate}
                         about={about}
                         id={id}
+                        ongProfile={true}
                       />
                     );
                   }
                 )
               ) : (
-                <h1>Você ainda não tem campanhas</h1>
+                <h2>Você ainda não tem campanhas</h2>
               )}
             </div>
             <ProfileTitle>
-              <h1>Meus Agendamentos</h1>
+              <h1>Agendamentos</h1>
               <TitleDetail />
+
+              <div className="scheduling-cards">
+                {userScheduling ? (
+                  userScheduling.map(
+                    (
+                      {
+                        id,
+                        adTitle,
+                        campaignId,
+                        message,
+                        username,
+                        scheduledDate,
+                        ongName,
+                        quantity,
+                        _userId,
+                      },
+                      index
+                    ) => {
+                      return (
+                        <SchedulingCard
+                          key={index}
+                          id={id}
+                          adTitle={adTitle}
+                          campaignId={campaignId}
+                          message={message}
+                          username={username}
+                          scheduledDate={scheduledDate}
+                          ongName={ongName}
+                          quantity={quantity}
+                          message={message}
+                        />
+                      );
+                    }
+                  )
+                ) : (
+                  <h2>Você ainda não tem Agendamentos</h2>
+                )}
+              </div>
             </ProfileTitle>
           </Campaigns>
         </>

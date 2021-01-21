@@ -81,6 +81,7 @@ const AdPage = () => {
     ong !== null && getLocation(`${ad.location}`);
   }, [ong]);
 
+  console.log(ong);
   return (
     <Container>
       {ad && (ong !== null) & (ong !== undefined) ? (
@@ -92,7 +93,9 @@ const AdPage = () => {
           <Info>
             <img src={ongPic} alt="ONG" />
             <div>
-              <h1> {ong.name} </h1>
+              <h1> {ong.ngoInfo.name} </h1>
+              <TitleDetailContact />
+
               <h2> {ad.about} </h2>
               <Agendamento
                 end={ad.endDate}
@@ -109,7 +112,9 @@ const AdPage = () => {
                 <TitleDetailContact />
               </ContactTitle>
               <ul>
-                <li>{ong.name && ong.name}</li>
+                <li>{ong.ngoInfo.name && ong.ngoInfo.name}</li>
+                <li>{ong.ngoInfo.website && ong.ngoInfo.website}</li>
+                <li>{ong.ongName && ong.ongName}</li>
                 <li>{ong.email && ong.email} </li>
                 <li>{ong.phoneNumber && ong.phoneNumber}</li>
                 <li>

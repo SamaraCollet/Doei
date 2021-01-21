@@ -14,6 +14,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 5px;
   }
 
   button:hover {
@@ -59,4 +60,8 @@ export const TextContainer = styled.div`
 export const InstitutionName = styled(Typography)`
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
+`;
+
+export const ButtonsDiv = styled.div`
+  display: flex;
 `;
