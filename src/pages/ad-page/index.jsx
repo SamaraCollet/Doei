@@ -81,7 +81,7 @@ const AdPage = () => {
   useEffect(() => {
     ong !== null && getLocation(`${ong.adress}`);
   }, [ong]);
-
+  console.log(ong);
   const isOng = localStorage.getItem("isOng");
   return (
     <Container>
@@ -118,9 +118,8 @@ const AdPage = () => {
                 <TitleDetailContact />
               </ContactTitle>
               <ul>
-                <li>{ong.name && ong.name}</li>
-                <li>{ong.email && ong.email} </li>
-                <li>{ong.phoneNumber && ong.phoneNumber}</li>
+                {ong.email && <li> {ong.email} </li>}
+                {ong.phoneNumber && <li> {ong.phoneNumber} </li>}
                 <li>
                   <a href={ong.site}>{ong.site}</a>
                 </li>
