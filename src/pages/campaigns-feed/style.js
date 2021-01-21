@@ -16,9 +16,16 @@ export const Container = styled.div`
     margin-top: 100px;
     font-size: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-
+  .not-found img {
+    width: 70px;
+    margin: 0 auto;
+  }
   .link {
+    margin-top: 10px;
     color: #148cee;
   }
 `;
