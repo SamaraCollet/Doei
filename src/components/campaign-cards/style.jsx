@@ -22,7 +22,7 @@ export const Container = styled.div`
 `;
 export const StyledCardContent = styled(CardContent)`
   width: 60vw !important;
-  background-color: rgba(0, 187, 249, 0.35);
+  /* background-color: rgba(0, 187, 249, 0.35); */
   height: inherit !important;
   border-radius: 15px;
   display: flex;
