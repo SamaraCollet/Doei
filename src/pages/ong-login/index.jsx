@@ -72,6 +72,7 @@ const OngLogin = () => {
               variant="outlined"
               size="small"
               name="password"
+              type="password"
               label="Senha"
               inputRef={register}
               error={!!errors.password || !!errors.email}

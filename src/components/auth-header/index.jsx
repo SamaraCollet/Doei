@@ -51,16 +51,20 @@ const AuthHeader = () => {
       />
       <Desktop>
         {!!isOngTrue && <p>Criar campanha</p>}
-        <p
-          onClick={() =>
-            !!isOngTrue
-              ? history.push("/perfil-ong")
-              : history.push("/perfil-voluntario")
-          }
-        >
-          Conta
-        </p>
-        <p onClick={handleLogout}>Deslogar</p>
+        <div className="item-menu">
+          <p
+            onClick={() =>
+              !!isOngTrue
+                ? history.push("/perfil-ong")
+                : history.push("/perfil-voluntario")
+            }
+          >
+            Conta
+          </p>
+        </div>
+        <div className="item-menu item-menu-2">
+          <p onClick={handleLogout}>Deslogar</p>
+        </div>
       </Desktop>
       <Mobile onClick={handleIcon}>
         {icon ? <FaChevronDown /> : <FaChevronUp />}

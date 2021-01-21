@@ -109,8 +109,12 @@ const CampaingsFeed = () => {
             }
           )
         ) : (
-          <div>
-            Nenhuma campanha encontrada em {city}. <Link to="/">Voltar</Link>
+          <div className="not-found">
+            <img src="/assets/location.png" alt="location" />
+            Nenhuma campanha encontrada em {city}.{" "}
+            <Link className="link" to="/">
+              Voltar
+            </Link>
           </div>
         )}
       </Container>

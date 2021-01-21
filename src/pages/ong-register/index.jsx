@@ -131,6 +131,7 @@ const OngRegister = () => {
                 variant="outlined"
                 size="small"
                 name="password"
+                type="password"
                 label="Senha"
                 inputRef={register}
                 error={!!errors.password}
@@ -140,6 +141,7 @@ const OngRegister = () => {
                 variant="outlined"
                 size="small"
                 name="password_confirmation"
+                type="password"
                 label="Confirme sua senha"
                 inputRef={register}
                 error={!!errors.password_confirmation}

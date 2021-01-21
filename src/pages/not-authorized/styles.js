@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div `
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -24,5 +24,17 @@ export const Container = styled.div`
     font-size: 3rem;
     color: #148cee;
     font-weight: bold;
+  }
+
+  @media only screen and (max-width: 767px) {
+    width: 90%;
+    padding: 0 5%;
+    h1 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
   }
 `;
