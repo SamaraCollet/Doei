@@ -48,11 +48,7 @@ const VoluntaryProfile = () => {
           </ProfileTitle>
           <Info>
             <div className="img-container">
-              <img
-                src="/assets/meias.jpg"
-                // src="https://www.drshaneholmes.com/wp-content/uploads/2020/03/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
-                alt="ONG"
-              />
+              <img src="/assets/perfil.jpg" alt="ONG" />
             </div>
             <div className="profile-data">
               <div className="name-and-edit-profile">
@@ -70,34 +66,48 @@ const VoluntaryProfile = () => {
               <p> {user.description ? user.description : "Sem descrição"} </p>
             </div>
           </Info>
-          <Campaigns>
-            <ProfileTitle>
-              <h1>Minhas participações</h1>
-              <TitleDetail />
-            </ProfileTitle>
-            <div className="campaign-cards">
-              {userDonations !== [] &&
-                userDonations.map((donation, index) => {
-                  return (
-                    <CampaignCard
-                      key={index}
-                      title={donation.adTitle}
-                      endDate={donation.endDate}
-                      about={`Agendado para ${donation.scheduledDate.slice(
-                        8,
-                        10
-                      )}/${donation.scheduledDate.slice(
-                        5,
-                        7
-                      )} as ${donation.scheduledDate.slice(11, 16)}`}
-                      ongName={`Produto: ${donation.product}`}
-                      location={`Quantidade:${donation.quantity}`}
-                      id={donation.campaignId}
-                    />
-                  );
-                })}
-            </div>
-          </Campaigns>
+          {userDonations === [] ? (
+            <Campaigns>
+              <ProfileTitle>
+                <h1>Minhas participações</h1>
+                <TitleDetail />
+              </ProfileTitle>
+              <div className="campaign-cards">
+                {userDonations !== [] &&
+                  userDonations.map((donation, index) => {
+                    return (
+                      <CampaignCard
+                        key={index}
+                        title={donation.adTitle}
+                        endDate={donation.endDate}
+                        about={`Agendado para ${donation.scheduledDate.slice(
+                          8,
+                          10
+                        )}/${donation.scheduledDate.slice(
+                          5,
+                          7
+                        )} as ${donation.scheduledDate.slice(11, 16)}`}
+                        ongName={`Produto: ${donation.product}`}
+                        location={`Quantidade:${donation.quantity}`}
+                        id={donation.campaignId}
+                      />
+                    );
+                  })}
+              </div>
+            </Campaigns>
+          ) : (
+            <Campaigns>
+              <ProfileTitle>
+                <h1>Minhas participações</h1>
+                <TitleDetail />
+              </ProfileTitle>
+              <div className="campaign-cards">
+                <div className="not-yet">
+                  Você inda não esta participando de nenhuma campanha!
+                </div>
+              </div>
+            </Campaigns>
+          )}
         </>
       ) : (
         <GifTab>
