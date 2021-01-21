@@ -9,9 +9,10 @@ export const ModalStyle = styled.div`
 `;
 
 export const Container = styled.div`
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const GifTab = styled.div`
@@ -21,95 +22,173 @@ export const GifTab = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-export const TitleCss = styled.div`
-  div {
-    width: 40%;
-    height: 3px;
-    background-color: #00bbf9;
-    margin: 0 auto 2rem auto;
-    border-radius: 10px;
+export const Title = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+
+  @media (min-width: 768px) and (max-width: 979px) {
+    h1 {
+      font-size: 1.6rem;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    h1 {
+      font-size: 1.6rem;
+    }
+  }
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.6rem;
+      text-align: center;
+      padding: 0 10px;
+    }
   }
 `;
 
-export const Title = styled.div`
-  font-size: 13px;
-  text-align: center;
-  margin: 1rem 0;
+export const ContactTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin-top: 40px;
+`;
 
-  @media (min-width: 768px) {
-    font-size: inherit;
-  }
+export const TitleDetailContact = styled.div`
+  align-self: left;
+  background-color: #00bbf9;
+  width: 80px;
+  height: 3px;
+  margin: 15px 0;
+  border-radius: 20px;
 `;
 
 export const Info = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  font-size: 15px;
-  text-align: center;
-  margin-bottom: 6rem;
+  width: 800px;
+  height: auto;
+  margin: 50px 0 90px;
 
   img {
-    width: 80%;
-    border-radius: 15px;
+    border-radius: 20px;
+    width: 260px;
+    height: 260px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
   }
 
-  h2 {
-    font-weight: normal;
+  p {
+    font-size: 20px;
   }
 
-  @media (min-width: 768px) {
-    text-align: inherit;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    margin-top: 4rem;
-
-    h1 {
-      font-size: 1.5rem;
-    }
-    h2 {
-      font-size: 1rem;
-    }
-
+  .data {
+    margin-left: 60px;
+  }
+  @media (min-width: 768px) and (max-width: 979px) {
+    width: 700px;
     img {
-      width: 27%;
+      width: 220px;
+      height: 220px;
     }
-
-    img,
-    div {
-      margin: 0 4rem;
+    .data {
+      margin-left: 30px;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+    width: 90vw;
+    img {
+      width: 220px;
+      height: 220px;
+      margin-bottom: 30px;
+    }
+    .data {
+      width: 70vw;
+      margin-left: 0;
+    }
+  }
+  @media (max-width: 480px) {
+    img {
+      width: 200px;
+      height: 200px;
     }
   }
 `;
 
 export const Contact = styled.div`
   background-color: rgba(0, 187, 249, 0.35);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 60px 0;
 
-  h1 {
-    text-align: center;
+  .contact-data {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    padding: 20px;
+  }
+
+  .contact-map {
+    width: 400px;
+  }
+  h2 {
+    font-size: 2rem;
   }
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
     margin-bottom: 2rem;
+    font-size: 20px;
   }
 
-  @media (min-width: 768px) {
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1rem 0;
-
-    h1 {
-      font-size: 1.5rem;
+  @media (min-width: 768px) and (max-width: 979px) {
+    h2 {
+      font-size: 1.6rem;
     }
 
-    ul > li {
-      font-size: 1.2rem;
-      line-height: 1.8rem;
+    .contact-data {
+      margin-right: 0;
+      padding: 0 10px 0 80px;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+    h2 {
+      font-size: 1.6rem;
+    }
+    .contact-data {
+      margin-right: 0;
+      padding: 0 10px 0 80px;
+    }
+    .contact-map {
+      width: 300px;
+    }
+  }
+  @media (max-width: 480px) {
+    .contact-data {
+      width: 80vw;
     }
   }
 `;
+
+export const ContainerStyle = {
+  width: `300px`,
+  height: `300px`,
+  borderRadius: "20px",
+};
+
+// @media (max-width: 1200px) {}
+// @media (min-width:768px) and (max-width:979px) {}
+// @media only screen and (max-width: 767px) {}
+// @media (max-width: 480px) {}

@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { NewModal, ModalStyle } from "./styled";
+import {
+  NewModal,
+  ModalStyle,
+  StyledButton,
+  Container,
+  StyledTextField,
+} from "./styled";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import * as yup from "yup";
 import jwt_decode from "jwt-decode";
+import DetailTitle from "../../components/detail-title-blue";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -19,7 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    border: "2px solid #585858",
+    borderRadius: "20px",
+    width: "250px",
+    height: "400px",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -74,8 +82,15 @@ const Agendamento = (props) => {
     const decoded = jwt_decode(token);
     const id = decoded.sub;
 
-    const info = { ...data, userId: id, campaignId: props.id };
-    console.log(info);
+    const info = {
+      ...data,
+      userId: id,
+      campaignId: props.id,
+      ongName: props.name,
+      adTitle: props.title,
+      endDate: props.end,
+    };
+
     axios
       .post(`https://capstone4-kenzie.herokuapp.com/donations`, info, config)
       .catch((err) => console.log(err));
@@ -84,15 +99,15 @@ const Agendamento = (props) => {
   };
 
   return (
-    <div>
-      <Button
+    <Container>
+      <StyledButton
         type="button"
         variant="outlined"
         size="medium"
         onClick={handleOpen}
       >
         Participar
-      </Button>
+      </StyledButton>
       <NewModal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -107,10 +122,12 @@ const Agendamento = (props) => {
       >
         <Fade in={open}>
           <ModalStyle className={classes.paper}>
-            <h2 id="transition-modal-title">Agendamento</h2>
-            <br />
+            <div className="title-modal">
+              <h2 id="transition-modal-title">Agendamento</h2>
+              <DetailTitle />
+            </div>
             <form onSubmit={handleSubmit(handleForm)}>
-              <TextField
+              <StyledTextField
                 name="message"
                 inputRef={register}
                 variant="outlined"
@@ -119,8 +136,7 @@ const Agendamento = (props) => {
                 error={!!errors.message}
                 helperText={errors.message && "Campo obrigatório"}
               />
-              <br />
-              <TextField
+              <StyledTextField
                 name="product"
                 inputRef={register}
                 variant="outlined"
@@ -129,8 +145,7 @@ const Agendamento = (props) => {
                 error={!!errors.message}
                 helperText={errors.message && "Campo obrigatório"}
               />
-              <br />
-              <TextField
+              <StyledTextField
                 name="quantity"
                 inputRef={register}
                 variant="outlined"
@@ -139,7 +154,7 @@ const Agendamento = (props) => {
                 error={!!errors.quantity}
                 helperText={errors.quantity && "Precisa ser um número"}
               />
-              <TextField
+              <StyledTextField
                 name="scheduledDate"
                 inputRef={register}
                 id="datetime-local"
@@ -152,14 +167,14 @@ const Agendamento = (props) => {
                 }}
               />
 
-              <Button type="submit" variant="outlined" size="medium">
+              <StyledButton type="submit" variant="outlined" size="medium">
                 Agendar
-              </Button>
+              </StyledButton>
             </form>
           </ModalStyle>
         </Fade>
       </NewModal>
-    </div>
+    </Container>
   );
 };
 
