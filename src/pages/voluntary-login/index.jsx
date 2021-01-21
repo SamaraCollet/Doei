@@ -48,43 +48,6 @@ const VoluntaryLogin = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <Container>
-      <BannerLogin src="/assets/donation2.png" alt="donation" />
-      <ContainerLogin>
-        <h1>Olá, faça o login!</h1>
-        <DetailTitle />
-        <form onSubmit={handleSubmit(handleForm)}>
-          <StyledTextField
-            variant="outlined"
-            size="small"
-            name="email"
-            label="Email"
-            inputRef={register}
-            error={!!errors.email || !!errors.password}
-            helperText={errors.email?.message}
-          />
-          <StyledTextField
-            variant="outlined"
-            size="small"
-            name="password"
-            label="Senha"
-            type="password"
-            inputRef={register}
-            error={!!errors.password || !!errors.email}
-            helperText={errors.password?.message}
-          />
-          <StyledButton type="submit" variant="outlined" size="medium">
-            Entrar
-          </StyledButton>
-        </form>
-        <RegisterLink>
-          Ainda não é cadastrado?{" "}
-          <Link to="/cadastro-voluntario">Cadastre-se</Link>
-        </RegisterLink>
-      </ContainerLogin>
-    </Container>
-=======
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -110,6 +73,7 @@ const VoluntaryLogin = () => {
               variant="outlined"
               size="small"
               name="password"
+              type="password"
               label="Senha"
               inputRef={register}
               error={!!errors.password || !!errors.email}
@@ -126,7 +90,6 @@ const VoluntaryLogin = () => {
         </ContainerLogin>
       </Container>
     </motion.div>
->>>>>>> 27e46aa83f4eb41950d6085e292dc5b5fba4b77e
   );
 };
 

@@ -47,42 +47,6 @@ const OngLogin = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <Container>
-      <BannerLogin src="/assets/ong.png" alt="donation" />
-      <ContainerLoginGreen>
-        <h1>Olá, faça o login!</h1>
-        <DetailTitle />
-        <form onSubmit={handleSubmit(handleForm)}>
-          <StyledTextField
-            variant="outlined"
-            size="small"
-            name="email"
-            label="Email"
-            inputRef={register}
-            error={!!errors.email || !!errors.password}
-            helperText={errors.email?.message}
-          />
-          <StyledTextField
-            variant="outlined"
-            size="small"
-            name="password"
-            type="password"
-            label="Senha"
-            inputRef={register}
-            error={!!errors.password || !!errors.email}
-            helperText={errors.password?.message}
-          />
-          <StyledButton type="submit" variant="outlined" size="medium">
-            Entrar
-          </StyledButton>
-        </form>
-        <RegisterLink>
-          Ainda não é cadastrado? <Link to="/cadastro-ong">Cadastre-se</Link>
-        </RegisterLink>
-      </ContainerLoginGreen>
-    </Container>
-=======
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -108,6 +72,7 @@ const OngLogin = () => {
               variant="outlined"
               size="small"
               name="password"
+              type="password"
               label="Senha"
               inputRef={register}
               error={!!errors.password || !!errors.email}
@@ -123,7 +88,6 @@ const OngLogin = () => {
         </ContainerLoginGreen>
       </Container>
     </motion.div>
->>>>>>> 27e46aa83f4eb41950d6085e292dc5b5fba4b77e
   );
 };
 
