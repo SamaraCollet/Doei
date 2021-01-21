@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid #585858",
     borderRadius: "20px",
     width: "250px",
-    height: "400px",
+    height: "auto",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },

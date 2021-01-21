@@ -65,48 +65,41 @@ const VoluntaryProfile = () => {
               <p> {user.description ? user.description : "Sem descrição"} </p>
             </div>
           </Info>
-          {userDonations === [] ? (
-            <Campaigns>
-              <ProfileTitle>
-                <h1>Minhas participações</h1>
-                <TitleDetail />
-              </ProfileTitle>
-              <div className="campaign-cards">
-                {userDonations !== [] &&
-                  userDonations.map((donation, index) => {
-                    return (
-                      <CampaignCard
-                        key={index}
-                        title={donation.adTitle}
-                        endDate={donation.endDate}
-                        about={`Agendado para ${donation.scheduledDate.slice(
-                          8,
-                          10
-                        )}/${donation.scheduledDate.slice(
-                          5,
-                          7
-                        )} as ${donation.scheduledDate.slice(11, 16)}`}
-                        ongName={`Produto: ${donation.product}`}
-                        location={`Quantidade:${donation.quantity}`}
-                        id={donation.campaignId}
-                      />
-                    );
-                  })}
-              </div>
-            </Campaigns>
-          ) : (
-            <Campaigns>
-              <ProfileTitle>
-                <h1>Minhas participações</h1>
-                <TitleDetail />
-              </ProfileTitle>
-              <div className="campaign-cards">
-                <div className="not-yet">
-                  Você inda não esta participando de nenhuma campanha!
+          <Campaigns>
+            <ProfileTitle>
+              <h1>Minhas participações</h1>
+              <TitleDetail />
+            </ProfileTitle>
+            <div className="campaign-cards">
+              {userDonations !== [] ? (
+                userDonations.map((donation, index) => {
+                  return (
+                    <CampaignCard
+                      key={index}
+                      title={donation.adTitle}
+                      endDate={donation.endDate}
+                      about={`Agendado para ${donation.scheduledDate.slice(
+                        8,
+                        10
+                      )}/${donation.scheduledDate.slice(
+                        5,
+                        7
+                      )} as ${donation.scheduledDate.slice(11, 16)}`}
+                      ongName={`Produto: ${donation.product}`}
+                      location={`Quantidade:${donation.quantity}`}
+                      id={donation.campaignId}
+                    />
+                  );
+                })
+              ) : (
+                <div className="campaign-cards">
+                  <div className="not-yet">
+                    Você inda não esta participando de nenhuma campanha!
+                  </div>
                 </div>
-              </div>
-            </Campaigns>
-          )}
+              )}
+            </div>
+          </Campaigns>
         </>
       ) : (
         <GifTab>
