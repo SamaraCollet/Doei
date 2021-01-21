@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUser } from "../../store/thunks";
+import Modal from "../new-campaign";
 
 import jwt_decode from "jwt-decode";
 import axios from "axios";
@@ -50,7 +51,7 @@ const AuthHeader = () => {
         onClick={() => history.push("/campaigns-feed")}
       />
       <Desktop>
-        {!!isOngTrue && <p>Criar campanha</p>}
+        {!!isOngTrue && <Modal header />}
         <div className="item-menu">
           <p
             onClick={() =>

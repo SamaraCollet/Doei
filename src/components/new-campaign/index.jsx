@@ -109,14 +109,21 @@ const NewCampaign = (props) => {
 
   return (
     <Container>
-      <StyledButton
-        type="button"
-        variant="outlined"
-        size="medium"
-        onClick={handleOpen}
-      >
-        Nova Campanha
-      </StyledButton>
+      {props.header ? (
+        <div className="item-menu" onClick={handleOpen}>
+          <p>Criar campanha</p>
+        </div>
+      ) : (
+        <StyledButton
+          type="button"
+          variant="outlined"
+          size="medium"
+          onClick={handleOpen}
+        >
+          Nova Campanha
+        </StyledButton>
+      )}
+
       <NewModal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
