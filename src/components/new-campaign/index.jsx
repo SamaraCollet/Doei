@@ -50,6 +50,11 @@ const NewCampaign = (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const campaigns = useSelector((state) => state.campaigns);
+  const [city, setCity] = useState("Curitiba");
+
+  const handleSelect = (event) => {
+    setCity(event.target.value);
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -91,7 +96,7 @@ const NewCampaign = (props) => {
       id: campaigns.lenght + 1,
       userId: id,
       ongName: props.name,
-      location: props.location,
+      location: city,
       address: props.address,
     };
 
@@ -149,6 +154,18 @@ const NewCampaign = (props) => {
                 error={!!errors.message}
                 helperText={errors.message && "Campo obrigatório"}
               />
+              <select
+                name="select"
+                inputRef={register}
+                value={city}
+                onChange={handleSelect}
+              >
+                <option value="Curitiba" selected>
+                  Curitiba
+                </option>
+                <option value="São Paulo">São Paulo</option>
+                <option value="Rio de Janeiro">Rio de Janeiro</option>
+              </select>
               <StyledTextField
                 name="product"
                 inputRef={register}

@@ -50,7 +50,7 @@ const AuthHeader = () => {
         onClick={() => history.push("/campaigns-feed")}
       />
       <Desktop>
-        {!!isOngTrue && <p>Criar anúncio</p>}
+        {!!isOngTrue && <p>Criar campanha</p>}
         <p
           onClick={() =>
             !!isOngTrue
@@ -65,14 +65,16 @@ const AuthHeader = () => {
       <Mobile onClick={handleIcon}>
         {icon ? <FaChevronDown /> : <FaChevronUp />}
         {!icon && (
-          <MobileList>
+          <MobileList
+            style={{ backgroundColor: !!isOngTrue ? "#90be6d" : "#00bbf9" }}
+          >
             <ul>
-              {!!isOngTrue && <li>Criar anúncio</li>}
+              {!!isOngTrue && <li>Criar campanha</li>}
               <li
                 onClick={() =>
                   !!isOngTrue
-                    ? history.push("/dashboard-ong")
-                    : history.push("/dashboard-voluntario")
+                    ? history.push("/perfil-ong")
+                    : history.push("/perfil-voluntario")
                 }
               >
                 Conta
