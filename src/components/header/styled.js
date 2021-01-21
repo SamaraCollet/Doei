@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div `
+export const Container = styled.div`
   background-color: #00bbf9;
   height: 50px;
   display: flex;
@@ -21,7 +21,7 @@ export const Container = styled.div `
   }
 `;
 
-export const Desktop = styled.div `
+export const Desktop = styled.div`
   display: none;
 
   @media (min-width: 480px) {
@@ -35,7 +35,7 @@ export const Desktop = styled.div `
   }
 `;
 
-export const Mobile = styled.div `
+export const Mobile = styled.div`
   margin-right: 2rem;
 
   @media (min-width: 480px) {
@@ -44,12 +44,13 @@ export const Mobile = styled.div `
   }
 `;
 
-export const MobileList = styled.div `
+export const MobileList = styled.div`
   color: white;
   background-color: rgba(0, 187, 250, 0.95);
   font-size: 1.3rem;
   font-weight: bold;
   position: absolute;
+  z-index: 99;
   top: 50px;
   right: 20px;
 
