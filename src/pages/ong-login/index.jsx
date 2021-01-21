@@ -10,9 +10,11 @@ import {
 } from "../../pages/voluntary-login/styles";
 import { ContainerLoginGreen } from "./styles";
 import DetailTitle from "../../components/detail-title-green";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import {useDispatch} from "react-redux"
+import {getCurrentUser} from '../../store/thunks'
 
 const OngLogin = () => {
   const schema = yup.object().shape({
@@ -25,11 +27,16 @@ const OngLogin = () => {
   });
 
   const history = useHistory();
+  const dispatch = useDispatch()
   const handleForm = (value) => {
     axios
       .post("https://capstone4-kenzie.herokuapp.com/login", { ...value })
-      .then((res) => {
-        window.localStorage.setItem("authToken", res.data.accessToken);
+      .then((res) => {        
+        const currentUserToken = res.data.accessToken
+        const decodedToken = jwt_decode(currentUserToken)
+        window.localStorage.setItem("authToken", currentUserToken);
+        window.localStorage.setItem("currentUserId", decodedToken.sub);
+        dispatch(getCurrentUser(decodedToken.sub))
         history.push("/campaigns-feed");
       })
 

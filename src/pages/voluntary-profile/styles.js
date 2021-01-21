@@ -114,10 +114,32 @@ export const Info = styled.div `
 export const Campaigns = styled.div `
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
   background-color: rgb(232, 241, 242, 0.65);
   padding-bottom: 20px;
   .campaign-cards {
     width: 100%;
+  }
+  .not-yet {
+    width: 100%;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .not-yet {
+      width: 90%;
+      margin: 0 5%;
+      text-align: center;
+      font-size: 18px;
+      display: flex;
+      justify-content: center;
+      align-self: center;
+    }
   }
 `;

@@ -91,9 +91,9 @@ const AdPage = () => {
           </Title>
           <Info>
             <img src={ongPic} alt="ONG" />
-            <div>
-              <h1> {ong.name} </h1>
-              <h2> {ad.about} </h2>
+            <div className="data">
+              <h2> {ong.name} </h2>
+              <p> {ad.about} </p>
               <Agendamento
                 end={ad.endDate}
                 name={ad.ongName}
