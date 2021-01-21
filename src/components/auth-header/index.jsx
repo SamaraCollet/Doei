@@ -6,18 +6,19 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import { useState, useEffect } from "react";
 
-import { useDispatch } from "react-redux";
-
-import jwt_decode from "jwt-decode";
-
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUser } from "../../store/thunks";
 
+import jwt_decode from "jwt-decode";
+import axios from "axios";
+
 const AuthHeader = () => {
-  const history = useHistory();
-  const dispatch = useDispatch();
   const [icon, setIcon] = useState(true);
   const [isOng, setIsOng] = useState(false);
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const isOngTrue = useSelector((state) => state.users.data.ngo);
 
   let token = localStorage.getItem("authToken");
 
@@ -41,9 +42,7 @@ const AuthHeader = () => {
   };
 
   return (
-    <Container
-      style={{ backgroundColor: isOng === true ? "#90be6d" : "#00bbf9" }}
-    >
+    <Container style={{ backgroundColor: !!isOngTrue ? "#90be6d" : "#00bbf9" }}>
       <img
         className="logo"
         src="/assets/logo2.png"
@@ -51,10 +50,10 @@ const AuthHeader = () => {
         onClick={() => history.push("/campaigns-feed")}
       />
       <Desktop>
-        <p>Criar anúncio</p>
+        {!!isOngTrue && <p>Criar campanha</p>}
         <p
           onClick={() =>
-            isOng === true
+            !!isOngTrue
               ? history.push("/perfil-ong")
               : history.push("/perfil-voluntario")
           }
@@ -66,19 +65,21 @@ const AuthHeader = () => {
       <Mobile onClick={handleIcon}>
         {icon ? <FaChevronDown /> : <FaChevronUp />}
         {!icon && (
-          <MobileList>
+          <MobileList
+            style={{ backgroundColor: !!isOngTrue ? "#90be6d" : "#00bbf9" }}
+          >
             <ul>
+              {!!isOngTrue && <li>Criar campanha</li>}
               <li
                 onClick={() =>
-                  isOng === true
-                    ? history.push("/dashboard-ong")
-                    : history.push("/dashboard-voluntario")
+                  !!isOngTrue
+                    ? history.push("/perfil-ong")
+                    : history.push("/perfil-voluntario")
                 }
               >
                 Conta
               </li>
               <li onClick={handleLogout}>Deslogar</li>
-              <li>Criar anúncio</li>
             </ul>
           </MobileList>
         )}

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ProfileTitle = styled.header `
+export const ProfileTitle = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,14 +23,14 @@ export const ProfileTitle = styled.header `
   }
 `;
 
-export const Container = styled.div `
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-export const Info = styled.div `
+export const Info = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -111,7 +111,7 @@ export const Info = styled.div `
   }
 `;
 
-export const Campaigns = styled.div `
+export const Campaigns = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

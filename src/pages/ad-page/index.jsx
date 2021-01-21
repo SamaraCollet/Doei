@@ -37,6 +37,7 @@ const AdPage = () => {
 
   useEffect(() => {
     if (ad !== null) {
+      console.log(ad.userId);
       axios
         .get(`https://capstone4-kenzie.herokuapp.com/ngos/${ad.userId}`)
         .then((res) => setOng(...res.data));
@@ -76,12 +77,12 @@ const AdPage = () => {
       }
     );
   };
-  console.log(ad);
-  useEffect(() => {
-    ong !== null && getLocation(`${ad.location}`);
-  }, [ong]);
 
+  useEffect(() => {
+    ong !== null && getLocation(`${ong.adress}`);
+  }, [ong]);
   console.log(ong);
+  const isOng = localStorage.getItem("isOng");
   return (
     <Container>
       {ad && (ong !== null) & (ong !== undefined) ? (
@@ -92,32 +93,33 @@ const AdPage = () => {
           </Title>
           <Info>
             <img src={ongPic} alt="ONG" />
-            <div>
-              <h1> {ong.ngoInfo.name} </h1>
-              <TitleDetailContact />
-
-              <h2> {ad.about} </h2>
-              <Agendamento
-                end={ad.endDate}
-                name={ad.ongName}
-                title={ad.title}
-                id={id}
-                ongId={ad.userId}
-              />
+            <div className="data">
+              <h2> {ong.name} </h2>
+              <p> {ad.about} </p>
+              {isOng === "false" && (
+                <Agendamento
+                  end={ad.endDate}
+                  name={ad.ongName}
+                  title={ad.title}
+                  id={id}
+                  ongId={ad.userId}
+                />
+              )}
             </div>
           </Info>
-          <Contact>
+          <Contact
+            style={{
+              backgroundColor: isOng === "false" ? "#00BBF935" : "#90BE6D35",
+            }}
+          >
             <div className="contact-data">
               <ContactTitle>
                 <h2>Contato</h2>
                 <TitleDetailContact />
               </ContactTitle>
               <ul>
-                <li>{ong.ngoInfo.name && ong.ngoInfo.name}</li>
-                <li>{ong.ngoInfo.website && ong.ngoInfo.website}</li>
-                <li>{ong.ongName && ong.ongName}</li>
-                <li>{ong.email && ong.email} </li>
-                <li>{ong.phoneNumber && ong.phoneNumber}</li>
+                {ong.email && <li> {ong.email} </li>}
+                {ong.phoneNumber && <li> {ong.phoneNumber} </li>}
                 <li>
                   <a href={ong.site}>{ong.site}</a>
                 </li>

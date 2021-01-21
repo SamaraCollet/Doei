@@ -1,5 +1,7 @@
 import ImageInstitution from "../img/instituicao.jpeg";
 import { Box, Grid, Typography } from "@material-ui/core";
+import { useSelector } from "react-redux";
+
 import {
   Container,
   StyledCardContent,
@@ -21,6 +23,8 @@ const CampaignCard = ({
   ongProfile = false,
 }) => {
   const history = useHistory();
+
+  const ong = localStorage.getItem("isOng");
   const [editable, setEditable] = useState(true);
   const [newTitle, setNewTitle] = useState(title);
   const [newAbout, setNewAbout] = useState(about);
@@ -49,7 +53,11 @@ const CampaignCard = ({
             history.push(`/campaign/${id}`);
           }}
         >
-          <StyledCardContent>
+          <StyledCardContent
+            style={{
+              backgroundColor: ong === "false" ? "#00BBF935" : "#90BE6D35",
+            }}
+          >
             <img src={ImageInstitution} alt="institution" />
             <TextContainer>
               <Typography className="titulo" variant="h5">
