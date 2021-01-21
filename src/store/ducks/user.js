@@ -1,10 +1,10 @@
 export const Types = {
-  ALL_USERS: "users/ALL_USERS",
+  CURRENT_USER: "user/CURRENT_USER",
 };
 
 const userReducer = (state = [], action) => {
   switch (action.type) {
-    case Types.ALL_USERS:
+    case Types.CURRENT_USER:
       return action.payload;
     default:
       return state;
@@ -13,9 +13,9 @@ const userReducer = (state = [], action) => {
 
 export default userReducer;
 
-export const setAllUsers = (users) => {
+export const setCurrentUser = user => {
   return {
-    type: Types.ALL_USERS,
-    payload: users,
+    type: Types.CURRENT_USER,
+    payload: user,
   };
 };
