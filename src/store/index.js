@@ -3,7 +3,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 import campaignsReducer from "./ducks/campaigns";
-import userReducer from "./ducks/users";
+import userReducer from "./ducks/user";
 
 const reducers = combineReducers({
   campaigns: campaignsReducer,

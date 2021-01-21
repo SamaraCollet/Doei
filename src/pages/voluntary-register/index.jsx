@@ -42,7 +42,7 @@ const VoluntaryRegister = () => {
 
   const history = useHistory()
   const handleForm = (value) => {
-    value.ngo = "false"
+    value.ngo = false
     axios
       .post(`https://capstone4-kenzie.herokuapp.com/register`, { ...value })
       .then(res => history.push("/login-voluntario"))

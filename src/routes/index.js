@@ -10,13 +10,22 @@ import PageNotFound from "../pages/page-not-found";
 import Header from "../components/header";
 import AuthHeader from "../components/auth-header";
 import NotAuthorized from "../pages/not-authorized";
+import {useDispatch} from 'react-redux'
+import {getCurrentUser} from '../store/thunks'
 
 import Footer from "../components/footer";
 import { Switch, Route } from "react-router-dom";
 import OngProfile from "../pages/ong-profile";
 
 const Routes = () => {
-  const token = localStorage.getItem("authToken");
+  const dispatch = useDispatch()
+
+  localStorage.hasOwnProperty("currentUserId")
+  ? dispatch(getCurrentUser(localStorage.getItem("currentUserId")))
+  : dispatch(getCurrentUser(""))
+
+
+  const token = localStorage.getItem("authToken")
   return (
     <>
       {token ? (

@@ -3,7 +3,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-
+import jwt_decode from "jwt-decode";
+import {useDispatch} from 'react-redux'
+import {getCurrentUser} from '../../store/thunks'
 import {
   Container,
   BannerLogin,
@@ -26,15 +28,20 @@ const VoluntaryLogin = () => {
   });
 
   const history = useHistory();
+  const dispatch = useDispatch()
   const handleForm = (value) => {
     axios
       .post("https://capstone4-kenzie.herokuapp.com/login", { ...value })
-      .then((res) => {
-        window.localStorage.setItem("authToken", res.data.accessToken);
+      .then(res => {
+        const currentUserToken = res.data.accessToken
+        const decodedToken = jwt_decode(currentUserToken)
+        window.localStorage.setItem("authToken", currentUserToken);
+        window.localStorage.setItem("currentUserId", decodedToken.sub);
+        dispatch(getCurrentUser(decodedToken.sub))
         history.push("/campaigns-feed");
       })
 
-      .catch((err) => {
+      .catch(err => {
         setError("email", { message: "Usuário ou senha inválido" });
       });
   };
