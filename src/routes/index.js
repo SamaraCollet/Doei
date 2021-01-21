@@ -24,6 +24,9 @@ const Routes = () => {
             <Route exact path="/campaigns-feed/:city">
               <CampaignsFeed />
             </Route>
+            <Route path="/campaigns-feed">
+              <CampaignsFeed />
+            </Route>
             <Route exact path="/campaign/:id">
               <AdPage />
             </Route>

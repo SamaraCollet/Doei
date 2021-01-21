@@ -9,6 +9,7 @@ const CampaingsFeed = () => {
   const campaigns = useSelector((state) => state.campaigns);
   const dispatch = useDispatch();
   const {city}  = useParams()
+  const cityFilter = city || "Curitiba"
 
   useEffect(() => {
     dispatch(getAllCampaigns());
@@ -18,7 +19,7 @@ const CampaingsFeed = () => {
     <Container>
       <StyledTitle>Anúncios recentes</StyledTitle>
       <DetailTitle />
-      { city === "Curitiba" ? campaigns.map(
+      { cityFilter === "Curitiba" ? campaigns.map(
         ({ title, about, endDate, location, ongName, id }, index) => {
           return (
             <CampaignCard
