@@ -62,7 +62,6 @@ const VoluntaryProfile = () => {
                   description={user.description}
                 />
               </div>
-
               <p> {user.description ? user.description : "Sem descrição"} </p>
             </div>
           </Info>

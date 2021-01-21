@@ -10,8 +10,9 @@ import PageNotFound from "../pages/page-not-found";
 import Header from "../components/header";
 import AuthHeader from "../components/auth-header";
 import NotAuthorized from "../pages/not-authorized";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUser } from "../store/thunks";
+import { useEffect } from "react";
 
 import Footer from "../components/footer";
 import { Switch, Route } from "react-router-dom";
@@ -20,14 +21,17 @@ import OngProfile from "../pages/ong-profile";
 const Routes = () => {
   const dispatch = useDispatch();
 
-  localStorage.hasOwnProperty("currentUserId")
-    ? dispatch(getCurrentUser(localStorage.getItem("currentUserId")))
-    : dispatch(getCurrentUser(""));
+  useEffect(() => {
+    localStorage.hasOwnProperty("currentUserId")
+      ? dispatch(getCurrentUser(localStorage.getItem("currentUserId")))
+      : dispatch(getCurrentUser(""));
+  }, []);
 
-  const token = localStorage.getItem("authToken");
+  const logged = useSelector((state) => state.users.data);
+
   return (
     <>
-      {token ? (
+      {!!logged ? (
         <>
           <AuthHeader />
           <Switch>
