@@ -9,7 +9,6 @@ import AdPage from "../pages/ad-page";
 import PageNotFound from "../pages/page-not-found";
 import Header from "../components/header";
 import AuthHeader from "../components/auth-header";
-import AuthHeader from "../components/auth-header/index";
 import NotAuthorized from "../pages/not-authorized";
 // import OngProfile from "../pages/ong-profile";
 
