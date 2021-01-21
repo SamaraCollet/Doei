@@ -2,45 +2,63 @@ import CampaignCard from "../../components/campaign-cards";
 import Modal from "../../components/modalEdit";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ProfileTitle, Container, Info, Campaigns } from "./styles.js";
-import { GifTab } from "../ad-page/styled";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllCampaigns } from "../../store/thunks";
+import {
+  ProfileTitle,
+  Container,
+  Info,
+  Campaigns,
+  NewCampaignButton,
+} from "./styles.js";
 import jwt_decode from "jwt-decode";
 import TitleDetail from "../../components/detail-title-blue";
-import gif from "../../images/loading.gif";
 
-const VoluntaryProfile = () => {
-  const [user, setUser] = useState(null);
+const OngProfile = () => {
+  const [user, setUser] = useState();
   const [userId, setUserId] = useState();
-  const [userDonations, setUserDonations] = useState(null);
-  const [campaigns, setCampaigns] = useState();
+  const [userCampaigns, setUserCampaigns] = useState();
+  const [userAgendamento, setUserAgendamento] = useState();
+
+  const campaigns = useSelector((state) => state.campaigns);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllCampaigns());
+  }, []);
 
   useEffect(() => {
     let token = localStorage.getItem("authToken");
     var decoded = jwt_decode(token);
     setUserId(decoded.sub);
+
     axios
       .get(`https://capstone4-kenzie.herokuapp.com/users/${decoded.sub}`)
       .then((res) => setUser(res.data));
-
+    console.log(userId);
     const config = {
       headers: { authorization: `Bearer ${token} ` },
     };
+    axios
+      .get(
+        `https://capstone4-kenzie.herokuapp.com/campaigns?userId=${decoded.sub}`,
+        config
+      )
+      .then((res) => setUserCampaigns(res.data));
 
     axios
       .get(
-        `https://capstone4-kenzie.herokuapp.com/donations?userId=${decoded.sub}`,
+        `https://capstone4-kenzie.herokuapp.com/donations?campaignId=${decoded.sub}`,
         config
       )
-      .then((res) => setUserDonations(res.data));
-
-    axios
-      .get(`https://capstone4-kenzie.herokuapp.com/campaigns`)
-      .then((res) => setCampaigns(res.data));
+      .then((res) => console.log(res));
   }, []);
-  console.log(userDonations);
+
+  console.log(userCampaigns);
+  console.log(userAgendamento);
   return (
     <Container>
-      {user && userDonations !== null ? (
+      {user && (
         <>
           <ProfileTitle>
             <h1>Meu perfil</h1>
@@ -66,46 +84,48 @@ const VoluntaryProfile = () => {
                   description={user.description}
                 />
               </div>
-
               <p> {user.description ? user.description : "Sem descrição"} </p>
             </div>
           </Info>
+          <NewCampaignButton>Nova campanha</NewCampaignButton>
           <Campaigns>
             <ProfileTitle>
-              <h1>Minhas participações</h1>
+              <>
+                <h1>Minhas campanhas</h1>
+                <TitleDetail />
+              </>
+            </ProfileTitle>
+
+            <div className="campaign-cards">
+              {userCampaigns ? (
+                userCampaigns.map(
+                  ({ title, about, endDate, location, ongName, id }, index) => {
+                    return (
+                      <CampaignCard
+                        key={index}
+                        title={title}
+                        ongName={ongName}
+                        location={location}
+                        endDate={endDate}
+                        about={about}
+                        id={id}
+                      />
+                    );
+                  }
+                )
+              ) : (
+                <h1>Você ainda não tem campanhas</h1>
+              )}
+            </div>
+            <ProfileTitle>
+              <h1>Meus Agendamentos</h1>
               <TitleDetail />
             </ProfileTitle>
-            <div className="campaign-cards">
-              {userDonations !== [] &&
-                userDonations.map((donation, index) => {
-                  return (
-                    <CampaignCard
-                      key={index}
-                      title={donation.adTitle}
-                      endDate={donation.endDate}
-                      about={`Agendado para ${donation.scheduledDate.slice(
-                        8,
-                        10
-                      )}/${donation.scheduledDate.slice(
-                        5,
-                        7
-                      )} as ${donation.scheduledDate.slice(11, 16)}`}
-                      ongName={`Produto: ${donation.product}`}
-                      location={`Quantidade:${donation.quantity}`}
-                      id={donation.campaignId}
-                    />
-                  );
-                })}
-            </div>
           </Campaigns>
         </>
-      ) : (
-        <GifTab>
-          <img src={gif} alt="loading" />
-        </GifTab>
       )}
     </Container>
   );
 };
 
-export default VoluntaryProfile;
+export default OngProfile;
