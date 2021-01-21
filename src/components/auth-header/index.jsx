@@ -48,8 +48,8 @@ const AuthHeader = () => {
         <p
           onClick={() =>
             isOng === true
-              ? history.push("/dashboard-ong")
-              : history.push("/dashboard-voluntario")
+              ? history.push("/perfil-ong")
+              : history.push("/perfil-voluntario")
           }
         >
           Conta
