@@ -3,7 +3,7 @@ import { Container } from "./styles";
 const Footer = () => {
   return (
     <Container>
-      <p>www.doEi!.com.br © 2021 - faça a diferença</p>
+      <p>www.DoEi!.com.br © 2021 - faça a diferença</p>
     </Container>
   );
 };
