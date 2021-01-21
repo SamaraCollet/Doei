@@ -10,7 +10,6 @@ import PageNotFound from "../pages/page-not-found";
 import Header from "../components/header";
 import AuthHeader from "../components/auth-header";
 import NotAuthorized from "../pages/not-authorized";
-// import OngProfile from "../pages/ong-profile";
 
 import Footer from "../components/footer";
 import { Switch, Route } from "react-router-dom";

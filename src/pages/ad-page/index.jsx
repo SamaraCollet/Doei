@@ -1,4 +1,13 @@
-import { Container, Info, Contact, Title, TitleCss, GifTab } from "./styled";
+import {
+  Container,
+  Info,
+  Contact,
+  Title,
+  ContactTitle,
+  GifTab,
+  TitleDetailContact,
+  ContainerStyle,
+} from "./styled";
 import ongPic from "../../images/ongPic.png";
 import gif from "../../images/loading.gif";
 import IdNotFound from "../page-not-found";
@@ -7,6 +16,7 @@ import axios from "axios";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import Geocode from "react-geocode";
 import { useParams } from "react-router-dom";
+import TitleDetail from "../../components/detail-title-blue";
 
 import Agendamento from "../../components/modal";
 
@@ -33,10 +43,11 @@ const AdPage = () => {
     }
   }, [ad]);
 
-  const containerStyle = {
-    width: `400px`,
-    height: `400px`,
-  };
+  // const containerStyle = {
+  //   width: `300px`,
+  //   height: `300px`,
+  //   borderRadius: "20px",
+  // };
 
   const center = {
     lat: geo.lat,
@@ -75,10 +86,8 @@ const AdPage = () => {
       {ad && (ong !== null) & (ong !== undefined) ? (
         <>
           <Title>
-            <TitleCss>
-              <h1>{ad.title}</h1>
-              <div></div>
-            </TitleCss>
+            <h1>{ad.title}</h1>
+            <TitleDetail />
           </Title>
           <Info>
             <img src={ongPic} alt="ONG" />
@@ -94,11 +103,11 @@ const AdPage = () => {
             </div>
           </Info>
           <Contact>
-            <div>
-              <TitleCss>
-                <h1>Contato</h1>
-                <div />
-              </TitleCss>
+            <div className="contact-data">
+              <ContactTitle>
+                <h2>Contato</h2>
+                <TitleDetailContact />
+              </ContactTitle>
               <ul>
                 <li>{ong.name && ong.name}</li>
                 <li>{ong.email && ong.email} </li>
@@ -108,10 +117,10 @@ const AdPage = () => {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className="contact-map">
               <LoadScript googleMapsApiKey="AIzaSyBj8LCYAcsyOtQ7TNihTnP7kPMOVhtnqV0">
                 <GoogleMap
-                  mapContainerStyle={containerStyle}
+                  mapContainerStyle={ContainerStyle}
                   center={center}
                   zoom={15}
                 >
