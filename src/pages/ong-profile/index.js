@@ -55,8 +55,6 @@ const OngProfile = () => {
       .then((res) => console.log(res));
   }, []);
 
-  console.log(userCampaigns);
-  console.log(userAgendamento);
   return (
     <Container>
       {user && (

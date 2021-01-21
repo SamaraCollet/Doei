@@ -89,6 +89,7 @@ const Agendamento = (props) => {
       ongName: props.name,
       adTitle: props.title,
       endDate: props.end,
+      ongId: props.ongId,
     };
 
     axios

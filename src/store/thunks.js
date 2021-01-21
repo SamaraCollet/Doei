@@ -14,12 +14,14 @@ export const getAllCampaigns = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const getCurrentUser = id => (dispatch) => {
-  axios
-    .get(`${url}/users/${id}`)
-    .then((res) => {
-      // console.log(res);
-      dispatch(setCurrentUser(res));
-    })
-    .catch((err) => console.log(err));
+export const getCurrentUser = (id) => (dispatch) => {
+  id !== ""
+    ? axios
+        .get(`${url}/users/${id}`)
+        .then((res) => {
+          // console.log(res);
+          dispatch(setCurrentUser(res));
+        })
+        .catch((err) => console.log(err))
+    : dispatch(setCurrentUser(""));
 };
