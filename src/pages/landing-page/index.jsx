@@ -4,6 +4,7 @@ import Steps from "../../components/steps-landing-page";
 import Stories from "../../components/success-stories-landing-page";
 
 const LandingPage = () => {
+  console.log("opsda");
   return (
     <Container>
       <Banner />
