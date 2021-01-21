@@ -7,15 +7,16 @@ import OngRegister from "../pages/ong-register";
 import CardsFeed from "../pages/cards-feed";
 import AdPage from "../pages/ad-page";
 import PageNotFound from "../pages/page-not-found";
-import Header from '../components/header'
-import AuthHeader from '../components/auth-header'
-import NotAuthorized from '../pages/not-authorized'
+import Header from "../components/header";
+import AuthHeader from "../components/auth-header";
+import NotAuthorized from "../pages/not-authorized";
+// import OngProfile from "../pages/ong-profile";
 
 import Footer from "../components/footer";
 import { Switch, Route } from "react-router-dom";
 
 const Routes = () => {
-  const token = localStorage.getItem("authToken")
+  const token = localStorage.getItem("authToken");
   return (
     <>
       {token ? (
@@ -57,7 +58,7 @@ const Routes = () => {
           </Switch>
         </>
       ) : (
-        <>      
+        <>
           <Header />
           <Switch>
             <Route exact path="/campaigns-feed">

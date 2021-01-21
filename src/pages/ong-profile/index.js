@@ -2,35 +2,60 @@ import CampaignCard from "../../components/campaign-cards";
 import Modal from "../../components/modalEdit";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ProfileTitle, Container, Info, Campaigns } from "./styles.js";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllCampaigns } from "../../store/thunks";
+import {
+  ProfileTitle,
+  Container,
+  Info,
+  Campaigns,
+  NewCampaignButton,
+} from "./styles.js";
 import jwt_decode from "jwt-decode";
 import TitleDetail from "../../components/detail-title-blue";
 
-const VoluntaryProfile = () => {
+const OngProfile = () => {
   const [user, setUser] = useState();
   const [userId, setUserId] = useState();
-  const [userDonations, setUserDonations] = useState();
+  const [userCampaigns, setUserCampaigns] = useState();
+  const [userAgendamento, setUserAgendamento] = useState();
+
+  const campaigns = useSelector((state) => state.campaigns);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllCampaigns());
+  }, []);
 
   useEffect(() => {
     let token = localStorage.getItem("authToken");
     var decoded = jwt_decode(token);
     setUserId(decoded.sub);
+
     axios
       .get(`https://capstone4-kenzie.herokuapp.com/users/${decoded.sub}`)
       .then((res) => setUser(res.data));
-
+    console.log(userId);
     const config = {
       headers: { authorization: `Bearer ${token} ` },
     };
+    axios
+      .get(
+        `https://capstone4-kenzie.herokuapp.com/campaigns?userId=${decoded.sub}`,
+        config
+      )
+      .then((res) => setUserCampaigns(res.data));
 
     axios
       .get(
-        `https://capstone4-kenzie.herokuapp.com/donations?userId=${decoded.sub}`,
+        `https://capstone4-kenzie.herokuapp.com/donations?campaignId=${decoded.sub}`,
         config
       )
-      .then((res) => setUserDonations(res.data));
+      .then((res) => console.log(res));
   }, []);
-  console.log(userDonations);
+
+  console.log(userCampaigns);
+  console.log(userAgendamento);
   return (
     <Container>
       {user && (
@@ -59,19 +84,43 @@ const VoluntaryProfile = () => {
                   description={user.description}
                 />
               </div>
-
               <p> {user.description ? user.description : "Sem descrição"} </p>
             </div>
           </Info>
+          <NewCampaignButton>Nova campanha</NewCampaignButton>
           <Campaigns>
             <ProfileTitle>
-              <h1>Minhas participações</h1>
+              <>
+                <h1>Minhas campanhas</h1>
+                <TitleDetail />
+              </>
+            </ProfileTitle>
+
+            <div className="campaign-cards">
+              {userCampaigns ? (
+                userCampaigns.map(
+                  ({ title, about, endDate, location, ongName, id }, index) => {
+                    return (
+                      <CampaignCard
+                        key={index}
+                        title={title}
+                        ongName={ongName}
+                        location={location}
+                        endDate={endDate}
+                        about={about}
+                        id={id}
+                      />
+                    );
+                  }
+                )
+              ) : (
+                <h1>Você ainda não tem campanhas</h1>
+              )}
+            </div>
+            <ProfileTitle>
+              <h1>Meus Agendamentos</h1>
               <TitleDetail />
             </ProfileTitle>
-            <div className="campaign-cards">
-              <CampaignCard />
-              <CampaignCard />
-            </div>
           </Campaigns>
         </>
       )}
@@ -79,4 +128,4 @@ const VoluntaryProfile = () => {
   );
 };
 
-export default VoluntaryProfile;
+export default OngProfile;
