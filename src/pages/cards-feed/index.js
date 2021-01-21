@@ -14,14 +14,9 @@ const CardsFeed = () => {
     dispatch(getAllCampaigns());
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(getAllUsers());
-  // }, []);
-
-  // console.log(users);
   return (
     <Container>
-      <StyledTitle>Anúncios recentes para a sua localidade</StyledTitle>
+      <StyledTitle>Anúncios recentes</StyledTitle>
       <DetailTitle />
       {campaigns.map(
         ({ title, about, endDate, location, ongName, id }, index) => {

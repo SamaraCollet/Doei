@@ -9,7 +9,7 @@ export const Container = styled.div`
     border-radius: 25%;
     background: #ffbe0b;
     border: none;
-    box-shadow: 1px 1px 4px #5e5e5e;
+    /* box-shadow: 1px 1px 4px #5e5e5e; */
     font-size: 28px;
     display: flex;
     align-items: center;
@@ -17,7 +17,7 @@ export const Container = styled.div`
   }
 
   button:hover {
-    background-color: rgba(0, 187, 249, 0.35);
+    background-color: #fdce4c;
   }
 `;
 export const StyledCardContent = styled(CardContent)`
@@ -28,8 +28,8 @@ export const StyledCardContent = styled(CardContent)`
   display: flex;
   align-content: center !important;
   margin: 0 auto !important;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.13);
-  @media (max-width: 720px) {
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.13);
+  @media (max-width: 638px) {
     flex-direction: column;
     width: 70vw !important;
 
