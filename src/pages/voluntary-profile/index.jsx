@@ -48,11 +48,7 @@ const VoluntaryProfile = () => {
           </ProfileTitle>
           <Info>
             <div className="img-container">
-              <img
-                src="/assets/meias.jpg"
-                // src="https://www.drshaneholmes.com/wp-content/uploads/2020/03/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
-                alt="ONG"
-              />
+              <img src="/assets/perfil.jpg" alt="ONG" />
             </div>
             <div className="profile-data">
               <div className="name-and-edit-profile">
@@ -66,7 +62,6 @@ const VoluntaryProfile = () => {
                   description={user.description}
                 />
               </div>
-
               <p> {user.description ? user.description : "Sem descrição"} </p>
             </div>
           </Info>
@@ -76,7 +71,7 @@ const VoluntaryProfile = () => {
               <TitleDetail />
             </ProfileTitle>
             <div className="campaign-cards">
-              {userDonations !== [] &&
+              {userDonations !== [] ? (
                 userDonations.map((donation, index) => {
                   return (
                     <CampaignCard
@@ -95,7 +90,14 @@ const VoluntaryProfile = () => {
                       id={donation.campaignId}
                     />
                   );
-                })}
+                })
+              ) : (
+                <div className="campaign-cards">
+                  <div className="not-yet">
+                    Você inda não esta participando de nenhuma campanha!
+                  </div>
+                </div>
+              )}
             </div>
           </Campaigns>
         </>

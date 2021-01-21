@@ -102,6 +102,7 @@ const AdPage = () => {
                 name={ad.ongName}
                 title={ad.title}
                 id={id}
+                ongId={ad.userId}
               />
             </div>
           </Info>

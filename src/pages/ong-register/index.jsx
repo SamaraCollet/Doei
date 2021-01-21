@@ -48,7 +48,7 @@ const OngRegister = () => {
 
   const history = useHistory()
   const handleForm = (value) => {
-    value.ngo = "true"
+    value.ngo = true
     axios
     .post(`https://capstone4-kenzie.herokuapp.com/register`, { ...value })
     .then(res => history.push("/login-ong"))

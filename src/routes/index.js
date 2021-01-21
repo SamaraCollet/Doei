@@ -10,17 +10,35 @@ import PageNotFound from "../pages/page-not-found";
 import Header from "../components/header";
 import AuthHeader from "../components/auth-header";
 import NotAuthorized from "../pages/not-authorized";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentUser } from "../store/thunks";
+import { useEffect } from "react";
 
 import Footer from "../components/footer";
 import { Switch, Route } from "react-router-dom";
 import OngProfile from "../pages/ong-profile";
 
 const Routes = () => {
-  const token = localStorage.getItem("authToken");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    localStorage.hasOwnProperty("currentUserId")
+      ? dispatch(getCurrentUser(localStorage.getItem("currentUserId")))
+      : dispatch(getCurrentUser(""));
+  }, []);
+
+  const logged = useSelector((state) => state.users.data);
+
   return (
     <>
-      {token ? <AuthHeader/> : <Header/>}
+      {!!logged ? (
+        <>
+          <AuthHeader />
           <Switch>
+            <Route exact path="/">
+              <LandingPage />
+              <Footer />
+            </Route>
             <Route exact path="/campaigns-feed/:city">
               <CampaignsFeed />
             </Route>
@@ -30,6 +48,22 @@ const Routes = () => {
             <Route exact path="/campaign/:id">
               <AdPage />
             </Route>
+            <Route path="/perfil-ong">
+              <OngProfile />
+            </Route>
+            <Route exact path="/perfil-voluntario">
+              <VoluntaryProfile />
+              <Footer />
+            </Route>
+            <Route path="*">
+              <PageNotFound />
+            </Route>
+          </Switch>
+        </>
+      ) : (
+        <>
+          <Header />
+          <Switch>
             <Route exact path="/">
               <LandingPage />
               <Footer />
@@ -46,22 +80,30 @@ const Routes = () => {
             <Route path="/cadastro-voluntario">
               <VoluntaryRegister />
             </Route>
-            <Route path="/perfil-ong">
-              {token ? <OngProfile/> : <NotAuthorized/> }
+            <Route exact path="/campaigns-feed/:city">
+              <CampaignsFeed />
             </Route>
-            <Route exact path="/perfil-voluntario">
-             {token ? <VoluntaryProfile /> : <NotAuthorized/>} 
-              <Footer />
+            <Route path="/campaigns-feed">
+              <CampaignsFeed />
             </Route>
             <Route exact path="/campaign/:id">
               <AdPage />
+            </Route>
+            <Route path="/perfil-ong">
+              <NotAuthorized />
+            </Route>
+            <Route exact path="/perfil-voluntario">
+              <NotAuthorized />
+              <Footer />
             </Route>
             <Route path="*">
               <PageNotFound />
             </Route>
           </Switch>
+        </>
+      )}
     </>
-  )
-}
+  );
+};
 
 export default Routes;

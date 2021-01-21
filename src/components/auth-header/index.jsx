@@ -6,12 +6,16 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import { useState, useEffect } from "react";
 
+import { useDispatch } from "react-redux";
+
 import jwt_decode from "jwt-decode";
 
 import axios from "axios";
+import { getCurrentUser } from "../../store/thunks";
 
 const AuthHeader = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [icon, setIcon] = useState(true);
   const [isOng, setIsOng] = useState(false);
 
@@ -31,9 +35,11 @@ const AuthHeader = () => {
   };
 
   const handleLogout = () => {
+    dispatch(getCurrentUser(""));
     localStorage.clear();
+    history.push("/");
   };
-  console.log(isOng);
+
   return (
     <Container
       style={{ backgroundColor: isOng === true ? "#90be6d" : "#00bbf9" }}
@@ -45,6 +51,7 @@ const AuthHeader = () => {
         onClick={() => history.push("/campaigns-feed")}
       />
       <Desktop>
+        <p>Criar anúncio</p>
         <p
           onClick={() =>
             isOng === true
@@ -70,6 +77,8 @@ const AuthHeader = () => {
               >
                 Conta
               </li>
+              <li onClick={handleLogout}>Deslogar</li>
+              <li>Criar anúncio</li>
             </ul>
           </MobileList>
         )}

@@ -4,16 +4,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllCampaigns } from "../../store/thunks";
-import {
-  ProfileTitle,
-  Container,
-  Info,
-  Campaigns,
-  NewCampaignButton,
-} from "./styles.js";
+import { ProfileTitle, Container, Info, Campaigns } from "./styles.js";
 import jwt_decode from "jwt-decode";
 import TitleDetail from "../../components/detail-title-blue";
 import SchedulingCard from "../../components/scheduling-cards";
+import NewCampaign from "../../components/new-campaign";
+
 const OngProfile = () => {
   const [user, setUser] = useState();
   const [userId, setUserId] = useState();
@@ -54,6 +50,7 @@ const OngProfile = () => {
       .then((res) => setUserScheduling(res.data));
   }, []);
   console.log(userScheduling);
+
   return (
     <Container>
       {user && (
@@ -85,7 +82,8 @@ const OngProfile = () => {
               <p> {user.description ? user.description : "Sem descrição"} </p>
             </div>
           </Info>
-          <NewCampaignButton>Nova campanha</NewCampaignButton>
+          <NewCampaign name={user.name} id={userId} address={user.address} />
+          <br />
           <Campaigns>
             <ProfileTitle>
               <>

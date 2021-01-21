@@ -6,7 +6,7 @@ import {
   StyledButton,
   Container,
   StyledTextField,
-} from "./styled";
+} from "../modal/styled";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { useForm } from "react-hook-form";
@@ -15,6 +15,8 @@ import axios from "axios";
 import * as yup from "yup";
 import jwt_decode from "jwt-decode";
 import DetailTitle from "../../components/detail-title-blue";
+
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -27,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid #585858",
     borderRadius: "20px",
     width: "250px",
-    height: "400px",
+    height: "auto",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -44,9 +46,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Agendamento = (props) => {
+const NewCampaign = (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const campaigns = useSelector((state) => state.campaigns);
 
   const handleOpen = () => {
     setOpen(true);
@@ -65,8 +68,9 @@ const Agendamento = (props) => {
   };
 
   const schema = yup.object().shape({
-    message: yup.string(),
-    quantity: yup.number().required("Campo obrigatório"),
+    title: yup.string(),
+    about: yup.string(),
+    goal: yup.number().required("Campo obrigatório"),
     product: yup.string().required(),
   });
 
@@ -84,16 +88,15 @@ const Agendamento = (props) => {
 
     const info = {
       ...data,
+      id: campaigns.lenght + 1,
       userId: id,
-      campaignId: props.id,
       ongName: props.name,
-      adTitle: props.title,
-      endDate: props.end,
-      ongId: props.ongId,
+      location: props.location,
+      address: props.address,
     };
 
     axios
-      .post(`https://capstone4-kenzie.herokuapp.com/donations`, info, config)
+      .post(`https://capstone4-kenzie.herokuapp.com/campaigns`, info, config)
       .catch((err) => console.log(err));
 
     handleClose();
@@ -107,7 +110,7 @@ const Agendamento = (props) => {
         size="medium"
         onClick={handleOpen}
       >
-        Participar
+        Nova Campanha
       </StyledButton>
       <NewModal
         aria-labelledby="transition-modal-title"
@@ -124,16 +127,25 @@ const Agendamento = (props) => {
         <Fade in={open}>
           <ModalStyle className={classes.paper}>
             <div className="title-modal">
-              <h2 id="transition-modal-title">Agendamento</h2>
+              <h2 id="transition-modal-title">Nova Campanha</h2>
               <DetailTitle />
             </div>
             <form onSubmit={handleSubmit(handleForm)}>
               <StyledTextField
-                name="message"
+                name="title"
                 inputRef={register}
                 variant="outlined"
                 size="small"
-                label="Mensagem (opcional)"
+                label="Título da Campanha"
+                error={!!errors.message}
+                helperText={errors.message && "Campo obrigatório"}
+              />
+              <StyledTextField
+                name="about"
+                inputRef={register}
+                variant="outlined"
+                size="small"
+                label="Sobre da Campanha"
                 error={!!errors.message}
                 helperText={errors.message && "Campo obrigatório"}
               />
@@ -147,19 +159,32 @@ const Agendamento = (props) => {
                 helperText={errors.message && "Campo obrigatório"}
               />
               <StyledTextField
-                name="quantity"
+                name="goal"
                 inputRef={register}
                 variant="outlined"
                 size="small"
-                label="Quantidade"
+                label="Objetivo (Quantidade)"
                 error={!!errors.quantity}
                 helperText={errors.quantity && "Precisa ser um número"}
               />
               <StyledTextField
-                name="scheduledDate"
+                name="initialDate"
                 inputRef={register}
                 id="datetime-local"
-                label="Data"
+                label="Começo da Campanha (Data)"
+                type="datetime-local"
+                defaultValue="2021-01-19T10:30"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+
+              <StyledTextField
+                name="endDate"
+                inputRef={register}
+                id="datetime-local"
+                label="Fim da Campanha (Data)"
                 type="datetime-local"
                 defaultValue="2021-01-19T10:30"
                 className={classes.textField}
@@ -169,7 +194,7 @@ const Agendamento = (props) => {
               />
 
               <StyledButton type="submit" variant="outlined" size="medium">
-                Agendar
+                Criar Campanha
               </StyledButton>
             </form>
           </ModalStyle>
@@ -179,4 +204,4 @@ const Agendamento = (props) => {
   );
 };
 
-export default Agendamento;
+export default NewCampaign;
