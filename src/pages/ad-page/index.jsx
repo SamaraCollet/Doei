@@ -72,7 +72,7 @@ const AdPage = () => {
 
   return (
     <Container>
-      {ad && ong !== null ? (
+      {ad && (ong !== null) & (ong !== undefined) ? (
         <>
           <Title>
             <TitleCss>
