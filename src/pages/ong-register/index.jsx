@@ -92,7 +92,7 @@ const OngRegister = () => {
               <StyledTextField
                 variant="outlined"
                 size="small"
-                name="adress"
+                name="address"
                 label="Endereço"
                 inputRef={register}
                 error={!!errors.adress}

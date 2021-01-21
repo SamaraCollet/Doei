@@ -45,12 +45,6 @@ const AdPage = () => {
     }
   }, [ad]);
 
-  // const containerStyle = {
-  //   width: `300px`,
-  //   height: `300px`,
-  //   borderRadius: "20px",
-  // };
-
   const center = {
     lat: geo.lat,
     lng: geo.lng,
@@ -68,6 +62,7 @@ const AdPage = () => {
   Geocode.enableDebug();
 
   const getLocation = (address) => {
+    console.log(address);
     Geocode.fromAddress(address).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
