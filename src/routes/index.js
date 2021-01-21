@@ -46,6 +46,7 @@ const Routes = () => {
         </Route>
         <Route exact path="/campaign/:id">
           <AdPage />
+          <Footer />
         </Route>
         <Route path="*">
           <PageNotFound />
