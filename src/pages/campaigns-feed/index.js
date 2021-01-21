@@ -3,27 +3,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllCampaigns } from "../../store/thunks";
 import { StyledTitle, Container, DetailTitle } from "./style";
-const CardsFeed = () => {
-  const campaigns = useSelector((state) => state.campaigns);
-  // const users = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+import {useParams, Link} from "react-router-dom"
 
-  console.log(campaigns);
+const CampaingsFeed = () => {
+  const campaigns = useSelector((state) => state.campaigns);
+  const dispatch = useDispatch();
+  const {city}  = useParams()
+  const cityFilter = city || "Curitiba"
 
   useEffect(() => {
     dispatch(getAllCampaigns());
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(getAllUsers());
-  // }, []);
-
-  // console.log(users);
   return (
     <Container>
-      <StyledTitle>Anúncios recentes para a sua localidade</StyledTitle>
+      <StyledTitle>Anúncios recentes</StyledTitle>
       <DetailTitle />
-      {campaigns.map(
+      { cityFilter === "Curitiba" ? campaigns.map(
         ({ title, about, endDate, location, ongName, id }, index) => {
           return (
             <CampaignCard
@@ -35,11 +31,11 @@ const CardsFeed = () => {
               about={about}
               id={id}
             />
-          );
-        }
-      )}
-    </Container>
+          )
+        }) : <div>Nenhuma campanha encontrada em {city}. <Link to="/">Voltar</Link>
+             </div>}
+    </Container> 
   );
 };
 
-export default CardsFeed;
+export default CampaingsFeed;

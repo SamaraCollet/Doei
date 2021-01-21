@@ -29,6 +29,10 @@ const AuthHeader = () => {
   const handleIcon = () => {
     setIcon(!icon);
   };
+
+  const handleLogout = () => {
+    localStorage.clear();
+  };
   console.log(isOng);
   return (
     <Container
@@ -44,12 +48,13 @@ const AuthHeader = () => {
         <p
           onClick={() =>
             isOng === true
-              ? history.push("/dashboard-ong")
-              : history.push("/dashboard-voluntario")
+              ? history.push("/perfil-ong")
+              : history.push("/perfil-voluntario")
           }
         >
           Conta
         </p>
+        <p onClick={handleLogout}>Deslogar</p>
       </Desktop>
       <Mobile onClick={handleIcon}>
         {icon ? <FaChevronDown /> : <FaChevronUp />}
