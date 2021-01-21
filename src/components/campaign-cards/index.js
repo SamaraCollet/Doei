@@ -13,15 +13,7 @@ import { BiRightArrowAlt, BiEditAlt } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-const CampaignCard = ({
-  title,
-  endDate,
-  location,
-  about,
-  ongName,
-  id,
-  ongProfile = false,
-}) => {
+const CampaignCard = ({ title, endDate, location, about, ongName, id }) => {
   const history = useHistory();
 
   const ong = localStorage.getItem("isOng");
@@ -79,12 +71,6 @@ const CampaignCard = ({
               </InstitutionName>
             </TextContainer>
             <ButtonsDiv>
-              {ongProfile && (
-                <button>
-                  <BiEditAlt />
-                </button>
-              )}
-
               <button
                 onClick={() => {
                   history.push(`/campaign/${id}`);

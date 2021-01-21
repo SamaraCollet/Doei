@@ -50,8 +50,8 @@ const OngProfile = () => {
       )
       .then((res) => setUserScheduling(res.data));
   }, []);
-  console.log(userScheduling);
-
+  console.log(campaigns);
+  console.log(userId);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -115,7 +115,6 @@ const OngProfile = () => {
                           endDate={endDate}
                           about={about}
                           id={id}
-                          ongProfile={true}
                         />
                       );
                     }
