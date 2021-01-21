@@ -61,6 +61,7 @@ export const MobileList = styled.div`
   font-size: 1.3rem;
   font-weight: bold;
   position: absolute;
+  z-index: 99;
   top: 50px;
   right: 20px;
   z-index: 9999;

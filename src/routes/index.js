@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUser } from "../store/thunks";
 import { useEffect } from "react";
 
+import { AnimatePresence } from "framer-motion";
+
 import Footer from "../components/footer";
 import { Switch, Route } from "react-router-dom";
 import OngProfile from "../pages/ong-profile";
@@ -30,7 +32,7 @@ const Routes = () => {
   const logged = useSelector((state) => state.users.data);
 
   return (
-    <>
+    <AnimatePresence>
       {!!logged ? (
         <>
           <AuthHeader />
@@ -102,7 +104,7 @@ const Routes = () => {
           </Switch>
         </>
       )}
-    </>
+    </AnimatePresence>
   );
 };
 

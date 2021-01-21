@@ -16,6 +16,7 @@ import {
 } from "./styles";
 import DetailTitle from "../../components/detail-title-blue";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const VoluntaryLogin = () => {
   const schema = yup.object().shape({
@@ -47,6 +48,7 @@ const VoluntaryLogin = () => {
   };
 
   return (
+<<<<<<< HEAD
     <Container>
       <BannerLogin src="/assets/donation2.png" alt="donation" />
       <ContainerLogin>
@@ -82,6 +84,49 @@ const VoluntaryLogin = () => {
         </RegisterLink>
       </ContainerLogin>
     </Container>
+=======
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+    >
+      <Container>
+        <BannerLogin src="/assets/donation2.png" alt="donation" />
+        <ContainerLogin>
+          <h1>Olá, faça o login!</h1>
+          <DetailTitle />
+          <form onSubmit={handleSubmit(handleForm)}>
+            <StyledTextField
+              variant="outlined"
+              size="small"
+              name="email"
+              label="Email"
+              inputRef={register}
+              error={!!errors.email || !!errors.password}
+              helperText={errors.email?.message}
+            />
+            <StyledTextField
+              variant="outlined"
+              size="small"
+              name="password"
+              label="Senha"
+              inputRef={register}
+              error={!!errors.password || !!errors.email}
+              helperText={errors.password?.message}
+            />
+            <StyledButton type="submit" variant="outlined" size="medium">
+              Entrar
+            </StyledButton>
+          </form>
+          <RegisterLink>
+            Ainda não é cadastrado?{" "}
+            <Link to="/cadastro-voluntario">Cadastre-se</Link>
+          </RegisterLink>
+        </ContainerLogin>
+      </Container>
+    </motion.div>
+>>>>>>> 27e46aa83f4eb41950d6085e292dc5b5fba4b77e
   );
 };
 
