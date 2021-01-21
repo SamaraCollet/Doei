@@ -44,13 +44,13 @@ const VoluntaryProfile = () => {
   }, []);
   console.log(userDonations.length);
   return (
-    <Container>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.25 }}
-      >
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+    >
+      <Container>
         {userDonations.length > 0 && user ? (
           <>
             <ProfileTitle>
@@ -117,8 +117,8 @@ const VoluntaryProfile = () => {
             <img src={gif} alt="loading" />
           </GifTab>
         )}
-      </motion.div>
-    </Container>
+      </Container>
+    </motion.div>
   );
 };
 
