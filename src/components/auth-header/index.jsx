@@ -74,7 +74,6 @@ const AuthHeader = () => {
             style={{ backgroundColor: !!isOngTrue ? "#90be6d" : "#00bbf9" }}
           >
             <ul>
-              {!!isOngTrue && <li>Criar campanha</li>}
               <li
                 onClick={() =>
                   !!isOngTrue
