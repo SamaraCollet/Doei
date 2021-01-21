@@ -80,9 +80,9 @@ const AdPage = () => {
   };
 
   useEffect(() => {
-    ong !== null && getLocation(`${ong.adress}`);
+    ong !== null && getLocation(`${ong.address}`);
   }, [ong]);
-  console.log(ong);
+
   const isOng = localStorage.getItem("isOng");
   return (
     <motion.div

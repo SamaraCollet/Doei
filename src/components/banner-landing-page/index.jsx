@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const BannerLandingPage = () => {
   const history = useHistory();
-  const [city, setCity] = useState("curitiba");
+  const [city, setCity] = useState("Curitiba");
 
   const handleSelect = (event) => {
     setCity(event.target.value);
