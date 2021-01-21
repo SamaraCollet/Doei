@@ -28,8 +28,14 @@ const Routes = () => {
   const token = localStorage.getItem("authToken")
   return (
     <>
-      {token ? <AuthHeader/> : <Header/>}
+      {token ? (
+        <>
+          <AuthHeader />
           <Switch>
+            <Route exact path="/">
+              <LandingPage />
+              <Footer />
+            </Route>
             <Route exact path="/campaigns-feed/:city">
               <CampaignsFeed />
             </Route>
@@ -39,6 +45,22 @@ const Routes = () => {
             <Route exact path="/campaign/:id">
               <AdPage />
             </Route>
+            <Route path="/perfil-ong">
+              <OngProfile /> <NotAuthorized />
+            </Route>
+            <Route exact path="/perfil-voluntario">
+              <VoluntaryProfile /> <NotAuthorized />
+              <Footer />
+            </Route>
+            <Route path="*">
+              <PageNotFound />
+            </Route>
+          </Switch>
+        </>
+      ) : (
+        <>
+          <Header />
+          <Switch>
             <Route exact path="/">
               <LandingPage />
               <Footer />
@@ -55,12 +77,11 @@ const Routes = () => {
             <Route path="/cadastro-voluntario">
               <VoluntaryRegister />
             </Route>
-            <Route path="/perfil-ong">
-              {token ? <OngProfile/> : <NotAuthorized/> }
+            <Route exact path="/campaigns-feed/:city">
+              <CampaignsFeed />
             </Route>
-            <Route exact path="/perfil-voluntario">
-             {token ? <VoluntaryProfile /> : <NotAuthorized/>} 
-              <Footer />
+            <Route path="/campaigns-feed">
+              <CampaignsFeed />
             </Route>
             <Route exact path="/campaign/:id">
               <AdPage />
@@ -69,8 +90,10 @@ const Routes = () => {
               <PageNotFound />
             </Route>
           </Switch>
+        </>
+      )}
     </>
-  )
-}
+  );
+};
 
 export default Routes;
