@@ -11,7 +11,7 @@ import gif from "../../images/loading.gif";
 const VoluntaryProfile = () => {
   const [user, setUser] = useState(null);
   const [userId, setUserId] = useState();
-  const [userDonations, setUserDonations] = useState(null);
+  const [userDonations, setUserDonations] = useState([]);
   const [campaigns, setCampaigns] = useState();
 
   useEffect(() => {
@@ -31,16 +31,20 @@ const VoluntaryProfile = () => {
         `https://capstone4-kenzie.herokuapp.com/donations?userId=${decoded.sub}`,
         config
       )
-      .then((res) => setUserDonations(res.data));
+      .then((res) =>
+        res.data.length <= 0
+          ? setUserDonations("nothing")
+          : setUserDonations(res.data)
+      );
 
     axios
       .get(`https://capstone4-kenzie.herokuapp.com/campaigns`)
       .then((res) => setCampaigns(res.data));
   }, []);
-
+  console.log(userDonations.length);
   return (
     <Container>
-      {user && userDonations !== null ? (
+      {userDonations.length > 0 && user ? (
         <>
           <ProfileTitle>
             <h1>Meu perfil</h1>
@@ -71,7 +75,7 @@ const VoluntaryProfile = () => {
               <TitleDetail />
             </ProfileTitle>
             <div className="campaign-cards">
-              {userDonations !== [] ? (
+              {userDonations !== "nothing" ? (
                 userDonations.map((donation, index) => {
                   return (
                     <CampaignCard
@@ -94,7 +98,7 @@ const VoluntaryProfile = () => {
               ) : (
                 <div className="campaign-cards">
                   <div className="not-yet">
-                    Você inda não esta participando de nenhuma campanha!
+                    Você ainda não esta participando de nenhuma campanha!
                   </div>
                 </div>
               )}
