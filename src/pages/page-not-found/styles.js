@@ -27,4 +27,16 @@ export const Container = styled.div `
     color: #148cee;
     font-weight: bold;
   }
+
+  @media only screen and (max-width: 767px) {
+    width: 90%;
+    padding: 0 5%;
+    h1 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+  }
 `;

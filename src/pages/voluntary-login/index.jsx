@@ -4,8 +4,8 @@ import * as yup from "yup";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import {useDispatch} from 'react-redux'
-import {getCurrentUser} from '../../store/thunks'
+import { useDispatch } from "react-redux";
+import { getCurrentUser } from "../../store/thunks";
 import {
   Container,
   BannerLogin,
@@ -28,20 +28,20 @@ const VoluntaryLogin = () => {
   });
 
   const history = useHistory();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleForm = (value) => {
     axios
       .post("https://capstone4-kenzie.herokuapp.com/login", { ...value })
-      .then(res => {
-        const currentUserToken = res.data.accessToken
-        const decodedToken = jwt_decode(currentUserToken)
+      .then((res) => {
+        const currentUserToken = res.data.accessToken;
+        const decodedToken = jwt_decode(currentUserToken);
         window.localStorage.setItem("authToken", currentUserToken);
         window.localStorage.setItem("currentUserId", decodedToken.sub);
-        dispatch(getCurrentUser(decodedToken.sub))
+        dispatch(getCurrentUser(decodedToken.sub));
         history.push("/campaigns-feed");
       })
 
-      .catch(err => {
+      .catch((err) => {
         setError("email", { message: "Usuário ou senha inválido" });
       });
   };
@@ -67,6 +67,7 @@ const VoluntaryLogin = () => {
             size="small"
             name="password"
             label="Senha"
+            type="password"
             inputRef={register}
             error={!!errors.password || !!errors.email}
             helperText={errors.password?.message}

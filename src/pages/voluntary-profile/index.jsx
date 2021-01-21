@@ -11,7 +11,7 @@ import gif from "../../images/loading.gif";
 const VoluntaryProfile = () => {
   const [user, setUser] = useState(null);
   const [userId, setUserId] = useState();
-  const [userDonations, setUserDonations] = useState(null);
+  const [userDonations, setUserDonations] = useState([]);
   const [campaigns, setCampaigns] = useState();
 
   useEffect(() => {
@@ -92,10 +92,8 @@ const VoluntaryProfile = () => {
                   );
                 })
               ) : (
-                <div className="campaign-cards">
-                  <div className="not-yet">
-                    Você inda não esta participando de nenhuma campanha!
-                  </div>
+                <div className="not-yet">
+                  Você ainda não esta participando de nenhuma campanha!
                 </div>
               )}
             </div>

@@ -112,7 +112,7 @@ const OngProfile = () => {
               )}
             </div>
             <ProfileTitle>
-              <h1>Meus Agendamentos</h1>
+              <h1>Meus agendamentos</h1>
               <TitleDetail />
             </ProfileTitle>
           </Campaigns>
