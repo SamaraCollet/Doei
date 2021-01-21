@@ -5,8 +5,8 @@ import {
   StyledTextField,
   StyledButton,
 } from "./styles";
-import axios from "axios"
-import {useHistory} from 'react-router-dom';
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 import DetailTitle from "../../components/detail-title-blue";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -40,12 +40,12 @@ const VoluntaryRegister = () => {
     resolver: yupResolver(schema),
   });
 
-  const history = useHistory()
+  const history = useHistory();
   const handleForm = (value) => {
-    value.ngo = false
+    value.ngo = false;
     axios
       .post(`https://capstone4-kenzie.herokuapp.com/register`, { ...value })
-      .then(res => history.push("/login-voluntario"))
+      .then((res) => history.push("/login-voluntario"))
       .catch(() => {
         setError("email", { message: "Este email já está sendo utilizado" });
       });
@@ -92,6 +92,7 @@ const VoluntaryRegister = () => {
               size="small"
               name="password"
               label="Senha"
+              type="password"
               inputRef={register}
               error={!!errors.password}
               helperText={errors.password?.message}
@@ -100,6 +101,7 @@ const VoluntaryRegister = () => {
               variant="outlined"
               size="small"
               name="password_confirmation"
+              type="password"
               label="Confirme sua senha"
               inputRef={register}
               error={!!errors.password_confirmation}

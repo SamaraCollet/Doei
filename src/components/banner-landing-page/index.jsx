@@ -1,15 +1,15 @@
 import { Container, BannerContent, FindLocal } from "./styles";
 import { BiSearch } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
-import {useState} from "react"
+import { useState } from "react";
 
 const BannerLandingPage = () => {
   const history = useHistory();
-  const [city,setCity] = useState("Curitiba")
+  const [city, setCity] = useState("curitiba");
 
-  const handleSelect = event => {
-    setCity(event.target.value) 
-      }
+  const handleSelect = (event) => {
+    setCity(event.target.value);
+  };
 
   return (
     <Container>
@@ -24,10 +24,10 @@ const BannerLandingPage = () => {
         </p>
         <FindLocal>
           <select name="select" value={city} onChange={handleSelect}>
-            <option value="Curitiba" selected>Curitiba</option>
-            <option value="São Paulo" >
-              São Paulo
+            <option value="Curitiba" selected>
+              Curitiba
             </option>
+            <option value="São Paulo">São Paulo</option>
             <option value="Rio de Janeiro">Rio de Janeiro</option>
           </select>
           <button

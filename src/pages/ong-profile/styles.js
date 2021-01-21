@@ -5,9 +5,12 @@ export const ProfileTitle = styled.header`
   flex-direction: column;
   align-items: center;
   padding-top: 3.5rem;
-
+  h1 {
+    text-align: center;
+  }
   @media (min-width: 768px) and (max-width: 979px) {
     h1 {
+      /* background-color: rgb(216, 231, 233, 0.65); */
       font-size: 1.8rem;
     }
   }

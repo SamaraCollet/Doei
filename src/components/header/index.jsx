@@ -25,8 +25,14 @@ const Header = () => {
         onClick={() => history.push("/")}
       />
       <Desktop>
-        <p onClick={() => history.push("/login-ong")}>Sou ONG</p>
-        <p onClick={() => history.push("/login-voluntario")}>Sou voluntário</p>
+        <div className="item-menu">
+          <p onClick={() => history.push("/login-ong")}>Sou ONG</p>
+        </div>
+        <div className="item-menu item-menu-2">
+          <p onClick={() => history.push("/login-voluntario")}>
+            Sou voluntário
+          </p>
+        </div>
       </Desktop>
       <Mobile onClick={handleIcon}>
         {icon ? <FaChevronDown /> : <FaChevronUp />}

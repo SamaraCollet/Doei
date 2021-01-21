@@ -19,7 +19,7 @@ export const getCurrentUser = (id) => (dispatch) => {
     ? axios
         .get(`${url}/users/${id}`)
         .then((res) => {
-          // console.log(res);
+          localStorage.setItem("isOng", res.data.ngo);
           dispatch(setCurrentUser(res));
         })
         .catch((err) => console.log(err))

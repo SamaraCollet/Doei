@@ -31,16 +31,20 @@ const VoluntaryProfile = () => {
         `https://capstone4-kenzie.herokuapp.com/donations?userId=${decoded.sub}`,
         config
       )
-      .then((res) => setUserDonations(res.data));
+      .then((res) =>
+        res.data.length <= 0
+          ? setUserDonations("nothing")
+          : setUserDonations(res.data)
+      );
 
     axios
       .get(`https://capstone4-kenzie.herokuapp.com/campaigns`)
       .then((res) => setCampaigns(res.data));
   }, []);
-  console.log(userDonations);
+  console.log(userDonations.length);
   return (
     <Container>
-      {user && userDonations !== null ? (
+      {userDonations.length > 0 && user ? (
         <>
           <ProfileTitle>
             <h1>Meu perfil</h1>
@@ -71,7 +75,7 @@ const VoluntaryProfile = () => {
               <TitleDetail />
             </ProfileTitle>
             <div className="campaign-cards">
-              {userDonations !== [] ? (
+              {userDonations !== "nothing" ? (
                 userDonations.map((donation, index) => {
                   return (
                     <CampaignCard
@@ -92,8 +96,10 @@ const VoluntaryProfile = () => {
                   );
                 })
               ) : (
-                <div className="not-yet">
-                  Você ainda não esta participando de nenhuma campanha!
+                <div className="campaign-cards">
+                  <div className="not-yet">
+                    Você ainda não esta participando de nenhuma campanha!
+                  </div>
                 </div>
               )}
             </div>

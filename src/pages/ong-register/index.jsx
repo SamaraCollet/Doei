@@ -4,8 +4,8 @@ import {
   StyledTextField,
   StyledButton,
 } from "../../pages/voluntary-register/styles";
-import axios from 'axios'
-import {useHistory} from 'react-router-dom'
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 import { FormContainerOng } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -46,15 +46,15 @@ const OngRegister = () => {
     resolver: yupResolver(schema),
   });
 
-  const history = useHistory()
+  const history = useHistory();
   const handleForm = (value) => {
-    value.ngo = true
+    value.ngo = true;
     axios
-    .post(`https://capstone4-kenzie.herokuapp.com/register`, { ...value })
-    .then(res => history.push("/login-ong"))
-    .catch(() => {
-      setError("email", { message: "Este email já está sendo utilizado" });
-    });
+      .post(`https://capstone4-kenzie.herokuapp.com/register`, { ...value })
+      .then((res) => history.push("/login-ong"))
+      .catch(() => {
+        setError("email", { message: "Este email já está sendo utilizado" });
+      });
   };
 
   return (
@@ -124,6 +124,7 @@ const OngRegister = () => {
               variant="outlined"
               size="small"
               name="password"
+              type="password"
               label="Senha"
               inputRef={register}
               error={!!errors.password}
@@ -134,6 +135,7 @@ const OngRegister = () => {
               size="small"
               name="password_confirmation"
               label="Confirme sua senha"
+              type="password"
               inputRef={register}
               error={!!errors.password_confirmation}
               helperText={errors.password_confirmation?.message}
