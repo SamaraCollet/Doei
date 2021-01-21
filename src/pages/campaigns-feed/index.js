@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllCampaigns } from "../../store/thunks";
 import { StyledTitle, Container, DetailTitle } from "./style";
+import {useParams, Link} from "react-router-dom"
+
 const CampaingsFeed = () => {
   const campaigns = useSelector((state) => state.campaigns);
-  // const users = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
-  console.log(campaigns);
+  const {city}  = useParams()
 
   useEffect(() => {
     dispatch(getAllCampaigns());
@@ -18,7 +18,7 @@ const CampaingsFeed = () => {
     <Container>
       <StyledTitle>Anúncios recentes</StyledTitle>
       <DetailTitle />
-      {campaigns.map(
+      { city === "Curitiba" ? campaigns.map(
         ({ title, about, endDate, location, ongName, id }, index) => {
           return (
             <CampaignCard
@@ -30,10 +30,10 @@ const CampaingsFeed = () => {
               about={about}
               id={id}
             />
-          );
-        }
-      )}
-    </Container>
+          )
+        }) : <div>Nenhuma campanha encontrada em {city}. <Link to="/">Voltar</Link>
+             </div>}
+    </Container> 
   );
 };
 

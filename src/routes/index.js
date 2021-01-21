@@ -21,7 +21,7 @@ const Routes = () => {
     <>
       {token ? <AuthHeader/> : <Header/>}
           <Switch>
-            <Route exact path="/campaigns-feed">
+            <Route exact path="/campaigns-feed/:city">
               <CampaignsFeed />
             </Route>
             <Route exact path="/campaign/:id">

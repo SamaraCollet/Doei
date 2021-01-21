@@ -1,9 +1,15 @@
 import { Container, BannerContent, FindLocal } from "./styles";
 import { BiSearch } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
+import {useState} from "react"
 
 const BannerLandingPage = () => {
   const history = useHistory();
+  const [city,setCity] = useState("Curitiba")
+
+  const handleSelect = event => {
+    setCity(event.target.value) 
+      }
 
   return (
     <Container>
@@ -17,16 +23,16 @@ const BannerLandingPage = () => {
           de quem precisa:
         </p>
         <FindLocal>
-          <select name="select">
-            <option value="valor1">Valor 1</option>
-            <option value="valor2" selected>
-              Valor 2
+          <select name="select" value={city} onChange={handleSelect}>
+            <option value="Curitiba" selected>Curitiba</option>
+            <option value="São Paulo" >
+              São Paulo
             </option>
-            <option value="valor3">Valor 3</option>
+            <option value="Rio de Janeiro">Rio de Janeiro</option>
           </select>
           <button
             onClick={() => {
-              history.push("/campaigns-feed");
+              history.push(`/campaigns-feed/${city}`);
             }}
           >
             <BiSearch />
