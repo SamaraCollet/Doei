@@ -14,8 +14,9 @@ import { motion } from "framer-motion";
 const OngProfile = () => {
   const [user, setUser] = useState();
   const [userId, setUserId] = useState();
-  const [userCampaigns, setUserCampaigns] = useState();
-  const [userScheduling, setUserScheduling] = useState();
+  const [userCampaigns, setUserCampaigns] = useState([]);
+  const [userScheduling, setUserScheduling] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
 
   const campaigns = useSelector((state) => state.campaigns);
   const dispatch = useDispatch();
@@ -30,6 +31,10 @@ const OngProfile = () => {
     setUserId(decoded.sub);
 
     axios
+      .get("https://capstone4-kenzie.herokuapp.com/users")
+      .then((res) => setAllUsers(res.data));
+
+    axios
       .get(`https://capstone4-kenzie.herokuapp.com/users/${decoded.sub}`)
       .then((res) => setUser(res.data));
 
@@ -41,17 +46,24 @@ const OngProfile = () => {
         `https://capstone4-kenzie.herokuapp.com/campaigns?userId=${decoded.sub}`,
         config
       )
-      .then((res) => setUserCampaigns(res.data));
+      .then((res) =>
+        res.data.length <= 0
+          ? setUserCampaigns("nothing")
+          : setUserCampaigns(res.data)
+      );
 
     axios
       .get(
         `https://capstone4-kenzie.herokuapp.com/donations?ongId=${decoded.sub}`,
         config
       )
-      .then((res) => setUserScheduling(res.data));
+      .then((res) =>
+        res.data.length <= 0
+          ? setUserScheduling("nothing")
+          : setUserScheduling(res.data)
+      );
   }, []);
-  console.log(campaigns);
-  console.log(userId);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -100,7 +112,7 @@ const OngProfile = () => {
               </ProfileTitle>
 
               <div className="campaign-cards">
-                {userCampaigns ? (
+                {userCampaigns !== "nothing" ? (
                   userCampaigns.map(
                     (
                       { title, about, endDate, location, ongName, id },
@@ -120,7 +132,11 @@ const OngProfile = () => {
                     }
                   )
                 ) : (
-                  <h2>Você ainda não tem campanhas</h2>
+                  <div className="campaign-cards">
+                    <div className="not-yet">
+                      Você ainda não esta participando de nenhuma campanha!
+                    </div>
+                  </div>
                 )}
               </div>
               <ProfileTitle>
@@ -128,11 +144,12 @@ const OngProfile = () => {
                 <TitleDetail />
 
                 <div className="scheduling-cards">
-                  {userScheduling ? (
+                  {userScheduling !== "nothing" ? (
                     userScheduling.map(
                       (
                         {
                           id,
+                          userId,
                           adTitle,
                           campaignId,
                           message,
@@ -144,6 +161,8 @@ const OngProfile = () => {
                         },
                         index
                       ) => {
+                        let user = allUsers.filter((e) => e.id == userId);
+
                         return (
                           <SchedulingCard
                             key={index}
@@ -151,7 +170,7 @@ const OngProfile = () => {
                             adTitle={adTitle}
                             campaignId={campaignId}
                             message={message}
-                            username={username}
+                            username={user[0].name}
                             scheduledDate={scheduledDate}
                             ongName={ongName}
                             quantity={quantity}
@@ -161,7 +180,11 @@ const OngProfile = () => {
                       }
                     )
                   ) : (
-                    <h2>Você ainda não tem Agendamentos</h2>
+                    <div className="campaign-cards">
+                      <div className="not-yet">
+                        Você ainda não esta participando de nenhuma campanha!
+                      </div>
+                    </div>
                   )}
                 </div>
               </ProfileTitle>
