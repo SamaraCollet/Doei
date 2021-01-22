@@ -38,7 +38,6 @@ const AdPage = () => {
 
   useEffect(() => {
     if (ad !== null) {
-      console.log(ad.userId);
       axios
         .get(`https://capstone4-kenzie.herokuapp.com/ngos/${ad.userId}`)
         .then((res) => setOng(...res.data));
@@ -62,7 +61,6 @@ const AdPage = () => {
   Geocode.enableDebug();
 
   const getLocation = (address) => {
-    console.log(address);
     Geocode.fromAddress(address).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;

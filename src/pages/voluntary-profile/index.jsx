@@ -42,7 +42,6 @@ const VoluntaryProfile = () => {
       .get(`https://capstone4-kenzie.herokuapp.com/campaigns`)
       .then((res) => setCampaigns(res.data));
   }, []);
-  console.log(userDonations.length);
   return (
     <motion.div
       initial={{ opacity: 0 }}

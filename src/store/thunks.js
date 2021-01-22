@@ -8,7 +8,6 @@ export const getAllCampaigns = () => (dispatch) => {
   axios
     .get(`${url}/campaigns`)
     .then((response) => {
-      // console.log(response);
       dispatch(setAllCampaigns(response.data));
     })
     .catch((err) => console.log(err));

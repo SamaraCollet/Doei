@@ -5,7 +5,6 @@ import Stories from "../../components/success-stories-landing-page";
 import { motion } from "framer-motion";
 
 const LandingPage = () => {
-  console.log("opsda");
   return (
     <motion.div
       initial={{ opacity: 0 }}

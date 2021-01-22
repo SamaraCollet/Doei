@@ -57,7 +57,6 @@ const Edit = ({ userId, user, setUser }) => {
   });
 
   const handleEdit = (data) => {
-    console.log(data);
     let token = localStorage.getItem("authToken");
 
     const config = {

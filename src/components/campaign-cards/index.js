@@ -22,21 +22,6 @@ const CampaignCard = ({ title, endDate, location, about, ongName, id }) => {
   const [newAbout, setNewAbout] = useState(about);
   const [newDate, setNewDate] = useState(endDate);
 
-  // const handleChanges = async (data) => {
-  //   let token = localStorage.getItem("authToken");
-  //   const config = {
-  //     headers: { authorization: `Bearer ${token} ` },
-  //   };
-  //   axios
-  //     .patch(
-  //       `https://capstone4-kenzie.herokuapp.com/campaigns/${id}`,
-  //       data,
-  //       config
-  //     )
-  //     .catch((err) => console.log(err));
-  //   console.log(data);
-  // };
-
   return (
     <Box m={3}>
       <Grid container direction="column" alignItems="center" justify="center">

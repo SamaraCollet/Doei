@@ -108,6 +108,7 @@ const NewCampaign = (props) => {
       .catch((err) => console.log(err));
 
     handleClose();
+    window.location.reload();
   };
 
   return (

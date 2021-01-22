@@ -30,7 +30,6 @@ const Routes = () => {
   }, []);
 
   const logged = useSelector((state) => state.users.data);
-  console.log(logged);
   return (
     <AnimatePresence>
       {!!logged ? (
@@ -55,7 +54,6 @@ const Routes = () => {
             </Route>
             <Route exact path="/perfil-voluntario">
               <VoluntaryProfile />
-              <Footer />
             </Route>
             <Route path="*">
               <PageNotFound />
@@ -96,7 +94,6 @@ const Routes = () => {
             </Route>
             <Route exact path="/perfil-voluntario">
               <NotAuthorized />
-              <Footer />
             </Route>
             <Route path="*">
               <PageNotFound />

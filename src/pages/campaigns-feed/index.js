@@ -34,7 +34,6 @@ const CampaingsFeed = () => {
         {city === undefined ? (
           campaigns.map(
             ({ title, about, endDate, location, ongName, id }, index) => {
-              console.log(location);
               return (
                 <CampaignCard
                   key={index}
