@@ -30,7 +30,7 @@ const Routes = () => {
   }, []);
 
   const logged = useSelector((state) => state.users.data);
-
+  console.log(logged);
   return (
     <AnimatePresence>
       {!!logged ? (
