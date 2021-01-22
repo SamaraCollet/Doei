@@ -113,6 +113,10 @@ export const StyledButton = styled(Button)`
   height: 40px;
   border-radius: 5px !important;
 
+  :hover {
+    background-color: #fdce4c !important;
+  }
+
   @media (min-width: 768px) and (max-width: 979px) {
     margin-top: 20px !important;
   }

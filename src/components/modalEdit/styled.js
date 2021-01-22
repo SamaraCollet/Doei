@@ -38,6 +38,10 @@ export const StyledButtonMin = styled(Button)`
 export const StyledButtonSave = styled(Button)`
   margin-top: 20px !important;
   background-color: #ffbe0b !important;
+
+  :hover {
+    background-color: #fdce4c !important;
+  }
 `;
 
 export const StyledTextField = styled(TextField)`
