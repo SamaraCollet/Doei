@@ -150,6 +150,11 @@ export const Contact = styled.div`
     font-size: 20px;
   }
 
+  .link {
+    color: #148cee;
+    text-decoration: none;
+  }
+
   @media (min-width: 768px) and (max-width: 979px) {
     h2 {
       font-size: 1.6rem;

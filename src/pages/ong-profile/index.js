@@ -134,7 +134,7 @@ const OngProfile = () => {
                 ) : (
                   <div className="campaign-cards">
                     <div className="not-yet">
-                      Você ainda não esta participando de nenhuma campanha!
+                      Você ainda não criou uma nova campanha!
                     </div>
                   </div>
                 )}
@@ -182,7 +182,7 @@ const OngProfile = () => {
                   ) : (
                     <div className="campaign-cards">
                       <div className="not-yet">
-                        Você ainda não esta participando de nenhuma campanha!
+                        Ainda não tem agendamentos de campanhas!
                       </div>
                     </div>
                   )}

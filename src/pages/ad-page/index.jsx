@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import Geocode from "react-geocode";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import TitleDetail from "../../components/detail-title-blue";
 import { motion } from "framer-motion";
 
@@ -123,7 +123,9 @@ const AdPage = () => {
                   {ong.email && <li> {ong.email} </li>}
                   {ong.phoneNumber && <li> {ong.phoneNumber} </li>}
                   <li>
-                    <a href={ong.site}>{ong.site}</a>
+                    <Link className="link" to={ong.site}>
+                      {ong.site}
+                    </Link>
                   </li>
                 </ul>
               </div>

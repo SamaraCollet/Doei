@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ProfileTitle = styled.header`
+export const ProfileTitle = styled.header `
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,21 +26,31 @@ export const ProfileTitle = styled.header`
   }
 `;
 
-export const Container = styled.div`
+export const Container = styled.div `
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .not-yet {
+    width: 100%;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+  }
 `;
 
-export const Info = styled.div`
+export const Info = styled.div `
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 700px;
   height: auto;
-  margin: 40px 0 80px;
+  margin: 40px 0 30px;
 
   .name-and-edit-profile {
     display: flex;
@@ -114,7 +124,7 @@ export const Info = styled.div`
   }
 `;
 
-export const Campaigns = styled.div`
+export const Campaigns = styled.div `
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -125,7 +135,7 @@ export const Campaigns = styled.div`
   }
 `;
 
-export const NewCampaignButton = styled.div`
+export const NewCampaignButton = styled.div `
   font-weight: bolder;
   text-align: center;
   align-content: center;
