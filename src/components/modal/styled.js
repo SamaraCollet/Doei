@@ -49,6 +49,10 @@ export const StyledButton = styled(Button)`
   font-family: "Nunito", sans-serif !important;
   height: 40px;
   border-radius: 5px !important;
+
+  :hover {
+    background-color: #fdce4c !important;
+  }
 `;
 
 export const StyledTextField = styled(TextField)`
